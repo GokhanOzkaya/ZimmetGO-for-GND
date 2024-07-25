@@ -69,6 +69,8 @@ namespace Demirbas_denem1
                     AdminAnaEkran form2 = new AdminAnaEkran();
                     griddoldur();
                     form2.ShowDialog();
+
+                    string a = "aasfadjhgfsahgdfvsakj";
                 }
                 else
                 {
