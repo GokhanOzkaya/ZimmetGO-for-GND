@@ -20,7 +20,11 @@ namespace Demirbas_denem1.Entities
         public DateTime userFinishTime{ get; set; }
     
     }
-   
+    public static class CurrentUser
+    {
+        public static User User { get; set; } = new User();
+    }
+
     public class Admin
     {
         public int AdminId { get; set; }

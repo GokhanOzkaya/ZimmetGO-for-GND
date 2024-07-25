@@ -43,7 +43,7 @@ namespace Demirbas_denem1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int urunKodu = (int)dataGridView1.CurrentRow.Cells["UrunKodu"].Value;
+            
             string silmeSorgusu = "DELETE FROM Urunler WHERE UrunKodu ="+urunKodu;
             DataBaseSettings.con.Open();
 
@@ -65,7 +65,7 @@ namespace Demirbas_denem1
                 string userPassword = textBox2.Text.ToString();
                 DataBaseSettings.LoadAdminData(textBox1.Text, textBox2.Text);
 
-                AdminAnaEkran form2 = new AdminAnaEkran();
+                AnaEkran form2 = new AnaEkran();
                 griddoldur();
                 form2.ShowDialog();
             }
@@ -93,9 +93,8 @@ namespace Demirbas_denem1
                 DataBaseSettings.LoadAdminData(userName,userPassword);
 
 
-                AdminAnaEkran form2 = new AdminAnaEkran();
-                griddoldur();
-                form2.ShowDialog();
+                AnaEkran anaEkran = new AnaEkran();
+                anaEkran.ShowDialog();
             }
             else 
             {

@@ -91,6 +91,38 @@ namespace Demirbas_denem1.Database
 
             return false;
         }
+        public static bool LoadUserData(string userName, string sifre)
+        {
+           
+            string query = "SELECT COUNT(*) FROM Kullanicilar WHERE KullaniciAdi = @KullaniciAdi AND KullaniciSifre= @KullaniciSifre";
+
+
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@KullaniciAdi", userName);
+                    cmd.Parameters.AddWithValue("@KullaniciSifre", sifre);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            CurrentAdmin.Admin.AdminId = reader.GetInt32(reader.GetOrdinal("id"));
+                            CurrentAdmin.Admin.AdminAdi = reader.GetString(reader.GetOrdinal("ad"));
+                            CurrentAdmin.Admin.AdminUserName = reader.GetString(reader.GetOrdinal("username"));
+                            CurrentAdmin.Admin.AdminSifre = reader.GetString(reader.GetOrdinal("sifre"));
+                            // Diğer alanları da okuyabilirsiniz.
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
 
         //user kontrol
         public static bool ısThereUser(string userName, string userSifre)
