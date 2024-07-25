@@ -55,34 +55,24 @@ namespace Demirbas_denem1
             griddoldur();
         }
 
-     
-
-
         private void button1_Click_2(object sender, EventArgs e)
         {
-            try
+            bool isThere = DataBaseSettings.ısThereUser(userName: textBox1.Text, userSifre: textBox2.Text);
+
+            if (isThere)
             {
-                bool isThere = DataBaseSettings.ısThere(Convert.ToInt32(textBox1.Text), textBox2.Text);
-                if (isThere)
-                {
-                   
-                    AdminAnaEkran form2 = new AdminAnaEkran();
-                    griddoldur();
-                    form2.ShowDialog();
+         
+                string userPassword = textBox2.Text.ToString();
+                DataBaseSettings.LoadAdminData(textBox1.Text, textBox2.Text);
 
-                    string a = "aasfadjhgfsahgdfvsakj";
-                }
-                else
-                {
-                    MessageBox.Show("Şifre veya Parola Hatalı Lütfen Daha Sonra Tekrar Deneyiniz");
-                }
+                AdminAnaEkran form2 = new AdminAnaEkran();
+                griddoldur();
+                form2.ShowDialog();
             }
-            catch (Exception error)
+            else
             {
-                MessageBox.Show(error.Message);
+                MessageBox.Show("Şifre veya Parola Hatalı Lütfen Daha Sonra Tekrar Deneyiniz");
             }
-
-
 
         }
 

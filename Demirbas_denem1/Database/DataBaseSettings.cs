@@ -35,7 +35,7 @@ namespace Demirbas_denem1.Database
 
 
         //KULLANICI VERİTABANINDA VARMI? 
-        public static bool ısThere(int userSifre,string userName)
+        public static bool ısThere(int userSifre,string userName )
         {
             bool isThere = false;
             string query = "SELECT COUNT(*) FROM Admin WHERE username = @username AND sifre = @sifre";
@@ -92,9 +92,35 @@ namespace Demirbas_denem1.Database
             return false;
         }
 
+        //user kontrol
+        public static bool ısThereUser(string userName, string userSifre)
+        {
+            bool isThere = false;
+            string query = "SELECT COUNT(*) FROM Kullanicilar WHERE KullaniciAdi = @KullaniciAdi AND KullaniciSifre= @KullaniciSifre";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@KullaniciAdi", userName);
+                    cmd.Parameters.AddWithValue("@KullaniciSifre", userSifre); // 'password' değişkeni, kullanıcıdan alınan şifreyi içermelidir
+
+                    int kullanicisayisi = (int)cmd.ExecuteScalar();
+
+                    if (kullanicisayisi > 0)
+                    {
+                        isThere = true;
+                    }
+                }
+            }
+            return isThere;
+
+        }
+
         //Grid doldur kısayol
-       
-            public static void GridDoldurKullanici(DataGridView dataGridView)
+
+        public static void GridDoldurKullanici(DataGridView dataGridView)
             {
                 string query = "SELECT KullaniciAdi, KullaniciSoyadi, Email, BaslamaTarihi, Statu, Unvan,KullaniciKodu FROM Kullanicilar";
 
