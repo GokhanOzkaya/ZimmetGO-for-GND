@@ -110,10 +110,9 @@ namespace Demirbas_denem1.Database
                     {
                         if (reader.Read())
                         {
-                            CurrentAdmin.Admin.AdminId = reader.GetInt32(reader.GetOrdinal("id"));
-                            CurrentAdmin.Admin.AdminAdi = reader.GetString(reader.GetOrdinal("ad"));
-                            CurrentAdmin.Admin.AdminUserName = reader.GetString(reader.GetOrdinal("username"));
-                            CurrentAdmin.Admin.AdminSifre = reader.GetString(reader.GetOrdinal("sifre"));
+                            CurrentUser.User.userName = reader.GetString(reader.GetOrdinal("KullaniciAdi"));
+                            CurrentUser.User.usereMail = reader.GetString(reader.GetOrdinal("KullaniciSoyadi"));
+                            CurrentUser.User.userRole = reader.GetString(reader.GetOrdinal("YetkiGrubu"));
                             // Diğer alanları da okuyabilirsiniz.
                             return true;
                         }

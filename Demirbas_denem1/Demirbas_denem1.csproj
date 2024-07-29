@@ -59,11 +59,11 @@
     <Compile Include="Scanes\Giriş.Designer.cs">
       <DependentUpon>Giriş.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scanes\AdminAnaEkran.cs">
+    <Compile Include="Scanes\AnaEkran.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Scanes\AdminAnaEkran.Designer.cs">
-      <DependentUpon>AdminAnaEkran.cs</DependentUpon>
+    <Compile Include="Scanes\AnaEkran.Designer.cs">
+      <DependentUpon>AnaEkran.cs</DependentUpon>
     </Compile>
     <Compile Include="items.cs" />
     <Compile Include="Scanes\YeniKullanıcıEkle.cs">
@@ -83,8 +83,8 @@
     <EmbeddedResource Include="Scanes\Giriş.resx">
       <DependentUpon>Giriş.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scanes\AdminAnaEkran.resx">
-      <DependentUpon>AdminAnaEkran.cs</DependentUpon>
+    <EmbeddedResource Include="Scanes\AnaEkran.resx">
+      <DependentUpon>AnaEkran.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scanes\YeniKullanıcıEkle.resx">
       <DependentUpon>YeniKullanıcıEkle.cs</DependentUpon>

@@ -29,8 +29,6 @@ namespace Demirbas_denem1
             DataBaseSettings.ds = new DataSet();
             DataBaseSettings.con.Open();
             DataBaseSettings.da.Fill(DataBaseSettings.ds, "Kullanicilar");
-            dataGridView1.DataSource = DataBaseSettings.ds.Tables["Kullanicilar"];
-        
             DataBaseSettings.con.Close();
            
         }
@@ -44,15 +42,7 @@ namespace Demirbas_denem1
         private void button2_Click(object sender, EventArgs e)
         {
             
-            string silmeSorgusu = "DELETE FROM Urunler WHERE UrunKodu ="+urunKodu;
-            DataBaseSettings.con.Open();
-
-            SqlCommand verisil = new SqlCommand(silmeSorgusu, DataBaseSettings.con);
-            verisil.ExecuteNonQuery();
-
-            DataBaseSettings.con.Close();
-
-            griddoldur();
+         
         }
 
         private void button1_Click_2(object sender, EventArgs e)
@@ -63,8 +53,9 @@ namespace Demirbas_denem1
             {
          
                 string userPassword = textBox2.Text.ToString();
-                DataBaseSettings.LoadAdminData(textBox1.Text, textBox2.Text);
+                DataBaseSettings.LoadUserData(textBox1.Text, textBox2.Text);
 
+                String role = CurrentUser.User.userRole;   
                 AnaEkran form2 = new AnaEkran();
                 griddoldur();
                 form2.ShowDialog();
