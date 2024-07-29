@@ -19,7 +19,7 @@ namespace Demirbas_denem1.Entities
     {
         public void AddNewUser(User newUser) 
         {
-           string addQuery = "INSERT INTO Kullanicilar (KullaniciAdi,KullaniciSoyadi, Email,BaslamaTarihi,Statu,Unvan,KullaniciKodu) VALUES ('"+newUser.userName+"' , '"+newUser.sureName+"' ,'" + newUser.usereMail+ "','" + newUser.userStartTime+ "','" + newUser.userStatus+ "','" + newUser.userUnvan+ "','" + newUser.userCode+ "')";
+           string addQuery = "INSERT INTO Kullanicilar (KullaniciAdi, KullaniciSoyadi, Unvan, Departman, KullaniciKodu, Email, Sifre, BaslamaTarihi, Statu, Rol) VALUES ('" + newUser.userName+"' , '"+newUser.sureName+"' ,'" + newUser.userTitle+ "','" + newUser.userDepartment+ "','" + newUser.userCode+ "','" + newUser.usereMail+ "','" + newUser.userePassword+ "','" + newUser.userStartTime+ "','" + newUser.userStatus+ "','" + newUser.userRole+ "')";
            DataBaseSettings.ExecuteNonQuery(addQuery);
         }
         public void AddNewYetki( string yetkiAdi )

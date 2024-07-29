@@ -41,11 +41,15 @@ namespace Demirbas_denem1
                 Entities.User newUser = new Entities.User();
                 newUser.userName = textBox1.Text;
                 newUser.sureName = textBox2.Text;
-                newUser.usereMail = textBox3.Text;
-                newUser.userStatus = comboBox1.Text.ToString();
-                newUser.userStartTime = dateTimePicker1.Value;
+                newUser.userTitle = comboBox2.Text;
+                newUser.userDepartment = textBox4.Text;
                 newUser.userCode = textBox6.Text;
-                newUser.userUnvan = textBox5.Text;
+                newUser.userePassword = textBox7.Text;
+                newUser.usereMail = textBox3.Text;
+                newUser.userStartTime = dateTimePicker1.Value;
+                newUser.userStatus = comboBox1.Text; 
+                newUser.userRole = comboBox3.Text;   
+           
 
                 UserRepository Repository = new UserRepository();
                 Repository.AddNewUser(newUser);
@@ -77,7 +81,7 @@ namespace Demirbas_denem1
                 textBox3.Text = row.Cells["Email"].Value.ToString();
                 dateTimePicker1.Value = Convert.ToDateTime(row.Cells["BaslamaTarihi"].Value);
                 comboBox1.Text = row.Cells["Statu"].Value.ToString();
-                textBox5.Text = row.Cells["Unvan"].Value.ToString();
+      
                 textBox6.Text = row.Cells["KullaniciKodu"].Value.ToString();
 
 
@@ -96,6 +100,11 @@ namespace Demirbas_denem1
             UserRepository userRepository = new UserRepository();
             
             DataBaseSettings.GridDoldurYetki(dataGridView1);
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

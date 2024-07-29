@@ -11,13 +11,13 @@ namespace Demirbas_denem1.Entities
   
         public string userName { get; set; }    
         public string sureName { get; set; }
+        public string userTitle { get; set; }
+        public string userDepartment { get; set; }
         public string userCode { get; set; }
         public string usereMail { get; set; }   
-        public string userDescription { get; set; } 
-        public string userStatus { get; set; } 
-        public string userUnvan { get; set; }
+        public string userePassword { get; set; }   
         public DateTime userStartTime{ get; set; } 
-        public DateTime userFinishTime{ get; set; }
+        public string userStatus {  get; set; } 
         public string userRole { get; set; }
     
     }
@@ -26,17 +26,4 @@ namespace Demirbas_denem1.Entities
         public static User User { get; set; } = new User();
     }
 
-    public class Admin
-    {
-        public int AdminId { get; set; }
-        public string AdminAdi { get; set; }
-        public string AdminUserName { get; set; }
-        public string AdminSifre { get; set; }
-        // Diğer alanları ekleyebilirsiniz.
-    }
-
-    public static class CurrentAdmin
-    {
-        public static Admin Admin { get; set; } = new Admin();
-    }
 }

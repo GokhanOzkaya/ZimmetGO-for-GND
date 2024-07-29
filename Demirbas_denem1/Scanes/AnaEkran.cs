@@ -17,20 +17,13 @@ namespace Demirbas_denem1
 {
     public partial class AnaEkran : Form
     {
-        public AnaEkran()
+        public AnaEkran(string role)
         {
-            //InitializeComponent();
-            //if (rol == "Admin")
-            //{
-            //    label1.Text = CurrentAdmin.Admin.AdminUserName;
-            //    label2.Text = CurrentAdmin.Admin.AdminSifre;
-            //}
-            //else if (rol == "User")
-            //{
-            //    label1.Text = CurrentUser.User.userName;
-            //    label2.Text = CurrentUser.User.sureName;
-            //}
-        
+            InitializeComponent();
+
+                label1.Text = CurrentUser.User.userName;
+                label2.Text = CurrentUser.User.sureName;
+     
         }
 
         private void button1_Click(object sender, EventArgs e)

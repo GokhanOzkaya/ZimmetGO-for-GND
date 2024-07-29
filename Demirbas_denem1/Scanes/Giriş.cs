@@ -47,19 +47,20 @@ namespace Demirbas_denem1
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            bool isThere = DataBaseSettings.ısThereUser(userName: textBox1.Text, userSifre: textBox2.Text);
 
-            if (isThere)
+            bool isUser = DataBaseSettings.ısThereUser(userName: textBox1.Text, userSifre: textBox2.Text);
+
+            if (isUser)
             {
-         
-                string userPassword = textBox2.Text.ToString();
                 DataBaseSettings.LoadUserData(textBox1.Text, textBox2.Text);
 
                 String role = CurrentUser.User.userRole;   
-                AnaEkran form2 = new AnaEkran();
+                AnaEkran form2 = new AnaEkran(role:"User");
                 griddoldur();
                 form2.ShowDialog();
             }
+
+
             else
             {
                 MessageBox.Show("Şifre veya Parola Hatalı Lütfen Daha Sonra Tekrar Deneyiniz");
@@ -75,22 +76,7 @@ namespace Demirbas_denem1
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            bool isThere = DataBaseSettings.ısThere(Convert.ToInt32(textBox3.Text),textBox4.Text);
-            if (isThere)
-            {
-                UserRepository Repository = new UserRepository();
-                string userName = textBox4.Text;
-                string userPassword = textBox3.Text.ToString();
-                DataBaseSettings.LoadAdminData(userName,userPassword);
-
-
-                AnaEkran anaEkran = new AnaEkran();
-                anaEkran.ShowDialog();
-            }
-            else 
-            {
-                MessageBox.Show("Şifre veya Parola Hatalı Lütfen Daha Sonra Tekrar Deneyiniz");
-            }
+    
         }
     }
 }
