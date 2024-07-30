@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\DataBaseSettings.cs" />
-    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Demirbas.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Database\UserRepository.cs" />
@@ -59,6 +59,12 @@
     </Compile>
     <Compile Include="Scanes\AdminEkran.Designer.cs">
       <DependentUpon>AdminEkran.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scanes\Demirbasİslemleri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scanes\Demirbasİslemleri.Designer.cs">
+      <DependentUpon>Demirbasİslemleri.cs</DependentUpon>
     </Compile>
     <Compile Include="Scanes\Giriş.cs">
       <SubType>Form</SubType>
@@ -89,6 +95,9 @@
     </Compile>
     <EmbeddedResource Include="Scanes\AdminEkran.resx">
       <DependentUpon>AdminEkran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scanes\Demirbasİslemleri.resx">
+      <DependentUpon>Demirbasİslemleri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scanes\Giriş.resx">
       <DependentUpon>Giriş.cs</DependentUpon>

@@ -22,7 +22,7 @@ namespace Demirbas_denem1.Scanes
 
         private void YetilendirmeEkranı_Load(object sender, EventArgs e)
         {
-            DataBaseSettings.GridDoldurYetki(dataGridView1);
+          
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace Demirbas_denem1.Scanes
         {
             UserRepository userRepository = new UserRepository();
             userRepository.AddNewYetki(yetkiAdi:textBox1.Text);
-            DataBaseSettings.GridDoldurYetki(dataGridView1);
+         
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -33,5 +33,11 @@ namespace Demirbas_denem1.Scanes
             YetilendirmeEkranı ye = new YetilendirmeEkranı();
             ye.Show();
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Demirbasİslemleri demirbasİslemleri = new Demirbasİslemleri();
+            demirbasİslemleri.Show();   
+        }
     }
 }

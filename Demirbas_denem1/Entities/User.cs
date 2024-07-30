@@ -9,6 +9,7 @@ namespace Demirbas_denem1.Entities
     public class User
     {
   
+        public int KullaniciId { get; set; } 
         public string userName { get; set; }    
         public string sureName { get; set; }
         public string userTitle { get; set; }

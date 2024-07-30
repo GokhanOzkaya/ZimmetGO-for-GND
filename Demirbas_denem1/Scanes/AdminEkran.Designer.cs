@@ -35,7 +35,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(281, 498);
+            this.button4.Location = new System.Drawing.Point(37, 498);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(199, 54);
             this.button4.TabIndex = 9;
@@ -45,16 +45,17 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(281, 175);
+            this.button3.Location = new System.Drawing.Point(37, 248);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(199, 54);
             this.button3.TabIndex = 8;
             this.button3.Text = "MALZEME İŞLEMLERİ";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(281, 87);
+            this.button2.Location = new System.Drawing.Point(37, 160);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(199, 54);
             this.button2.TabIndex = 7;

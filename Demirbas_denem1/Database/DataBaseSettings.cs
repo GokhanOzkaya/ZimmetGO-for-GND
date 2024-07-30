@@ -123,28 +123,7 @@ namespace Demirbas_denem1.Database
 
                 dataGridView.DataSource = dataTable;
             }
-        //Grid Doldur Yetkiler
 
-        public static void GridDoldurYetki(DataGridView dataGridView)
-        {
-            string query = "SELECT YetkiKodu, Yetki FROM Yetki";
-
-            DataTable dataTable = new DataTable();
-
-            using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-                }
-            }
-
-            dataGridView.DataSource = dataTable;
-        }
 
         public static List<Role> LoadYetkiData()
         {
@@ -172,6 +151,12 @@ namespace Demirbas_denem1.Database
             }
 
             return roles;
+        }
+
+        public static void pasifeCek()
+        { 
+            
+        
         }
 
 
