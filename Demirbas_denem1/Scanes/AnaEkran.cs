@@ -22,8 +22,7 @@ namespace Demirbas_denem1
             InitializeComponent();
 
                 label1.Text = CurrentUser.User.userName;
-                label2.Text = CurrentUser.User.sureName;
-     
+                label2.Text = CurrentUser.User.usereMail;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -48,6 +47,21 @@ namespace Demirbas_denem1
         {
             YetilendirmeEkranı ye = new YetilendirmeEkranı();
             ye.Show();  
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            groupBox1.Visible = true;
+            label4.Text = CurrentUser.User.userName;    
+            label5.Text = CurrentUser.User.sureName;    
+            label6.Text = CurrentUser.User.userTitle;    
+            label7.Text = CurrentUser.User.userDepartment;    
+            label8.Text = CurrentUser.User.userCode;    
+            label9.Text = CurrentUser.User.usereMail;    
+            label10.Text = CurrentUser.User.userePassword;    
+            dateTimePicker1.Value = CurrentUser.User.userStartTime;    
+            label11.Text = CurrentUser.User.userStatus;    
+            label12.Text = CurrentUser.User.userRole;    
         }
     }
 }

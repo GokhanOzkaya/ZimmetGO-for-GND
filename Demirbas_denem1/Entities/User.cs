@@ -19,7 +19,9 @@ namespace Demirbas_denem1.Entities
         public DateTime userStartTime{ get; set; } 
         public string userStatus {  get; set; } 
         public string userRole { get; set; }
-    
+
+
+
     }
     public static class CurrentUser
     {

@@ -55,8 +55,16 @@ namespace Demirbas_denem1.Database
                         if (reader.Read())
                         {
                             CurrentUser.User.userName = reader.GetString(reader.GetOrdinal("KullaniciAdi"));
-                            CurrentUser.User.usereMail = reader.GetString(reader.GetOrdinal("KullaniciSoyadi"));
-                   
+                            CurrentUser.User.sureName = reader.GetString(reader.GetOrdinal("KullaniciSoyadi"));
+                            CurrentUser.User.userTitle = reader.GetString(reader.GetOrdinal("Unvan"));
+                            CurrentUser.User.userDepartment = reader.GetString(reader.GetOrdinal("Departman"));
+                            CurrentUser.User.userCode = reader.GetString(reader.GetOrdinal("KullaniciKodu"));
+                            CurrentUser.User.usereMail = reader.GetString(reader.GetOrdinal("Email"));
+                            CurrentUser.User.userePassword = reader.GetString(reader.GetOrdinal("Sifre"));
+                            CurrentUser.User.userStartTime = reader.GetDateTime(reader.GetOrdinal("BaslamaTarihi"));
+                            CurrentUser.User.userStatus = reader.GetString(reader.GetOrdinal("Statu"));
+                            CurrentUser.User.userRole = reader.GetString(reader.GetOrdinal("Rol"));
+
                             // Diğer alanları da okuyabilirsiniz.
                             return true;
                         }
@@ -138,6 +146,33 @@ namespace Demirbas_denem1.Database
             dataGridView.DataSource = dataTable;
         }
 
+        public static List<Role> LoadYetkiData()
+        {
+            List<Role> roles = new List<Role>();
+      
+
+            using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM Yetki";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Role role = new Role();
+                            role.yetki = reader["Yetki"].ToString();
+                            role.kullaniciKodu = reader["KullaniciId"].ToString();
+                            roles.Add(role);
+                        }
+                    }
+                }
+            }
+
+            return roles;
+        }
 
 
 

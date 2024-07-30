@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Demirbas_denem1.Entities;
 using Demirbas_denem1.Database;
+using Demirbas_denem1.Scanes;
 
 
 namespace Demirbas_denem1
@@ -70,8 +71,9 @@ namespace Demirbas_denem1
 
         private void label1_Click_1(object sender, EventArgs e)
         {
-            YeniKullanıcıEkle kayıtOl = new YeniKullanıcıEkle();
-            kayıtOl.ShowDialog();
+     
+            AdminEkran adminEkran = new AdminEkran();
+            adminEkran.ShowDialog();    
         }
 
         private void button2_Click_1(object sender, EventArgs e)

@@ -36,9 +36,10 @@ namespace Demirbas_denem1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             try
             {
-                Entities.User newUser = new Entities.User();
+                Entities.User newUser = new User();
                 newUser.userName = textBox1.Text;
                 newUser.sureName = textBox2.Text;
                 newUser.userTitle = comboBox2.Text;
@@ -105,6 +106,17 @@ namespace Demirbas_denem1
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void YeniKullanıcıEkle_Load(object sender, EventArgs e)
+        {
+            List<Role> roles = DataBaseSettings.LoadYetkiData();
+
+            foreach (var role in roles)
+            {
+                comboBox3.Items.Add(role.yetki);
+                comboBox3.Items.Add(role.kullaniciKodu);
+            }
         }
     }
 }
