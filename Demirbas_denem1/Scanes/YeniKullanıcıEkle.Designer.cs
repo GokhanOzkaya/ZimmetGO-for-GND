@@ -31,6 +31,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -58,8 +60,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -122,6 +122,24 @@
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(211, 33);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(18, 13);
+            this.label11.TabIndex = 28;
+            this.label11.Text = "ID";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(235, 30);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(228, 20);
+            this.textBox8.TabIndex = 27;
+            this.textBox8.WordWrap = false;
             // 
             // button5
             // 
@@ -287,7 +305,7 @@
             // 
             // button1
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.No;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
             this.button1.Location = new System.Drawing.Point(42, 535);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(425, 58);
@@ -358,29 +376,11 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(583, 34);
+            this.dataGridView1.Location = new System.Drawing.Point(583, 40);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1217, 653);
             this.dataGridView1.TabIndex = 18;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(211, 33);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(18, 13);
-            this.label11.TabIndex = 28;
-            this.label11.Text = "ID";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(235, 30);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(228, 20);
-            this.textBox8.TabIndex = 27;
-            this.textBox8.WordWrap = false;
             // 
             // YeniKullanıcıEkle
             // 

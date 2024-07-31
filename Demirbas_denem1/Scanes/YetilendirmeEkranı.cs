@@ -18,6 +18,7 @@ namespace Demirbas_denem1.Scanes
         public YetilendirmeEkranı()
         {
             InitializeComponent();
+            
         }
 
         private void YetilendirmeEkranı_Load(object sender, EventArgs e)

@@ -39,5 +39,16 @@ namespace Demirbas_denem1.Scanes
             Demirbasİslemleri demirbasİslemleri = new Demirbasİslemleri();
             demirbasİslemleri.Show();   
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Hareketler h = new Hareketler();
+            h.Show();   
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

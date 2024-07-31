@@ -28,28 +28,87 @@ namespace Demirbas_denem1.Scanes
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
+           
+            Demirbas db = new Demirbas();   
+            
+            db.DemirbasAdi = textBox2.Text;
+            db.DemirbasTuru = comboBox2.Text;
+            db.SatinAlmaTarihi = dateTimePicker1.Value;
+            db.KayitTarihi= dateTimePicker2.Value;
+            db.KullaniciID = 19;    
+            db.Durum = comboBox2.Text;
+            db.Aciklama = richTextBox1.Text;
+
+
+            UserRepository Repository = new UserRepository();
+            Repository.AddNewDemirbas(db);
+            MessageBox.Show("Kayıt başarıyla tamamlandı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DataBaseSettings.GridDoldurDemirbas(dataGridView1);
+
+           
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Demirbas db = new Demirbas();
+            db.DemirbasID = Convert.ToInt32( textBox1.Text);
+            db.DemirbasAdi = textBox2.Text;
+            db.DemirbasTuru = comboBox2.Text;
+            db.SatinAlmaTarihi = dateTimePicker1.Value;
+            db.KayitTarihi = dateTimePicker2.Value;
+            db.KullaniciID = 19;
+            db.Durum = comboBox2.Text;
+            db.Aciklama = richTextBox1.Text;
+
+
+            UserRepository Repository = new UserRepository();
+            Repository.UpdateDemirbas(db);
+
+            DataBaseSettings.GridDoldurDemirbas(dataGridView1);
+        }
+
+        private void Demirbasİslemleri_Load(object sender, EventArgs e)
+        {
+            DataBaseSettings.GridDoldurDemirbas(dataGridView1);
+            dateTimePicker1.Value = DateTime.Now; 
+            dateTimePicker2.Value = DateTime.Now; 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Seçili satırın indeksini al
+            int rowIndex = e.RowIndex;
+
+            // Geçerli satırı kontrol et
+            if (rowIndex >= 0)
             {
-                Demirbas db = new Demirbas();   
-                db.DemirbasID= Convert.ToInt32( textBox1.Text);
-                db.DemirbasAdi = textBox2.Text;
-                db.DemirbasTuru = comboBox2.Text;
-                db.SatinAlmaTarihi = dateTimePicker1.Value;
-                db.KayitTarihi= dateTimePicker2.Value;
-                db.Durum = comboBox2.Text;
-                db.Aciklama = richTextBox1.Text;
+                // Seçili satırdan verileri al
+                DataGridViewRow selectedRow = dataGridView1.Rows[rowIndex];
+                Demirbas db = new Demirbas();
+                // Verileri formdaki kontrollerle doldur
+                textBox1.Text = selectedRow.Cells["DemirbasId"].Value.ToString();
+                textBox2.Text = selectedRow.Cells["DemirbasAdi"].Value.ToString();
+                comboBox2.Text = selectedRow.Cells["DemirbasTuru"].Value.ToString();
+                dateTimePicker1.Value = Convert.ToDateTime(selectedRow.Cells["SatinAlmaTarihi"].Value);
+                dateTimePicker2.Value = Convert.ToDateTime(selectedRow.Cells["KayitTarihi"].Value);
+                richTextBox1.Text = selectedRow.Cells["Aciklama"].Value.ToString();
 
-
-                UserRepository Repository = new UserRepository();
-                Repository.AddNewDemirbas(db);
-                MessageBox.Show("Kayıt başarıyla tamamlandı!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DataBaseSettings.GridDoldurKullanici(dataGridView1);
-
+                // KullaniciID ve Durum alanlarını doldur
+                // Bu alanlar null olabilir, bu yüzden kontrol yapın
+                db.Durum = selectedRow.Cells["Durum"].Value != null ? selectedRow.Cells["Durum"].Value.ToString() : string.Empty;
+                db.KullaniciID = selectedRow.Cells["KullaniciID"].Value != null ? Convert.ToInt32(selectedRow.Cells["KullaniciID"].Value) : 0;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Hata: {ex.Message}\n\nDetaylar: {ex.StackTrace}");
-            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Demirbas db = new Demirbas();
+            db.DemirbasID = Convert.ToInt32(textBox1.Text);
+            db.Durum = comboBox2.Text;
+  
+            UserRepository Repository = new UserRepository();
+            Repository.DemirbasHurdayaCikar(db.DemirbasID);
+            DataBaseSettings.GridDoldurDemirbas(dataGridView1);
         }
     }
 }

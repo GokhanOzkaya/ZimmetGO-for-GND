@@ -72,11 +72,11 @@ namespace Demirbas_denem1.Entities
         }
         public void AddNewDemirbas(Demirbas newDemirbas)
         {
-            string addQuery = @"
-        INSERT INTO Demirbaslar (DemirbasAdi, DemirbasTuru, SatinAlmaTarihi, KayitTarihi, Durum, KullaniciID, Aciklama)
+            string addQuery = @"INSERT INTO Demirbaslar (DemirbasAdi, DemirbasTuru, SatinAlmaTarihi, KayitTarihi, Durum, KullaniciID, Aciklama)
         VALUES (@DemirbasAdi, @DemirbasTuru, @SatinAlmaTarihi, @KayitTarihi, @Durum, @KullaniciID, @Aciklama)";
-
-            using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(addQuery, connection))
                 {
@@ -92,9 +92,93 @@ namespace Demirbas_denem1.Entities
                     // Bağlantıyı aç ve sorguyu çalıştır
                     connection.Open();
                     command.ExecuteNonQuery();
+
                 }
             }
+            }
+            catch (SqlException sqlEx)
+            {
+                // SQL hatalarını yakala ve kullanıcıya bildir
+                MessageBox.Show($"Veritabanı hatası: {sqlEx.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Diğer genel hataları yakala ve kullanıcıya bildir
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+        public void UpdateDemirbas(Demirbas updatedDemirbas)
+        {
+            string updateQuery = @"UPDATE Demirbaslar SET DemirbasAdi = @DemirbasAdi, DemirbasTuru = @DemirbasTuru,SatinAlmaTarihi = @SatinAlmaTarihi,KayitTarihi = @KayitTarihi, Durum = @Durum,KullaniciID = @KullaniciID, Aciklama = @Aciklama WHERE DemirbasID = @DemirbasID";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                    {
+                        // Parametreleri ekle
+                        command.Parameters.AddWithValue("@DemirbasAdi", updatedDemirbas.DemirbasAdi ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@DemirbasTuru", updatedDemirbas.DemirbasTuru ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@SatinAlmaTarihi", updatedDemirbas.SatinAlmaTarihi ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@KayitTarihi", updatedDemirbas.KayitTarihi ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@Durum", updatedDemirbas.Durum ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@KullaniciID", updatedDemirbas.KullaniciID ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@Aciklama", updatedDemirbas.Aciklama ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@DemirbasID", updatedDemirbas.DemirbasID);
+
+                        // Bağlantıyı aç ve sorguyu çalıştır
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                // SQL hatalarını yakala ve kullanıcıya bildir
+                MessageBox.Show($"Veritabanı hatası: {sqlEx.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Diğer genel hataları yakala ve kullanıcıya bildir
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+          
+        }
+
+        public void DemirbasHurdayaCikar(int demirbasID)
+        {
+            string updateQuery = @"UPDATE Demirbaslar SET Durum = @Durum WHERE DemirbasID = @DemirbasID";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                    {
+                        // Parametreleri ekle
+                        command.Parameters.AddWithValue("@Durum", "HURDA");
+                        command.Parameters.AddWithValue("@DemirbasID", demirbasID);
+
+                        // Bağlantıyı aç ve sorguyu çalıştır
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        MessageBox.Show( "Ürün başarıyla hurdaya ayrılmıştır","İşlem Tamamlandı", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                // SQL hatalarını yakala ve kullanıcıya bildir
+                MessageBox.Show($"Veritabanı hatası: {sqlEx.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Diğer genel hataları yakala ve kullanıcıya bildir
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
 
         public void AddNewUser(User newUser)
         {

@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DataBaseFilters.cs" />
     <Compile Include="Database\DataBaseSettings.cs" />
     <Compile Include="Entities\Demirbas.cs" />
     <Compile Include="Entities\Role.cs" />
@@ -79,6 +81,12 @@
       <DependentUpon>AnaEkran.cs</DependentUpon>
     </Compile>
     <Compile Include="items.cs" />
+    <Compile Include="Scanes\Hareketler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scanes\Hareketler.Designer.cs">
+      <DependentUpon>Hareketler.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scanes\YeniKullanıcıEkle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Scanes\AnaEkran.resx">
       <DependentUpon>AnaEkran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scanes\Hareketler.resx">
+      <DependentUpon>Hareketler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scanes\YeniKullanıcıEkle.resx">
       <DependentUpon>YeniKullanıcıEkle.cs</DependentUpon>

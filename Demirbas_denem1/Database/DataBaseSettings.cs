@@ -124,6 +124,26 @@ namespace Demirbas_denem1.Database
                 dataGridView.DataSource = dataTable;
             }
 
+        public static void GridDoldurDemirbas(DataGridView dataGridView)
+        {
+            string query = "SELECT * FROM Demirbaslar";
+
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+            }
+
+            dataGridView.DataSource = dataTable;
+        }
 
         public static List<Role> LoadYetkiData()
         {
