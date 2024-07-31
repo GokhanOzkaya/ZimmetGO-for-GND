@@ -48,7 +48,8 @@ namespace Demirbas_denem1.Scanes
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            Transfer tr = new Transfer();   
+            tr.Show();
         }
     }
 }

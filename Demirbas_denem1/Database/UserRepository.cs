@@ -145,6 +145,38 @@ namespace Demirbas_denem1.Entities
           
         }
 
+        public void UpdateDemirbasKullaniciID(int demirbasId, int kullaniciId)
+        {
+            string updateQuery = @"UPDATE Demirbaslar SET KullaniciID = @KullaniciID WHERE DemirbasID = @DemirbasID";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                    {
+                        // Parametreleri ekle
+                        command.Parameters.AddWithValue("@KullaniciID", kullaniciId);
+                        command.Parameters.AddWithValue("@DemirbasID", demirbasId);
+
+                        // Bağlantıyı aç ve sorguyu çalıştır
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                // SQL hatalarını yakala ve kullanıcıya bildir
+                MessageBox.Show($"Veritabanı hatası: {sqlEx.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Diğer genel hataları yakala ve kullanıcıya bildir
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         public void DemirbasHurdayaCikar(int demirbasID)
         {
             string updateQuery = @"UPDATE Demirbaslar SET Durum = @Durum WHERE DemirbasID = @DemirbasID";
