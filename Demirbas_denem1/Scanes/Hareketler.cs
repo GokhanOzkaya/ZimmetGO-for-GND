@@ -24,7 +24,18 @@ namespace Demirbas_denem1.Scanes
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataBaseFilters.DatabaseFilter(Convert.ToInt32( textBox1.Text),dataGridView1);
+            string input = textBox1.Text;
+            if (int.TryParse(input, out int demirbasId))
+            {
+                // Girilen değer bir sayı ise
+                DataBaseFilters.DatabaseFilter(demirbasId, dataGridView1);
+            }
+            else
+            {
+                // Girilen değer sayı değilse, string olarak işlem yap
+                DataBaseFilters.DatabaseFilter(input, dataGridView1);
+            }
+
 
 
         }

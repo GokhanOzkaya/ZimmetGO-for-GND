@@ -50,9 +50,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1101, 597);
+            this.button2.Location = new System.Drawing.Point(1343, 581);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(164, 38);
+            this.button2.Size = new System.Drawing.Size(186, 54);
             this.button2.TabIndex = 13;
             this.button2.Text = "KAPAT";
             this.button2.UseVisualStyleBackColor = true;
@@ -60,7 +60,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(747, 275);
+            this.button1.Location = new System.Drawing.Point(747, 284);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(118, 53);
             this.button1.TabIndex = 14;
@@ -71,7 +71,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(790, 344);
+            this.label1.Location = new System.Drawing.Point(790, 353);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(25, 13);
             this.label1.TabIndex = 15;
@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1558, 647);
+            this.ClientSize = new System.Drawing.Size(1558, 672);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView2);

@@ -34,8 +34,8 @@ namespace Demirbas_denem1.Scanes
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
             UserRepository ur =new UserRepository();
+
             ur.UpdateDemirbasKullaniciID(demirbasId:Convert.ToInt32(textBox2.Text),kullaniciId: Convert.ToInt32(textBox1.Text));
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
             DataBaseSettings.GridDoldurKullanici(dataGridView2);

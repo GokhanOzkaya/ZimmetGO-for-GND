@@ -72,15 +72,17 @@ namespace Demirbas_denem1.Entities
         }
         public void AddNewDemirbas(Demirbas newDemirbas)
         {
-            string addQuery = @"INSERT INTO Demirbaslar (DemirbasAdi, DemirbasTuru, SatinAlmaTarihi, KayitTarihi, Durum, KullaniciID, Aciklama)
-        VALUES (@DemirbasAdi, @DemirbasTuru, @SatinAlmaTarihi, @KayitTarihi, @Durum, @KullaniciID, @Aciklama)";
-            try
-            {
+            string addQuery = @"INSERT INTO Demirbaslar (DemirbasAdi, DemirbasTuru,DemirbasMarka,DemirbasModel,DemirbasUNIQKod, SatinAlmaTarihi, KayitTarihi, Durum, KullaniciID, Aciklama)
+        VALUES (@DemirbasMarka,@DemirbasModel,@DemirbasUNIQKod,@DemirbasAdi, @DemirbasTuru, @SatinAlmaTarihi, @KayitTarihi, @Durum, @KullaniciID, @Aciklama)";
+           
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(addQuery, connection))
                 {
                     // Parametreleri ekle
+                    command.Parameters.AddWithValue("@DemirbasMarka", newDemirbas.DemirbasMarka ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@DemirbasModel", newDemirbas.DemirbasModel ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@DemirbasUNIQKod", newDemirbas.DemirbasUNIQKod );
                     command.Parameters.AddWithValue("@DemirbasAdi", newDemirbas.DemirbasAdi ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@DemirbasTuru", newDemirbas.DemirbasTuru ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@SatinAlmaTarihi", newDemirbas.SatinAlmaTarihi ?? (object)DBNull.Value);
@@ -95,17 +97,8 @@ namespace Demirbas_denem1.Entities
 
                 }
             }
-            }
-            catch (SqlException sqlEx)
-            {
-                // SQL hatalarını yakala ve kullanıcıya bildir
-                MessageBox.Show($"Veritabanı hatası: {sqlEx.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                // Diğer genel hataları yakala ve kullanıcıya bildir
-                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
+        
         }
         public void UpdateDemirbas(Demirbas updatedDemirbas)
         {
@@ -161,6 +154,16 @@ namespace Demirbas_denem1.Entities
                         // Bağlantıyı aç ve sorguyu çalıştır
                         connection.Open();
                         command.ExecuteNonQuery();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Kullanıcı ID başarıyla güncellendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Güncelleme yapılacak kayıt bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
             }

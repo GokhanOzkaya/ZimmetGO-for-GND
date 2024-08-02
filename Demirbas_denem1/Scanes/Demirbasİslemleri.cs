@@ -29,10 +29,12 @@ namespace Demirbas_denem1.Scanes
         private void button2_Click(object sender, EventArgs e)
         {
            
-            Demirbas db = new Demirbas();   
-            
+            Demirbas db = new Demirbas();
             db.DemirbasAdi = textBox2.Text;
-            db.DemirbasTuru = comboBox2.Text;
+            db.DemirbasMarka = textBox3.Text;
+            db.DemirbasModel = textBox4.Text;   
+            db.DemirbasUNIQKod =Convert.ToInt32( textBox5.Text );
+            db.DemirbasTuru = comboBox1.Text;
             db.SatinAlmaTarihi = dateTimePicker1.Value;
             db.KayitTarihi= dateTimePicker2.Value;
             db.KullaniciID = 19;    
@@ -88,7 +90,7 @@ namespace Demirbas_denem1.Scanes
                 // Verileri formdaki kontrollerle doldur
                 textBox1.Text = selectedRow.Cells["DemirbasId"].Value.ToString();
                 textBox2.Text = selectedRow.Cells["DemirbasAdi"].Value.ToString();
-                comboBox2.Text = selectedRow.Cells["DemirbasTuru"].Value.ToString();
+                comboBox1.Text = selectedRow.Cells["DemirbasTuru"].Value.ToString();
                 dateTimePicker1.Value = Convert.ToDateTime(selectedRow.Cells["SatinAlmaTarihi"].Value);
                 dateTimePicker2.Value = Convert.ToDateTime(selectedRow.Cells["KayitTarihi"].Value);
                 richTextBox1.Text = selectedRow.Cells["Aciklama"].Value.ToString();

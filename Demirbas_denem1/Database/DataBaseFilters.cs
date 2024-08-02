@@ -8,16 +8,31 @@ namespace Demirbas_denem1
 {
     public class DataBaseFilters
     {
-        public static void DatabaseFilter(int demirbasId, DataGridView dataGridView)
+        public static void DatabaseFilter(object demirbasId, DataGridView dataGridView)
         {
-            string connectionString = DataBaseSettings.ConnectionString; // Veritabanı bağlantı dizesi
-            string query = "SELECT * FROM Demirbaslar WHERE DemirbasID = @DemirbasID";
+            string connectionString = DataBaseSettings.ConnectionString;
+            string query = "SELECT * FROM Demirbaslar";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlCommand command = new SqlCommand())
                 {
-                    command.Parameters.AddWithValue("@DemirbasID", demirbasId);
+                    command.Connection = connection;
+
+                    if (demirbasId is int id)
+                    {
+                        // Eğer demirbasId bir tam sayı ise
+                        query += " WHERE DemirbasID = @DemirbasID";
+                        command.Parameters.AddWithValue("@DemirbasID", id);
+                    }
+                    else if (demirbasId is string name && !string.IsNullOrWhiteSpace(name))
+                    {
+                        // Eğer demirbasId bir string ise ve boş değilse
+                        query += " WHERE DemirbasAdi LIKE @DemirbasAdi";
+                        command.Parameters.AddWithValue("@DemirbasAdi", "%" + name + "%");
+                    }
+
+                    command.CommandText = query;
 
                     try
                     {
@@ -37,5 +52,7 @@ namespace Demirbas_denem1
                 }
             }
         }
+
     }
 }
+
