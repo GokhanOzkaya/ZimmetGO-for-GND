@@ -95,10 +95,6 @@ namespace Demirbas_denem1.Scanes
                 dateTimePicker2.Value = Convert.ToDateTime(selectedRow.Cells["KayitTarihi"].Value);
                 richTextBox1.Text = selectedRow.Cells["Aciklama"].Value.ToString();
 
-                // KullaniciID ve Durum alanlarını doldur
-                // Bu alanlar null olabilir, bu yüzden kontrol yapın
-                db.Durum = selectedRow.Cells["Durum"].Value != null ? selectedRow.Cells["Durum"].Value.ToString() : string.Empty;
-                db.KullaniciID = selectedRow.Cells["KullaniciID"].Value != null ? Convert.ToInt32(selectedRow.Cells["KullaniciID"].Value) : 0;
             }
         }
 

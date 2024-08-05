@@ -51,5 +51,11 @@ namespace Demirbas_denem1.Scanes
             Transfer tr = new Transfer();   
             tr.Show();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            KullaniciZimmetleri kz = new KullaniciZimmetleri();
+            kz.Show();  
+        }
     }
 }

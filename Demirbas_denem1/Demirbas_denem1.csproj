@@ -87,6 +87,12 @@
     <Compile Include="Scanes\Hareketler.Designer.cs">
       <DependentUpon>Hareketler.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scanes\KullaniciZimmetleri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scanes\KullaniciZimmetleri.Designer.cs">
+      <DependentUpon>KullaniciZimmetleri.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scanes\Transfer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Scanes\Hareketler.resx">
       <DependentUpon>Hareketler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scanes\KullaniciZimmetleri.resx">
+      <DependentUpon>KullaniciZimmetleri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scanes\Transfer.resx">
       <DependentUpon>Transfer.cs</DependentUpon>

@@ -28,12 +28,12 @@ namespace Demirbas_denem1.Scanes
             if (int.TryParse(input, out int demirbasId))
             {
                 // Girilen değer bir sayı ise
-                DataBaseFilters.DatabaseFilter(demirbasId, dataGridView1);
+                DataBaseFilters.DatabaseFilterDemirbas(demirbasId, dataGridView1);
             }
             else
             {
                 // Girilen değer sayı değilse, string olarak işlem yap
-                DataBaseFilters.DatabaseFilter(input, dataGridView1);
+                DataBaseFilters.DatabaseFilterDemirbas(input, dataGridView1);
             }
 
 

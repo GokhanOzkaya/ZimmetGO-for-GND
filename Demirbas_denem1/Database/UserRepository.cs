@@ -72,18 +72,19 @@ namespace Demirbas_denem1.Entities
         }
         public void AddNewDemirbas(Demirbas newDemirbas)
         {
-            string addQuery = @"INSERT INTO Demirbaslar (DemirbasAdi, DemirbasTuru,DemirbasMarka,DemirbasModel,DemirbasUNIQKod, SatinAlmaTarihi, KayitTarihi, Durum, KullaniciID, Aciklama)
-        VALUES (@DemirbasMarka,@DemirbasModel,@DemirbasUNIQKod,@DemirbasAdi, @DemirbasTuru, @SatinAlmaTarihi, @KayitTarihi, @Durum, @KullaniciID, @Aciklama)";
+            string addQuery = @"INSERT INTO Demirbaslar (DemirbasAdi,DemirbasMarka,DemirbasModel,DemirbasUNIQKod, DemirbasTuru, SatinAlmaTarihi, KayitTarihi, Durum, KullaniciID, Aciklama)
+        VALUES (@DemirbasAdi,@DemirbasMarka,@DemirbasModel,@DemirbasUNIQKod, @DemirbasTuru, @SatinAlmaTarihi, @KayitTarihi, @Durum, @KullaniciID, @Aciklama)";
            
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(addQuery, connection))
                 {
                     // Parametreleri ekle
+                    command.Parameters.AddWithValue("@DemirbasAdi", newDemirbas.DemirbasAdi ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@DemirbasMarka", newDemirbas.DemirbasMarka ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@DemirbasModel", newDemirbas.DemirbasModel ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@DemirbasUNIQKod", newDemirbas.DemirbasUNIQKod );
-                    command.Parameters.AddWithValue("@DemirbasAdi", newDemirbas.DemirbasAdi ?? (object)DBNull.Value);
+
                     command.Parameters.AddWithValue("@DemirbasTuru", newDemirbas.DemirbasTuru ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@SatinAlmaTarihi", newDemirbas.SatinAlmaTarihi ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@KayitTarihi", newDemirbas.KayitTarihi ?? (object)DBNull.Value);
