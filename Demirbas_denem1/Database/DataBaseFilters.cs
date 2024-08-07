@@ -64,12 +64,7 @@ namespace Demirbas_denem1
                 {
                     command.Connection = connection;
 
-                    //if (varaible is int id)
-                    //{
-                    //    // Eğer demirbasId bir tam sayı ise
-                    //    query += " WHERE DemirbasID = @DemirbasID";
-                    //    command.Parameters.AddWithValue("@DemirbasID", id);
-                    //}
+     
                     if (varaible is string name && !string.IsNullOrWhiteSpace(name))
                     {
                         // Eğer demirbasId bir string ise ve boş değilse
