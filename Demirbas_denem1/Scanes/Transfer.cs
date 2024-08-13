@@ -41,6 +41,7 @@ namespace Demirbas_denem1.Scanes
             DataBaseSettings.GridDoldurKullanici(dataGridView2);
         }
 
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
