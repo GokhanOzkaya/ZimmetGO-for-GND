@@ -139,9 +139,11 @@ namespace Demirbas_denem1.Entities
           
         }
 
-        public void UpdateDemirbasKullaniciID(int demirbasId, int kullaniciId)
+        public void UpdateDemirbasKullaniciID(int demirbasId, int kullaniciId,DateTime? zimmetTarihi=null,DateTime? iadeTarihi = null)
         {
             string updateQuery = @"UPDATE Demirbaslar SET KullaniciID = @KullaniciID WHERE DemirbasID = @DemirbasID";
+            string addQuery = "INSERT INTO [dbo].[ZimmetGecmisi] (KullaniciID, DemirbasID, ZimmetTarihi, IadeTarihi) " +
+                          "VALUES (@KullaniciID, @DemirbasID, @ZimmetTarihi, @IadeTarihi)";
             try
             {
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
@@ -154,6 +156,27 @@ namespace Demirbas_denem1.Entities
 
                         // Bağlantıyı aç ve sorguyu çalıştır
                         connection.Open();
+                        command.ExecuteNonQuery();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Kullanıcı ID başarıyla güncellendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Güncelleme yapılacak kayıt bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                    {
+                        // Parametreleri ekle
+                        command.Parameters.AddWithValue("@KullaniciID", kullaniciId);
+                        command.Parameters.AddWithValue("@DemirbasID", demirbasId);
+                        command.Parameters.AddWithValue("@ZimmetTarihi", zimmetTarihi);
+                        command.Parameters.AddWithValue("@IadeTarihi", iadeTarihi);
+
+                     
                         command.ExecuteNonQuery();
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -268,11 +291,9 @@ namespace Demirbas_denem1.Entities
         }
 
 
+
+
     }
-
-
-
-
 
 
 

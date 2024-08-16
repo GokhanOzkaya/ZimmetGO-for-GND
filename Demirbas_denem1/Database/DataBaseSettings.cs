@@ -11,7 +11,7 @@ namespace Demirbas_denem1.Database
     public static class DataBaseSettings
     {
         //VERİ TABANI KULLANIM İÇİN KISYOLLAR
-        public static string ConnectionString = "server=DESKTOP-ICKNJ9V\\SQLEXPRESS; Initial Catalog=deneme;Integrated Security=True";
+        public static string ConnectionString = "server=DESKTOP-7HOCOM2\\SQLEXPRESS; Initial Catalog=deneme;Integrated Security=True";
 
         public static SqlConnection con;
         public static SqlDataAdapter da;
@@ -172,6 +172,7 @@ namespace Demirbas_denem1.Database
 
             return roles;
         }
+     
 
         public static void pasifeCek()
         { 
