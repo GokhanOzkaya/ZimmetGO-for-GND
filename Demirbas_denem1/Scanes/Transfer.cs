@@ -36,7 +36,7 @@ namespace Demirbas_denem1.Scanes
         {
             UserRepository ur =new UserRepository();
 
-            ur.UpdateDemirbasKullaniciID(demirbasId:Convert.ToInt32(textBox2.Text),kullaniciId: Convert.ToInt32(textBox1.Text));
+            ur.UpdateDemirbasKullaniciID(demirbasId:Convert.ToInt32(textBox2.Text),kullaniciId: Convert.ToInt32(textBox1.Text),zimmetTarihi:DateTime.Now,DateTime.Now);
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
             DataBaseSettings.GridDoldurKullanici(dataGridView2);
         }

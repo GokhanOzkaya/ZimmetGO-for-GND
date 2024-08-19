@@ -139,15 +139,16 @@ namespace Demirbas_denem1.Entities
           
         }
 
-        public void UpdateDemirbasKullaniciID(int demirbasId, int kullaniciId,DateTime? zimmetTarihi=null,DateTime? iadeTarihi = null)
+        public void UpdateDemirbasKullaniciID(int demirbasId, int kullaniciId, DateTime? zimmetTarihi = null, DateTime? iadeTarihi = null)
         {
             string updateQuery = @"UPDATE Demirbaslar SET KullaniciID = @KullaniciID WHERE DemirbasID = @DemirbasID";
             string addQuery = "INSERT INTO [dbo].[ZimmetGecmisi] (KullaniciID, DemirbasID, ZimmetTarihi, IadeTarihi) " +
-                          "VALUES (@KullaniciID, @DemirbasID, @ZimmetTarihi, @IadeTarihi)";
+                              "VALUES (@KullaniciID, @DemirbasID, @ZimmetTarihi, @IadeTarihi)";
             try
             {
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
                 {
+                    // Update command run
                     using (SqlCommand command = new SqlCommand(updateQuery, connection))
                     {
                         // Parametreleri ekle
@@ -156,8 +157,7 @@ namespace Demirbas_denem1.Entities
 
                         // Bağlantıyı aç ve sorguyu çalıştır
                         connection.Open();
-                        command.ExecuteNonQuery();
-                        int rowsAffected = command.ExecuteNonQuery();
+                        int rowsAffected = command.ExecuteNonQuery();  // Tekrar çağrı yapma
 
                         if (rowsAffected > 0)
                         {
@@ -168,25 +168,25 @@ namespace Demirbas_denem1.Entities
                             MessageBox.Show("Güncelleme yapılacak kayıt bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
-                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
+
+                    // Zimmet Gecmis Ekle Run
+                    using (SqlCommand command = new SqlCommand(addQuery, connection))
                     {
                         // Parametreleri ekle
                         command.Parameters.AddWithValue("@KullaniciID", kullaniciId);
                         command.Parameters.AddWithValue("@DemirbasID", demirbasId);
-                        command.Parameters.AddWithValue("@ZimmetTarihi", zimmetTarihi);
-                        command.Parameters.AddWithValue("@IadeTarihi", iadeTarihi);
+                        command.Parameters.AddWithValue("@ZimmetTarihi", zimmetTarihi ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@IadeTarihi", iadeTarihi ?? (object)DBNull.Value);
 
-                     
-                        command.ExecuteNonQuery();
-                        int rowsAffected = command.ExecuteNonQuery();
+                        int rowsAffected = command.ExecuteNonQuery();  // Tekrar çağrı yapma
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Kullanıcı ID başarıyla güncellendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Zimmet geçmişi başarıyla eklendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            MessageBox.Show("Güncelleme yapılacak kayıt bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Zimmet geçmişi eklenirken sorun oluştu.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
@@ -203,6 +203,27 @@ namespace Demirbas_denem1.Entities
             }
         }
 
+        public void KullaniciDemirbasIade(int demirbasId) 
+        {
+            string ıadeQuery = @"UPDATE Demirbaslar SET KullaniciID = @KullaniciID WHERE DemirbasID = @DemirbasID";
+
+            using (SqlConnection nc = new SqlConnection(DataBaseSettings.ConnectionString))
+            {
+                using (SqlCommand sc = new SqlCommand(ıadeQuery)) 
+                {
+                    sc.Parameters.AddWithValue("@DemirbasID", demirbasId);
+                    int rowsAffected = sc.ExecuteNonQuery();
+
+                    if (rowsAffected > 0) 
+                    {
+                        MessageBox.Show("Zimmet geçmişi başarıyla eklendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                }
+
+            }
+
+        }
 
         public void DemirbasHurdayaCikar(int demirbasID)
         {
@@ -216,11 +237,10 @@ namespace Demirbas_denem1.Entities
                         // Parametreleri ekle
                         command.Parameters.AddWithValue("@Durum", "HURDA");
                         command.Parameters.AddWithValue("@DemirbasID", demirbasID);
-
                         // Bağlantıyı aç ve sorguyu çalıştır
                         connection.Open();
                         command.ExecuteNonQuery();
-                        MessageBox.Show( "Ürün başarıyla hurdaya ayrılmıştır","İşlem Tamamlandı", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        MessageBox.Show("Ürün başarıyla hurdaya ayrılmıştır", "İşlem Tamamlandı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
@@ -234,10 +254,8 @@ namespace Demirbas_denem1.Entities
                 // Diğer genel hataları yakala ve kullanıcıya bildir
                 MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
-
-
-
 
         public void AddNewUser(User newUser)
         {

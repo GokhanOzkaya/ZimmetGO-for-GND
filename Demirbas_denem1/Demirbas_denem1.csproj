@@ -62,6 +62,7 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Database\UserRepository.cs" />
+    <Compile Include="Entities\Zimmet.cs" />
     <Compile Include="Scanes\AdminEkran.cs">
       <SubType>Form</SubType>
     </Compile>
