@@ -64,5 +64,10 @@ namespace Demirbas_denem1.Scanes
                 label4.Text = kullaniciID != null ? kullaniciID.ToString() : "Kullanıcı Adı Bulunamadı";
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DataBaseFilters.ZimmetGemisLisetele(Convert.ToInt32(label4.Text), dataGridView2);
+        }
     }
 }

@@ -136,6 +136,44 @@ namespace Demirbas_denem1
 
         }
 
+
+        public static void ZimmetGemisLisetele(int kullaniciID, DataGridView dataGridView)
+        {
+            string connectionString = DataBaseSettings.ConnectionString;
+            string query = "SELECT * FROM ZimmetGecmisi";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+
+                        // Eğer demirbasId bir string ise ve boş değilse
+                        query += " WHERE KullaniciID LIKE @KullaniciID ";
+                        command.Parameters.AddWithValue("@KullaniciID", "%" + kullaniciID + "%");
+
+                    command.CommandText = query;
+
+                    try
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        dataGridView.DataSource = dataTable;
+                    }
+                    catch (SqlException sqlEx)
+                    {
+                        MessageBox.Show($"Veritabanı hatası: {sqlEx.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+        }
+
     }
 }
 

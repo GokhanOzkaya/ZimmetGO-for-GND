@@ -139,11 +139,11 @@ namespace Demirbas_denem1.Entities
           
         }
 
-        public void UpdateDemirbasKullaniciID(int demirbasId, int kullaniciId, DateTime? zimmetTarihi = null, DateTime? iadeTarihi = null)
+        public void UpdateDemirbasKullaniciID(int demirbasId, int kullaniciId, DateTime? zimmetTarihi = null, DateTime? iadeTarihi = null, int? zimmetAlınanKisiID= null)
         {
             string updateQuery = @"UPDATE Demirbaslar SET KullaniciID = @KullaniciID WHERE DemirbasID = @DemirbasID";
-            string addQuery = "INSERT INTO [dbo].[ZimmetGecmisi] (KullaniciID, DemirbasID, ZimmetTarihi, IadeTarihi) " +
-                              "VALUES (@KullaniciID, @DemirbasID, @ZimmetTarihi, @IadeTarihi)";
+            string addQuery = "INSERT INTO [dbo].[ZimmetGecmisi] (KullaniciID, DemirbasID, ZimmetTarihi, IadeTarihi,ZimmetAlınanKisiID) " +
+                              "VALUES (@KullaniciID, @DemirbasID, @ZimmetTarihi, @IadeTarihi,@ZimmetAlınanKisiID)";
             try
             {
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
@@ -177,6 +177,7 @@ namespace Demirbas_denem1.Entities
                         command.Parameters.AddWithValue("@DemirbasID", demirbasId);
                         command.Parameters.AddWithValue("@ZimmetTarihi", zimmetTarihi ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@IadeTarihi", iadeTarihi ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@ZimmetAlınanKisiID", zimmetAlınanKisiID ?? (object)DBNull.Value);
 
                         int rowsAffected = command.ExecuteNonQuery();  // Tekrar çağrı yapma
 
@@ -256,6 +257,8 @@ namespace Demirbas_denem1.Entities
             }
 
         }
+
+       
 
         public void AddNewUser(User newUser)
         {
