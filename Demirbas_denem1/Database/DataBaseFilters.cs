@@ -140,7 +140,7 @@ namespace Demirbas_denem1
         public static void ZimmetGemisLisetele(int kullaniciID, DataGridView dataGridView)
         {
             string connectionString = DataBaseSettings.ConnectionString;
-            string query = "SELECT * FROM ZimmetGecmisi";
+            string query = "SELECT * FROM ZimmetGecmisi JOIN Kullanicilar ON Kullanicilar.KullaniciId=ZimmetGecmisi.KullaniciID ";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -149,8 +149,9 @@ namespace Demirbas_denem1
                     command.Connection = connection;
 
                         // Eğer demirbasId bir string ise ve boş değilse
-                        query += " WHERE KullaniciID LIKE @KullaniciID ";
+                        query += " WHERE ZimmetGecmisi.KullaniciID = @KullaniciID ";
                         command.Parameters.AddWithValue("@KullaniciID", "%" + kullaniciID + "%");
+                  
 
                     command.CommandText = query;
 

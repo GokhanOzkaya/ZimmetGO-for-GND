@@ -63,5 +63,10 @@ namespace Demirbas_denem1
             label11.Text = CurrentUser.User.userStatus;    
             label12.Text = CurrentUser.User.userRole;    
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
