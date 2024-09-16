@@ -180,8 +180,9 @@ namespace Demirbas_denem1.Database
         
         }
 
-        
-
-
+        internal static void ExecuteNonQuery(SqlCommand command)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

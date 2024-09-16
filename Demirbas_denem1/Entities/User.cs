@@ -17,7 +17,7 @@ namespace Demirbas_denem1.Entities
         public string userCode { get; set; }
         public string usereMail { get; set; }   
         public string userePassword { get; set; }   
-        public DateTime userStartTime{ get; set; } 
+        public DateTime userStartTime{ get; set; } = DateTime.Now;  
         public string userStatus {  get; set; } 
         public string userRole { get; set; }
 

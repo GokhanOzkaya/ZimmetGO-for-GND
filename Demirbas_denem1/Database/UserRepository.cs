@@ -262,8 +262,29 @@ namespace Demirbas_denem1.Entities
 
         public void AddNewUser(User newUser)
         {
-            string addQuery = "INSERT INTO Kullanicilar (KullaniciAdi, KullaniciSoyadi, Unvan, Departman, KullaniciKodu, Email, Sifre, BaslamaTarihi, Statu, Rol) VALUES ('" + newUser.userName + "' , '" + newUser.sureName + "' ,'" + newUser.userTitle + "','" + newUser.userDepartment + "','" + newUser.userCode + "','" + newUser.usereMail + "','" + newUser.userePassword + "','" + newUser.userStartTime + "','" + newUser.userStatus + "','" + newUser.userRole + "')";
-            DataBaseSettings.ExecuteNonQuery(addQuery);
+            string addQuery = @"INSERT INTO Kullanicilar (KullaniciAdi, KullaniciSoyadi, Unvan, Departman, KullaniciKodu, Email, Sifre, BaslamaTarihi, Statu, Rol)
+                    VALUES (@KullaniciAdi, @KullaniciSoyadi, @Unvan, @Departman, @KullaniciKodu, @Email, @Sifre, @BaslamaTarihi, @Statu, @Rol)";
+
+            using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(addQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@KullaniciAdi", newUser.userName);
+                    command.Parameters.AddWithValue("@KullaniciSoyadi", newUser.sureName);
+                    command.Parameters.AddWithValue("@Unvan", newUser.userTitle);
+                    command.Parameters.AddWithValue("@Departman", newUser.userDepartment);
+                    command.Parameters.AddWithValue("@KullaniciKodu", newUser.userCode);
+                    command.Parameters.AddWithValue("@Email", newUser.usereMail);
+                    command.Parameters.AddWithValue("@Sifre", newUser.userePassword);
+                    command.Parameters.AddWithValue("@BaslamaTarihi", newUser.userStartTime);  // DateTime ise direkt kullanılır
+                    command.Parameters.AddWithValue("@Statu", newUser.userStatus);
+                    command.Parameters.AddWithValue("@Rol", newUser.userRole);
+                    
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                   
+                }
+            }
         }
 
         public void AddNewYetki( string yetkiAdi )
