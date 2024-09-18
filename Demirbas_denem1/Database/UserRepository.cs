@@ -98,12 +98,12 @@ namespace Demirbas_denem1.Entities
 
                 }
             }
-            
-        
+
+
         }
         public void UpdateDemirbas(Demirbas updatedDemirbas)
         {
-            string updateQuery = @"UPDATE Demirbaslar SET DemirbasAdi = @DemirbasAdi, DemirbasTuru = @DemirbasTuru,SatinAlmaTarihi = @SatinAlmaTarihi,KayitTarihi = @KayitTarihi, Durum = @Durum,KullaniciID = @KullaniciID, Aciklama = @Aciklama WHERE DemirbasID = @DemirbasID";
+            string updateQuery = @"UPDATE Demirbaslar SET DemirbasAdi = @DemirbasAdi,DemirbasMarka = @DemirbasMarka,DemirbasModel = @DemirbasModel,  DemirbasTuru = @DemirbasTuru,SatinAlmaTarihi = @SatinAlmaTarihi,KayitTarihi = @KayitTarihi, Durum = @Durum,KullaniciID = @KullaniciID, Aciklama = @Aciklama WHERE DemirbasID = @DemirbasID";
             try
             {
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
@@ -112,6 +112,8 @@ namespace Demirbas_denem1.Entities
                     {
                         // Parametreleri ekle
                         command.Parameters.AddWithValue("@DemirbasAdi", updatedDemirbas.DemirbasAdi ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@DemirbasMarka", updatedDemirbas.DemirbasMarka ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@DemirbasModel", updatedDemirbas.DemirbasModel ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@DemirbasTuru", updatedDemirbas.DemirbasTuru ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@SatinAlmaTarihi", updatedDemirbas.SatinAlmaTarihi ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@KayitTarihi", updatedDemirbas.KayitTarihi ?? (object)DBNull.Value);

@@ -20,25 +20,5 @@ namespace Demirbas_denem1.Entities
         public int? KullaniciID { get; set; }          // Şu anki kullanan kişi ID'si
         public string Aciklama { get; set; }           // Ek açıklamalar
 
-        // Constructor
-        public Demirbas()
-        {
-        }
-
-        // Parametreli Constructor
-        public Demirbas(int demirbasUNIQKod,string demirbasMarka,string demirbasModel ,int demirbasID, string demirbasAdi, string demirbasTuru, DateTime? satinAlmaTarihi, DateTime? kayitTarihi, string durum, int? kullaniciID, string aciklama)
-        {
-            demirbasUNIQKod = DemirbasUNIQKod;
-            demirbasModel = DemirbasModel;
-            demirbasMarka = DemirbasMarka;
-            DemirbasID = demirbasID;
-            DemirbasAdi = demirbasAdi;
-            DemirbasTuru = demirbasTuru;
-            SatinAlmaTarihi = satinAlmaTarihi;
-            KayitTarihi = kayitTarihi;
-            Durum = durum;
-            KullaniciID = kullaniciID;
-            Aciklama = aciklama;
-        }
     }
 }

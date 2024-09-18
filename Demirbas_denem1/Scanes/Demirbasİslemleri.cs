@@ -37,7 +37,7 @@ namespace Demirbas_denem1.Scanes
             db.DemirbasTuru = comboBox1.Text;
             db.SatinAlmaTarihi = dateTimePicker1.Value;
             db.KayitTarihi= dateTimePicker2.Value;
-            db.KullaniciID = 19;    
+            db.KullaniciID = 10;    
             db.Durum = comboBox2.Text;
             db.Aciklama = richTextBox1.Text;
 
@@ -53,19 +53,22 @@ namespace Demirbas_denem1.Scanes
         private void button3_Click(object sender, EventArgs e)
         {
             Demirbas db = new Demirbas();
+            db.DemirbasModel= textBox4.Text;
+            db.DemirbasMarka = textBox3.Text;
             db.DemirbasID = Convert.ToInt32( textBox1.Text);
             db.DemirbasAdi = textBox2.Text;
             db.DemirbasTuru = comboBox2.Text;
             db.SatinAlmaTarihi = dateTimePicker1.Value;
             db.KayitTarihi = dateTimePicker2.Value;
-            db.KullaniciID = 19;
+            db.KullaniciID = 10;
             db.Durum = comboBox2.Text;
             db.Aciklama = richTextBox1.Text;
 
 
             UserRepository Repository = new UserRepository();
             Repository.UpdateDemirbas(db);
-
+         
+            MessageBox.Show("Kayıt başarıyla güncellendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
         }
 
@@ -89,6 +92,10 @@ namespace Demirbas_denem1.Scanes
                 Demirbas db = new Demirbas();
                 // Verileri formdaki kontrollerle doldur
                 textBox1.Text = selectedRow.Cells["DemirbasId"].Value.ToString();
+                textBox3.Text = selectedRow.Cells["DemirbasMarka"].Value.ToString();
+                textBox4.Text = selectedRow.Cells["DemirbasModel"].Value.ToString();
+                textBox5.Text = selectedRow.Cells["DemirbasUNIQKod"].Value.ToString();
+                comboBox2.Text = selectedRow.Cells["Durum"].Value.ToString();
                 textBox2.Text = selectedRow.Cells["DemirbasAdi"].Value.ToString();
                 comboBox1.Text = selectedRow.Cells["DemirbasTuru"].Value.ToString();
                 dateTimePicker1.Value = Convert.ToDateTime(selectedRow.Cells["SatinAlmaTarihi"].Value);
