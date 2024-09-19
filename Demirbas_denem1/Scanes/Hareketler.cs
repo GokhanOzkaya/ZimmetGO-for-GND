@@ -19,7 +19,8 @@ namespace Demirbas_denem1.Scanes
 
         private void Hareketler_Load(object sender, EventArgs e)
         {
-            DataBaseSettings.GridDoldurDemirbas(dataGridView1);
+            DataBaseFilters.ZimmetGemisLisetele(null,dataGridView1);
+
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -57,5 +57,10 @@ namespace Demirbas_denem1.Scanes
             KullaniciZimmetleri kz = new KullaniciZimmetleri();
             kz.Show();  
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            DemirbasZimmetleri de = new DemirbasZimmetleri(); de.Show();    
+        }
     }
 }

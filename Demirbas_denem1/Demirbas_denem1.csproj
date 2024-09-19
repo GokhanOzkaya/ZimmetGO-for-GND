@@ -69,6 +69,12 @@
     <Compile Include="Scanes\AdminEkran.Designer.cs">
       <DependentUpon>AdminEkran.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scanes\DemirbasZimmetleri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scanes\DemirbasZimmetleri.Designer.cs">
+      <DependentUpon>DemirbasZimmetleri.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scanes\Demirbasİslemleri.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
     </Compile>
     <EmbeddedResource Include="Scanes\AdminEkran.resx">
       <DependentUpon>AdminEkran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scanes\DemirbasZimmetleri.resx">
+      <DependentUpon>DemirbasZimmetleri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scanes\Demirbasİslemleri.resx">
       <DependentUpon>Demirbasİslemleri.cs</DependentUpon>

@@ -1,7 +1,9 @@
 ﻿using Demirbas_denem1.Database;
+using Demirbas_denem1.Entities;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
 namespace Demirbas_denem1
@@ -137,10 +139,26 @@ namespace Demirbas_denem1
         }
 
 
-        public static void ZimmetGemisLisetele(int kullaniciID, DataGridView dataGridView)
+        public static void ZimmetGemisLisetele(int? kullaniciID, DataGridView dataGridView)
         {
             string connectionString = DataBaseSettings.ConnectionString;
-            string query = "SELECT * FROM ZimmetGecmisi JOIN Kullanicilar ON Kullanicilar.KullaniciId=ZimmetGecmisi.KullaniciID ";
+            string query = "SELECT Kullanicilar.KullaniciAdi, " +
+                 "Kullanicilar.KullaniciSoyadi, " +
+                 "Kullanicilar.Unvan, " +
+                 "Kullanicilar.Departman, " +
+                 "ZimmetGecmisi.ZimmetTarihi, " +
+                 "ZimmetGecmisi.IadeTarihi, " +
+                 "ZimmetGecmisi.DemirbasID, " +
+                 "Demirbaslar.DemirbasAdi, " +
+                 "Demirbaslar.DemirbasMarka, " +
+                 "Demirbaslar.DemirbasModel, " +
+                 "Demirbaslar.Durum, " +
+                 "Demirbaslar.DemirbasUNIQKod " +
+                 "FROM ZimmetGecmisi " +  // Boşluk eklendi
+                 "JOIN Kullanicilar ON Kullanicilar.KullaniciId = ZimmetGecmisi.KullaniciID " +  // Boşluk eklendi
+                 "JOIN Demirbaslar ON Demirbaslar.DemirbasID = ZimmetGecmisi.DemirbasID ";  // Boşluk eklendi
+
+
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -148,10 +166,12 @@ namespace Demirbas_denem1
                 {
                     command.Connection = connection;
 
+                    if (kullaniciID != null )
+                    {
                         // Eğer demirbasId bir string ise ve boş değilse
                         query += " WHERE ZimmetGecmisi.KullaniciID = @KullaniciID ";
-                        command.Parameters.AddWithValue("@KullaniciID", "%" + kullaniciID + "%");
-                  
+                        command.Parameters.AddWithValue("@KullaniciID", kullaniciID);
+                    }
 
                     command.CommandText = query;
 
@@ -171,6 +191,7 @@ namespace Demirbas_denem1
                         MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                
             }
 
         }
