@@ -54,5 +54,34 @@ namespace Demirbas_denem1.Scanes
         {
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Seçili hücrenin satır indeksini al
+            int selectedRowIndex = e.RowIndex;
+
+            // Eğer indeks geçerliyse
+            if (selectedRowIndex >= 0)
+            {
+                // Seçili satırdaki KullaniciAdi'ni al
+                var demirbasAdi = dataGridView1.Rows[selectedRowIndex].Cells["DemirbasAdi"].Value;
+                var demirbasMarka = dataGridView1.Rows[selectedRowIndex].Cells["DemirbasMarka"].Value;
+                var demirbasModel = dataGridView1.Rows[selectedRowIndex].Cells["DemirbasModel"].Value;
+                var DemirbasUNIQKod= dataGridView1.Rows[selectedRowIndex].Cells["DemirbasUNIQKod"].Value;
+
+                // KullaniciAdi'ni label1'e yazdır
+                label1.Text = demirbasAdi != null ? demirbasAdi.ToString() : "Kullanıcı Adı Bulunamadı";
+                label2.Text = demirbasMarka!= null ? demirbasMarka.ToString() : "Kullanıcı Adı Bulunamadı";
+                label3.Text = demirbasModel != null ? demirbasModel.ToString() : "Kullanıcı Adı Bulunamadı";
+                label4.Text = DemirbasUNIQKod != null ? DemirbasUNIQKod.ToString() : "Kullanıcı Adı Bulunamadı";
+
+                textBox1.Text = DemirbasUNIQKod != null ? DemirbasUNIQKod.ToString() : "Kullanıcı Adı Bulunamadı";
+            }
+        }
     }
 }

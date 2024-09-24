@@ -3,6 +3,7 @@ using Demirbas_denem1.Entities;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
@@ -20,7 +21,7 @@ namespace Demirbas_denem1
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = connection;
-                         
+
                     if (demirbasId is int id)
                     {
                         // Eğer demirbasId bir tam sayı ise
@@ -66,7 +67,7 @@ namespace Demirbas_denem1
                 {
                     command.Connection = connection;
 
-     
+
                     if (varaible is string name && !string.IsNullOrWhiteSpace(name))
                     {
                         // Eğer demirbasId bir string ise ve boş değilse
@@ -113,7 +114,7 @@ namespace Demirbas_denem1
                         // Eğer demirbasId bir string ise ve boş değilse
                         query += " WHERE KullaniciID LIKE @KullaniciID ";
                         command.Parameters.AddWithValue("@KullaniciID", "%" + name + "%");
-          
+
                     }
 
                     command.CommandText = query;
@@ -166,7 +167,7 @@ namespace Demirbas_denem1
                 {
                     command.Connection = connection;
 
-                    if (kullaniciID != null )
+                    if (kullaniciID != null)
                     {
                         // Eğer demirbasId bir string ise ve boş değilse
                         query += " WHERE ZimmetGecmisi.KullaniciID = @KullaniciID ";
@@ -191,11 +192,29 @@ namespace Demirbas_denem1
                         MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                
+
             }
-
         }
+        public static void DemirbasKimeAit(int kullaniciID, DataGridView dgv)
+        {
+            string query = "select DemirbasAdi,DemirbasMarka,DemirbasModel,DemirbasUNIQKod, KullaniciAdi,KullaniciSoyadi,KullaniciKodu,Unvan,Departman from Demirbaslar\r\nJOIN Kullanicilar ON Demirbaslar.KullaniciID = Kullanicilar.KullaniciId ";
+            string connectionstring = DataBaseSettings.ConnectionString;
 
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+
+                    if (kullaniciID != null)
+                    {
+                        // Eğer demirbasId bir string ise ve boş değilse
+                        query += " WHERE Demirbaslar.DemirbasID = 15 ";
+                        command.Parameters.AddWithValue("@KullaniciID", kullaniciID);
+                    }
+                }
+            }
+        }
     }
 }
 
