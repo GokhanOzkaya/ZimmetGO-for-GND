@@ -67,7 +67,7 @@ namespace Demirbas_denem1.Scanes
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DataBaseFilters.ZimmetGemisLisetele(Convert.ToInt32(label4.Text), dataGridView2);
+            DataBaseFilters.ZimmetGemisLisetele(kullaniciID: Convert.ToInt32(label4.Text),dataGridView: dataGridView2);
         }
     }
 }

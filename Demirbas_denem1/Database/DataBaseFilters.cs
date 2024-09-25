@@ -140,7 +140,7 @@ namespace Demirbas_denem1
         }
 
 
-        public static void ZimmetGemisLisetele(int? kullaniciID, DataGridView dataGridView)
+        public static void ZimmetGemisLisetele(DataGridView dataGridView, DateTime? zimmetAlisTar = null,DateTime? iadeEdisTar = null,int? kullaniciID=null)
         {
             string connectionString = DataBaseSettings.ConnectionString;
             string query = "SELECT Kullanicilar.KullaniciAdi, " +
@@ -173,6 +173,18 @@ namespace Demirbas_denem1
                         query += " WHERE ZimmetGecmisi.KullaniciID = @KullaniciID ";
                         command.Parameters.AddWithValue("@KullaniciID", kullaniciID);
                     }
+                    if (zimmetAlisTar != null)
+                    {
+                        // Eğer demirbasId bir string ise ve boş değilse
+                        query += " WHERE ZimmetGecmisi.KullaniciID = @KullaniciID ";
+                        command.Parameters.AddWithValue("@KullaniciID", kullaniciID);
+                    }
+                    if (iadeEdisTar != null)
+                    {
+                        // Eğer demirbasId bir string ise ve boş değilse
+                        query += " WHERE ZimmetGecmisi.KullaniciID = @KullaniciID ";
+                        command.Parameters.AddWithValue("@KullaniciID", kullaniciID);
+                    }
 
                     command.CommandText = query;
 
@@ -195,26 +207,88 @@ namespace Demirbas_denem1
 
             }
         }
-        public static void DemirbasKimeAit(int kullaniciID, DataGridView dgv)
+        public static void DemirbasKimeAit(string demirbasUNIQKod, DataGridView dgv)
         {
-            string query = "select DemirbasAdi,DemirbasMarka,DemirbasModel,DemirbasUNIQKod, KullaniciAdi,KullaniciSoyadi,KullaniciKodu,Unvan,Departman from Demirbaslar\r\nJOIN Kullanicilar ON Demirbaslar.KullaniciID = Kullanicilar.KullaniciId ";
-            string connectionstring = DataBaseSettings.ConnectionString;
+            string query = @"
+                     select Kullanicilar.KullaniciAdi, 
+                            Kullanicilar.KullaniciSoyadi, 
+                            Kullanicilar.Unvan, 
+                            Kullanicilar.Departman,
+                            Demirbaslar.DemirbasAdi, 
+                            Demirbaslar.DemirbasMarka, 
+                            Demirbaslar.DemirbasModel,
+                            Demirbaslar.Durum,
+                            Demirbaslar.DemirbasUNIQKod
+                     from Demirbaslar 
+                     JOIN Kullanicilar ON Kullanicilar.KullaniciId = Demirbaslar.KullaniciID ";
 
-            using (SqlConnection connection = new SqlConnection(connectionstring))
+            if (!string.IsNullOrEmpty(demirbasUNIQKod)) // TextBox boş değilse sorguya WHERE ekle
             {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
+                query += " WHERE Demirbaslar.DemirbasUNIQKod = @DemirbasUNIQKod";
+            }
 
-                    if (kullaniciID != null)
+            string connectionString = DataBaseSettings.ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    if (!string.IsNullOrEmpty(demirbasUNIQKod)) // Parametreyi yalnızca boş değilse ekle
                     {
-                        // Eğer demirbasId bir string ise ve boş değilse
-                        query += " WHERE Demirbaslar.DemirbasID = 15 ";
-                        command.Parameters.AddWithValue("@KullaniciID", kullaniciID);
+                        command.Parameters.AddWithValue("@DemirbasUNIQKod", demirbasUNIQKod);
                     }
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    dgv.DataSource = table;
                 }
             }
         }
+
+
+        public static void DemirbasZimmetGecmisiniGör(string demirbasUNIQKod, DataGridView dgv)
+        {
+            string query = @"--Malzemenin kişi geçmişini gör--
+                     SELECT Kullanicilar.KullaniciAdi, 
+                            Kullanicilar.KullaniciSoyadi, 
+                            Kullanicilar.Departman, 
+                            ZimmetGecmisi.ZimmetTarihi, 
+                            ZimmetGecmisi.IadeTarihi, 
+                            Demirbaslar.DemirbasAdi, 
+                            Demirbaslar.DemirbasMarka, 
+                            Demirbaslar.DemirbasModel, 
+                            Demirbaslar.Durum, 
+                            Demirbaslar.DemirbasUNIQKod
+                     FROM ZimmetGecmisi
+                     JOIN Demirbaslar ON Demirbaslar.DemirbasID = ZimmetGecmisi.DemirbasID
+                     JOIN Kullanicilar ON Kullanicilar.KullaniciId = ZimmetGecmisi.KullaniciID ";
+
+            if (!string.IsNullOrEmpty(demirbasUNIQKod)) // TextBox boş değilse sorguya WHERE ekle
+            {
+                query += " WHERE Demirbaslar.DemirbasUNIQKod = @DemirbasUNIQKod";
+            }
+
+            string connectionString = DataBaseSettings.ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    if (!string.IsNullOrEmpty(demirbasUNIQKod)) // Parametreyi yalnızca boş değilse ekle
+                    {
+                        command.Parameters.AddWithValue("@DemirbasUNIQKod", demirbasUNIQKod);
+                    }
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    dgv.DataSource = table;
+                }
+            }
+        }
+
+
     }
 }
 

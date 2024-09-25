@@ -57,7 +57,7 @@ namespace Demirbas_denem1.Scanes
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            DataBaseFilters.DemirbasKimeAit(Convert.ToString( textBox1.Text ),dataGridView2);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -79,9 +79,13 @@ namespace Demirbas_denem1.Scanes
                 label2.Text = demirbasMarka!= null ? demirbasMarka.ToString() : "Kullanıcı Adı Bulunamadı";
                 label3.Text = demirbasModel != null ? demirbasModel.ToString() : "Kullanıcı Adı Bulunamadı";
                 label4.Text = DemirbasUNIQKod != null ? DemirbasUNIQKod.ToString() : "Kullanıcı Adı Bulunamadı";
-
                 textBox1.Text = DemirbasUNIQKod != null ? DemirbasUNIQKod.ToString() : "Kullanıcı Adı Bulunamadı";
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DataBaseFilters.DemirbasZimmetGecmisiniGör(Convert.ToString(textBox1.Text), dataGridView2);
         }
     }
 }
