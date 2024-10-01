@@ -28,7 +28,7 @@ namespace Demirbas_denem1.Scanes
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DataBaseFilters.DatabaseFilterUser(varaible:textBox1.Text,dataGridView1);  
+            DataBaseSettings.SearchInKullanicilar(textBox1.Text,dataGridView1);  
             
         }
 

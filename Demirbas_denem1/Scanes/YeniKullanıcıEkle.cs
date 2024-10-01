@@ -113,7 +113,7 @@ namespace Demirbas_denem1
 
         private void YeniKullanıcıEkle_Load(object sender, EventArgs e)
         {
-            dateTimePicker1.Value = DateTime.Now; 
+            dateTimePicker1.Value = DateTime.Now;
             DataBaseSettings.GridDoldurKullanici(dataGridView1);
             List<Role> roles = DataBaseSettings.LoadYetkiData();
 
@@ -199,10 +199,15 @@ namespace Demirbas_denem1
 
                 UserRepository Repository = new UserRepository();
                 Repository.UpdateUser(newUser);
-        
+
             DataBaseSettings.GridDoldurKullanici(dataGridView1);
 
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DataBaseSettings.SearchInKullanicilar(textBox5.Text,dataGridView1);
         }
     }
 }

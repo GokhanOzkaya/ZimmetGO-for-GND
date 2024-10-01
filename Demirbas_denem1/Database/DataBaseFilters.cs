@@ -150,7 +150,6 @@ namespace Demirbas_denem1
                  "ZimmetGecmisi.ZimmetTarihi, " +
                  "ZimmetGecmisi.IadeTarihi, " +
                  "ZimmetGecmisi.DemirbasID, " +
-                 "Demirbaslar.DemirbasAdi, " +
                  "Demirbaslar.DemirbasMarka, " +
                  "Demirbaslar.DemirbasModel, " +
                  "Demirbaslar.Durum, " +

@@ -115,5 +115,10 @@ namespace Demirbas_denem1.Scanes
             Repository.DemirbasHurdayaCikar(db.DemirbasID);
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DataBaseSettings.SearchInDemirbaslar(textBox6.Text,dataGridView1);
+        }
     }
 }
