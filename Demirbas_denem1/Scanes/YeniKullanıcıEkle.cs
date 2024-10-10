@@ -49,7 +49,8 @@ namespace Demirbas_denem1
                 newUser.usereMail = textBox3.Text;
                 newUser.userStartTime = dateTimePicker1.Value;
                 newUser.userStatus = comboBox1.Text; 
-                newUser.userRole = comboBox3.Text;   
+                newUser.userRole = comboBox3.Text;
+                newUser.FirmaKodu = comboBox4.Text;
             
 
                 UserRepository Repository = new UserRepository();

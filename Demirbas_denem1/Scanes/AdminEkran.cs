@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Demirbas_denem1.Scanes
 {
@@ -61,6 +62,36 @@ namespace Demirbas_denem1.Scanes
         private void button7_Click(object sender, EventArgs e)
         {
             DemirbasZimmetleri de = new DemirbasZimmetleri(); de.Show();    
+        }
+
+        private void AdminEkran_Load(object sender, EventArgs e)
+        {
+            int value1 = Convert.ToInt32(label1.Text);
+            int value2 = Convert.ToInt32(label2.Text);
+            int value3 = Convert.ToInt32(label3.Text);
+
+            // Pie Chart serisini temizliyoruz (varsa)
+            chart1.Series.Clear();
+
+            // Yeni bir seri oluşturuyoruz
+            Series series = new Series
+            {
+                Name = "PieSeries",
+                IsVisibleInLegend = true,
+                ChartType = SeriesChartType.Pie
+            };
+
+            // Chart'a seriyi ekliyoruz
+            chart1.Series.Add(series);
+
+            // Seriye verileri ekliyoruz
+            series.Points.AddXY(value1.ToString(), value1);
+            series.Points.AddXY(value2.ToString(), value2);
+            series.Points.AddXY(value3.ToString(), value3);
+
+            // Grafiğin görsel ayarlarını yapalım (isteğe bağlı)
+            chart1.ChartAreas[0].Area3DStyle.Enable3D = true; // 3D görünüm isteniyorsa
+            chart1.Legends[0].Enabled = true; // Legend'i etkinleştiriyoruz
         }
     }
 }

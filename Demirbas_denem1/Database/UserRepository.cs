@@ -72,8 +72,8 @@ namespace Demirbas_denem1.Entities
         }
         public void AddNewDemirbas(Demirbas newDemirbas)
         {
-            string addQuery = @"INSERT INTO Demirbaslar (DemirbasAdi,DemirbasMarka,DemirbasModel,DemirbasUNIQKod, DemirbasTuru, SatinAlmaTarihi, KayitTarihi, Durum, KullaniciID, Aciklama)
-        VALUES (@DemirbasAdi,@DemirbasMarka,@DemirbasModel,@DemirbasUNIQKod, @DemirbasTuru, @SatinAlmaTarihi, @KayitTarihi, @Durum, @KullaniciID, @Aciklama)";
+            string addQuery = @"INSERT INTO Demirbaslar (DemirbasAdi,DemirbasMarka,DemirbasModel,DemirbasUNIQKod, DemirbasTuru, SatinAlmaTarihi, KayitTarihi, Durum, KullaniciID, Aciklama,FirmaKodu)
+        VALUES (@DemirbasAdi,@DemirbasMarka,@DemirbasModel,@DemirbasUNIQKod, @DemirbasTuru, @SatinAlmaTarihi, @KayitTarihi, @Durum, @KullaniciID, @Aciklama,@FirmaKodu)";
            
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
             {
@@ -84,13 +84,13 @@ namespace Demirbas_denem1.Entities
                     command.Parameters.AddWithValue("@DemirbasMarka", newDemirbas.DemirbasMarka ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@DemirbasModel", newDemirbas.DemirbasModel ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@DemirbasUNIQKod", newDemirbas.DemirbasUNIQKod );
-
                     command.Parameters.AddWithValue("@DemirbasTuru", newDemirbas.DemirbasTuru ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@SatinAlmaTarihi", newDemirbas.SatinAlmaTarihi ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@KayitTarihi", newDemirbas.KayitTarihi ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@Durum", newDemirbas.Durum ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@KullaniciID", newDemirbas.KullaniciID ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@Aciklama", newDemirbas.Aciklama ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@FirmaKodu", newDemirbas.FirmaKodu ?? (object)DBNull.Value);
 
                     // Bağlantıyı aç ve sorguyu çalıştır
                     connection.Open();
@@ -103,7 +103,7 @@ namespace Demirbas_denem1.Entities
         }
         public void UpdateDemirbas(Demirbas updatedDemirbas)
         {
-            string updateQuery = @"UPDATE Demirbaslar SET DemirbasAdi = @DemirbasAdi,DemirbasMarka = @DemirbasMarka,DemirbasModel = @DemirbasModel,  DemirbasTuru = @DemirbasTuru,SatinAlmaTarihi = @SatinAlmaTarihi,KayitTarihi = @KayitTarihi, Durum = @Durum,KullaniciID = @KullaniciID, Aciklama = @Aciklama WHERE DemirbasID = @DemirbasID";
+            string updateQuery = @"UPDATE Demirbaslar SET DemirbasAdi = @DemirbasAdi,DemirbasMarka = @DemirbasMarka,DemirbasModel = @DemirbasModel,  DemirbasTuru = @DemirbasTuru,SatinAlmaTarihi = @SatinAlmaTarihi,KayitTarihi = @KayitTarihi, Durum = @Durum,KullaniciID = @KullaniciID, Aciklama = @Aciklama,FirmaKodu = @FirmaKodu WHERE DemirbasID = @DemirbasID";
             try
             {
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
@@ -120,9 +120,10 @@ namespace Demirbas_denem1.Entities
                         command.Parameters.AddWithValue("@Durum", updatedDemirbas.Durum ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@KullaniciID", updatedDemirbas.KullaniciID ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@Aciklama", updatedDemirbas.Aciklama ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@DemirbasID", updatedDemirbas.DemirbasID);
+                        command.Parameters.AddWithValue("@FirmaKodu", updatedDemirbas.FirmaKodu ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@DemirbasID", updatedDemirbas.DemirbasID );
+                       
 
-                        // Bağlantıyı aç ve sorguyu çalıştır
                         connection.Open();
                         command.ExecuteNonQuery();
                     }
@@ -264,8 +265,8 @@ namespace Demirbas_denem1.Entities
 
         public void AddNewUser(User newUser)
         {
-            string addQuery = @"INSERT INTO Kullanicilar (KullaniciAdi, KullaniciSoyadi, Unvan, Departman, KullaniciKodu, Email, Sifre, BaslamaTarihi, Statu, Rol)
-                    VALUES (@KullaniciAdi, @KullaniciSoyadi, @Unvan, @Departman, @KullaniciKodu, @Email, @Sifre, @BaslamaTarihi, @Statu, @Rol)";
+            string addQuery = @"INSERT INTO Kullanicilar (KullaniciAdi, KullaniciSoyadi, Unvan, Departman, KullaniciKodu, Email, Sifre, BaslamaTarihi, Statu, Rol,FirmaKodu)
+                    VALUES (@KullaniciAdi, @KullaniciSoyadi, @Unvan, @Departman, @KullaniciKodu, @Email, @Sifre, @BaslamaTarihi, @Statu, @Rol,@FirmaKodu)";
 
             using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
             {
@@ -281,7 +282,8 @@ namespace Demirbas_denem1.Entities
                     command.Parameters.AddWithValue("@BaslamaTarihi", newUser.userStartTime);  // DateTime ise direkt kullanılır
                     command.Parameters.AddWithValue("@Statu", newUser.userStatus);
                     command.Parameters.AddWithValue("@Rol", newUser.userRole);
-                    
+                    command.Parameters.AddWithValue("@FirmaKodu", newUser.FirmaKodu);
+
                     connection.Open();
                     command.ExecuteNonQuery();
                    

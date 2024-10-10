@@ -25,8 +25,7 @@ namespace Demirbas_denem1.Scanes
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataBaseFilters.ZimmetGemisLisetele(dataGridView: dataGridView1);
-
+            DataBaseFilters.SearchInZimmetGecmisi(dataGridView:dataGridView1,baslangicTarihi:dateTimePicker1.Value,bitisTarihi:dateTimePicker2.Value,filtreTuru:comboBox1.Text);
         }
     }
 }

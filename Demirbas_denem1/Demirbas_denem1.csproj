@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -109,10 +110,10 @@
     <Compile Include="Scanes\KullaniciZimmetleri.Designer.cs">
       <DependentUpon>KullaniciZimmetleri.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scanes\Transfer.cs">
+    <Compile Include="TransferEkranı\Transfer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Scanes\Transfer.Designer.cs">
+    <Compile Include="TransferEkranı\Transfer.Designer.cs">
       <DependentUpon>Transfer.cs</DependentUpon>
     </Compile>
     <Compile Include="Scanes\YeniKullanıcıEkle.cs">
@@ -128,6 +129,12 @@
     </Compile>
     <Compile Include="Scanes\YetilendirmeEkranı.Designer.cs">
       <DependentUpon>YetilendirmeEkranı.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TransferEkranı\ZimmetOnay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransferEkranı\ZimmetOnay.Designer.cs">
+      <DependentUpon>ZimmetOnay.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Scanes\AdminEkran.resx">
       <DependentUpon>AdminEkran.cs</DependentUpon>
@@ -151,7 +158,7 @@
     <EmbeddedResource Include="Scanes\KullaniciZimmetleri.resx">
       <DependentUpon>KullaniciZimmetleri.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scanes\Transfer.resx">
+    <EmbeddedResource Include="TransferEkranı\Transfer.resx">
       <DependentUpon>Transfer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scanes\YeniKullanıcıEkle.resx">
@@ -168,6 +175,9 @@
     </Compile>
     <EmbeddedResource Include="Scanes\YetilendirmeEkranı.resx">
       <DependentUpon>YetilendirmeEkranı.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransferEkranı\ZimmetOnay.resx">
+      <DependentUpon>ZimmetOnay.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

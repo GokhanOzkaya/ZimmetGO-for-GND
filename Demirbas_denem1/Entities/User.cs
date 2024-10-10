@@ -20,8 +20,7 @@ namespace Demirbas_denem1.Entities
         public DateTime userStartTime{ get; set; } = DateTime.Now;  
         public string userStatus {  get; set; } 
         public string userRole { get; set; }
-
-
+        public string FirmaKodu { get; set; }
 
     }
     public static class CurrentUser

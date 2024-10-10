@@ -19,6 +19,7 @@ namespace Demirbas_denem1.Entities
         public string Durum { get; set; }              // Durum (aktif, pasif, tamirde, vb.)
         public int? KullaniciID { get; set; }          // Şu anki kullanan kişi ID'si
         public string Aciklama { get; set; }           // Ek açıklamalar
+        public string FirmaKodu { get; set; }   
 
     }
 }

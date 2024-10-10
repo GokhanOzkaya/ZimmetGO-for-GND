@@ -35,7 +35,6 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -44,20 +43,18 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(48, 97);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(36, 79);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(917, 588);
+            this.dataGridView1.Size = new System.Drawing.Size(688, 478);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1791, 715);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(1343, 581);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(248, 66);
+            this.button2.Size = new System.Drawing.Size(186, 54);
             this.button2.TabIndex = 13;
             this.button2.Text = "KAPAT";
             this.button2.UseVisualStyleBackColor = true;
@@ -65,10 +62,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(996, 350);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(747, 284);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 65);
+            this.button1.Size = new System.Drawing.Size(118, 53);
             this.button1.TabIndex = 14;
             this.button1.Text = "ZİMMETLE";
             this.button1.UseVisualStyleBackColor = true;
@@ -77,56 +73,43 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1053, 434);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(790, 353);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 16);
+            this.label1.Size = new System.Drawing.Size(25, 13);
             this.label1.TabIndex = 15;
             this.label1.Text = "---->";
             // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(1185, 97);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView2.Location = new System.Drawing.Point(889, 79);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(853, 588);
+            this.dataGridView2.Size = new System.Drawing.Size(640, 478);
             this.dataGridView2.TabIndex = 16;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(1185, 20);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Location = new System.Drawing.Point(889, 16);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(852, 46);
+            this.textBox1.Size = new System.Drawing.Size(640, 38);
             this.textBox1.TabIndex = 17;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(48, 20);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Location = new System.Drawing.Point(36, 16);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(916, 46);
+            this.textBox2.Size = new System.Drawing.Size(688, 38);
             this.textBox2.TabIndex = 18;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(83, 732);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(265, 22);
-            this.dateTimePicker1.TabIndex = 19;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(996, 465);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Location = new System.Drawing.Point(747, 378);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(157, 65);
+            this.button3.Size = new System.Drawing.Size(118, 53);
             this.button3.TabIndex = 20;
             this.button3.Text = "IT ye geri İade et";
             this.button3.UseVisualStyleBackColor = true;
@@ -134,11 +117,10 @@
             // 
             // Transfer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2077, 813);
+            this.ClientSize = new System.Drawing.Size(1558, 767);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView2);
@@ -146,7 +128,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Transfer";
             this.Text = "Transfer";
             this.Load += new System.EventHandler(this.Transfer_Load);
@@ -166,7 +147,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button3;
     }
 }

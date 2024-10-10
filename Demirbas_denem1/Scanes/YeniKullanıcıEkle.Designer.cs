@@ -62,6 +62,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -76,7 +78,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(752, 919);
+            this.tabControl1.Size = new System.Drawing.Size(752, 1093);
             this.tabControl1.TabIndex = 17;
             // 
             // tabPage1
@@ -86,7 +88,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(744, 890);
+            this.tabPage1.Size = new System.Drawing.Size(744, 1064);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -94,6 +96,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.comboBox4);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.textBox8);
             this.groupBox1.Controls.Add(this.button5);
@@ -124,7 +128,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(681, 873);
+            this.groupBox1.Size = new System.Drawing.Size(685, 1027);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -151,7 +155,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(441, 745);
+            this.button5.Location = new System.Drawing.Point(440, 843);
             this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(181, 84);
@@ -231,7 +235,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(249, 745);
+            this.button4.Location = new System.Drawing.Point(248, 843);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(181, 84);
@@ -242,7 +246,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(55, 745);
+            this.button3.Location = new System.Drawing.Point(54, 843);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(168, 84);
@@ -332,7 +336,7 @@
             // button1
             // 
             this.button1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button1.Location = new System.Drawing.Point(56, 658);
+            this.button1.Location = new System.Drawing.Point(55, 756);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(567, 71);
@@ -435,6 +439,29 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(54, 680);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(75, 16);
+            this.label12.TabIndex = 30;
+            this.label12.Text = "Firma Kodu";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "53",
+            "61",
+            "72"});
+            this.comboBox4.Location = new System.Drawing.Point(57, 704);
+            this.comboBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(564, 24);
+            this.comboBox4.TabIndex = 29;
+            // 
             // YeniKullanıcıEkle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -494,5 +521,7 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox comboBox4;
     }
 }

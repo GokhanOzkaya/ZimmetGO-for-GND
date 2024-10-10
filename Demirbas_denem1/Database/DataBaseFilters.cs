@@ -1,6 +1,7 @@
 ﻿using Demirbas_denem1.Database;
 using Demirbas_denem1.Entities;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Security.Cryptography.X509Certificates;
@@ -206,6 +207,72 @@ namespace Demirbas_denem1
 
             }
         }
+
+        public static void SearchInZimmetGecmisi(DataGridView dataGridView, DateTime baslangicTarihi, DateTime bitisTarihi, string filtreTuru)
+        {
+            string connectionString = DataBaseSettings.ConnectionString;
+            string query = "SELECT Kullanicilar.KullaniciAdi, " +
+                           "Kullanicilar.KullaniciSoyadi, " +
+                           "Kullanicilar.Unvan, " +
+                           "Kullanicilar.Departman, " +
+                           "ZimmetGecmisi.ZimmetTarihi, " +
+                           "ZimmetGecmisi.IadeTarihi, " +
+                           "ZimmetGecmisi.DemirbasID, " +
+                           "Demirbaslar.DemirbasAdi, " +
+                           "Demirbaslar.DemirbasMarka, " +
+                           "Demirbaslar.DemirbasModel, " +
+                           "Demirbaslar.Durum, " +
+                           "Demirbaslar.DemirbasUNIQKod " +
+                           "FROM ZimmetGecmisi " +
+                           "JOIN Kullanicilar ON Kullanicilar.KullaniciId = ZimmetGecmisi.KullaniciID " +
+                           "JOIN Demirbaslar ON Demirbaslar.DemirbasID = ZimmetGecmisi.DemirbasID ";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+
+                    string upperFiltreTuru = filtreTuru.ToUpper();
+
+                    // Tarih aralığına göre filtreleme işlemi
+                    if (filtreTuru == "TESLİMTARİHİNEGÖRE")
+                    {
+                        query += "WHERE ZimmetGecmisi.ZimmetTarihi BETWEEN @BaslangicTarihi AND @BitisTarihi";
+                    }
+                    else if (filtreTuru == "İADETARİHİNEGÖRE")
+                    {
+                        query += "WHERE ZimmetGecmisi.IadeTarihi BETWEEN @BaslangicTarihi AND @BitisTarihi";
+                    }
+                    else if (baslangicTarihi==bitisTarihi)
+                    {
+                        query += "WHERE ZimmetGecmisi.ZimmetTarihi = @BaslangicTarihi";
+                    }
+                    // Parametreleri ekliyoruz
+                    command.Parameters.AddWithValue("@BaslangicTarihi", baslangicTarihi);
+                    command.Parameters.AddWithValue("@BitisTarihi", bitisTarihi);
+
+                    command.CommandText = query;
+
+                    try
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        dataGridView.DataSource = dataTable;
+                    }
+                    catch (SqlException sqlEx)
+                    {
+                        MessageBox.Show($"Veritabanı hatası: {sqlEx.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
         public static void DemirbasKimeAit(string demirbasUNIQKod, DataGridView dgv)
         {
             string query = @"
