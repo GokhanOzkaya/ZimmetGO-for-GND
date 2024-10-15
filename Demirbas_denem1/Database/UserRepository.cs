@@ -90,7 +90,7 @@ namespace Demirbas_denem1.Entities
                     command.Parameters.AddWithValue("@Durum", newDemirbas.Durum ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@KullaniciID", newDemirbas.KullaniciID ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@Aciklama", newDemirbas.Aciklama ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@FirmaKodu", newDemirbas.FirmaKodu ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@FirmaKodu",newDemirbas.FirmaKodu ?? (object)DBNull.Value);
 
                     // Bağlantıyı aç ve sorguyu çalıştır
                     connection.Open();

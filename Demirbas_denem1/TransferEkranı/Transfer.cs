@@ -41,30 +41,155 @@ namespace Demirbas_denem1.Scanes
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            TransferEkranı.ZimmetOnay zimmetOnay = new TransferEkranı.ZimmetOnay();
-            zimmetOnay.Show();
-            UserRepository ur = new UserRepository();
-            try
+            Entities.SelectedDemirbas selectedDemirbas = new Entities.SelectedDemirbas();
+            Entities.SelectedUser selectedUser = new Entities.SelectedUser();
+            if (dataGridView1.CurrentRow != null)
             {
-                if (_xKullanicilarKullaniciId == _xDemirbaslarKullaniciId)
+                var selectedRow = dataGridView1.CurrentRow;
+
+                selectedDemirbas = new SelectedDemirbas
                 {
-                    MessageBox.Show($"Seçtiğiniz Malzeme Zaten Seçtiğiniz Kullanıcı Üzerine Zimmetli", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DemirbasID = selectedRow.Cells["DemirbasID"].Value != DBNull.Value
+                                 ? Convert.ToInt32(selectedRow.Cells["DemirbasID"].Value)
+                                 : 0, // Varsayılan bir değer verebilirsin
+
+                    DemirbasAdi = selectedRow.Cells["DemirbasAdi"].Value != DBNull.Value
+                                  ? selectedRow.Cells["DemirbasAdi"].Value.ToString()
+                                  : string.Empty, // Boş bir değer verilebilir
+
+                    DemirbasMarka = selectedRow.Cells["DemirbasMarka"].Value != DBNull.Value
+                                    ? selectedRow.Cells["DemirbasMarka"].Value.ToString()
+                                    : string.Empty,
+
+                    DemirbasModel = selectedRow.Cells["DemirbasModel"].Value != DBNull.Value
+                                    ? selectedRow.Cells["DemirbasModel"].Value.ToString()
+                                    : string.Empty,
+
+                    DemirbasUNIQKod = selectedRow.Cells["DemirbasUNIQKod"].Value != DBNull.Value
+                                      ? selectedRow.Cells["DemirbasUNIQKod"].Value.ToString()
+                                      : string.Empty,
+
+                    DemirbasTuru = selectedRow.Cells["DemirbasTuru"].Value != DBNull.Value
+                                   ? selectedRow.Cells["DemirbasTuru"].Value.ToString()
+                                   : string.Empty,
+
+                    SatinAlmaTarihi = selectedRow.Cells["SatinAlmaTarihi"].Value != DBNull.Value
+                                      ? selectedRow.Cells["SatinAlmaTarihi"].Value as DateTime?
+                                      : null,
+
+                    KayitTarihi = selectedRow.Cells["KayitTarihi"].Value != DBNull.Value
+                                  ? selectedRow.Cells["KayitTarihi"].Value as DateTime?
+                                  : null,
+
+                    Durum = selectedRow.Cells["Durum"].Value != DBNull.Value
+                            ? selectedRow.Cells["Durum"].Value.ToString()
+                            : string.Empty,
+
+                    KullaniciID = selectedRow.Cells["KullaniciID"].Value != DBNull.Value
+                                  ? selectedRow.Cells["KullaniciID"].Value as int?
+                                  : null,
+
+                    Aciklama = selectedRow.Cells["Aciklama"].Value != DBNull.Value
+                               ? selectedRow.Cells["Aciklama"].Value.ToString()
+                               : string.Empty,
+
+                    FirmaKodu = selectedRow.Cells["FirmaKodu"].Value != DBNull.Value
+                                ? Convert.ToInt32(selectedRow.Cells["FirmaKodu"].Value)
+                                : null, // Varsayılan değer
+                };
+
+                if (dataGridView2.CurrentRow != null)
+                {
+                    var selectedRow2 = dataGridView2.CurrentRow;
+
+                    // Seçili satırdaki hücrelerden User class'ına atamalar
+                    selectedUser.KullaniciId = selectedRow2.Cells["KullaniciId"].Value != DBNull.Value
+                                               ? Convert.ToInt32(selectedRow2.Cells["KullaniciId"].Value)
+                                               : 0; // Varsayılan bir değer verebilirsin
+
+                    selectedUser.userName = selectedRow2.Cells["KullaniciAdi"].Value != DBNull.Value
+                                            ? selectedRow2.Cells["KullaniciAdi"].Value.ToString()
+                                            : string.Empty;
+
+                    selectedUser.sureName = selectedRow2.Cells["KullaniciSoyadi"].Value != DBNull.Value
+                                            ? selectedRow2.Cells["KullaniciSoyadi"].Value.ToString()
+                                            : string.Empty;
+
+                    selectedUser.userTitle = selectedRow2.Cells["Unvan"].Value != DBNull.Value
+                                             ? selectedRow2.Cells["Unvan"].Value.ToString()
+                                             : string.Empty;
+
+                    selectedUser.userDepartment = selectedRow2.Cells["Departman"].Value != DBNull.Value
+                                                  ? selectedRow2.Cells["Departman"].Value.ToString()
+                                                  : string.Empty;
+
+                    selectedUser.userCode = selectedRow2.Cells["KullaniciKodu"].Value != DBNull.Value
+                                            ? selectedRow2.Cells["KullaniciKodu"].Value.ToString()
+                                            : string.Empty;
+
+                    selectedUser.usereMail = selectedRow2.Cells["Email"].Value != DBNull.Value
+                                             ? selectedRow2.Cells["Email"].Value.ToString()
+                                             : string.Empty;
+
+                    selectedUser.userePassword = selectedRow2.Cells["Sifre"].Value != DBNull.Value
+                                                 ? selectedRow2.Cells["Sifre"].Value.ToString()
+                                                 : string.Empty;
+
+                    selectedUser.userStartTime = selectedRow2.Cells["BaslamaTarihi"].Value != DBNull.Value
+                                                 ? Convert.ToDateTime(selectedRow2.Cells["BaslamaTarihi"].Value)
+                                                 : DateTime.Now;
+
+                    selectedUser.userStatus = selectedRow2.Cells["Statu"].Value != DBNull.Value
+                                              ? selectedRow2.Cells["Statu"].Value.ToString()
+                                              : string.Empty;
+
+                    selectedUser.userRole = selectedRow2.Cells["Rol"].Value != DBNull.Value
+                                            ? selectedRow2.Cells["Rol"].Value.ToString()
+                                            : string.Empty;
+
+                    selectedUser.FirmaKodu = selectedRow2.Cells["FirmaKodu"].Value != DBNull.Value
+                                             ? selectedRow2.Cells["FirmaKodu"].Value.ToString()
+                                             : string.Empty;
 
                 }
-                else
-                {
-                    ur.UpdateDemirbasKullaniciID(demirbasId: Convert.ToInt32(textBox2.Text), kullaniciId: Convert.ToInt32(textBox1.Text), zimmetTarihi: DateTime.Now, iadeTarihi: DateTime.Now, zimmetAlınanKisiID: _xKullanicilarKullaniciId);
-                    DataBaseSettings.GridDoldurDemirbas(dataGridView1);
-                    DataBaseSettings.GridDoldurKullanici(dataGridView2);
-                }
+
             }
-            catch (Exception ex)
+
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
             {
-                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
+                MessageBox.Show("Lütfen tüm alanları doldurun.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+            else
+            {
+                TransferEkranı. ZimmetOnay zimmetOnay = new TransferEkranı. ZimmetOnay(selectedDemirbas,selectedUser);
+                zimmetOnay.Show();
+            }
+
+
+            //UserRepository ur = new UserRepository();
+            //try
+            //{
+
+            //    if (_xKullanicilarKullaniciId == _xDemirbaslarKullaniciId)
+            //    {
+            //        MessageBox.Show($"Seçtiğiniz Malzeme Zaten Seçtiğiniz Kullanıcı Üzerine Zimmetli", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            //    }
+            //    else
+            //    {
+            //        ur.UpdateDemirbasKullaniciID(demirbasId: Convert.ToInt32(textBox2.Text), kullaniciId: Convert.ToInt32(textBox1.Text), zimmetTarihi: DateTime.Now, iadeTarihi: DateTime.Now, zimmetAlınanKisiID: _xKullanicilarKullaniciId);
+            //        DataBaseSettings.GridDoldurDemirbas(dataGridView1);
+            //        DataBaseSettings.GridDoldurKullanici(dataGridView2);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+            //}
 
 
         }

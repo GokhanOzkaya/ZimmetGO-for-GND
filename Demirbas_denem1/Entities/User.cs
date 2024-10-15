@@ -28,9 +28,8 @@ namespace Demirbas_denem1.Entities
         public static User User { get; set; } = new User();
     }
 
-    public static class SelectedUser
+    public  class SelectedUser:User
     {
-        public static User User { get; set; } = new User();
     }
 
 

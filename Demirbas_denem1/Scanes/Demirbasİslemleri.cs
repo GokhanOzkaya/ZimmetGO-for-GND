@@ -33,14 +33,14 @@ namespace Demirbas_denem1.Scanes
             db.DemirbasAdi = textBox2.Text;
             db.DemirbasMarka = textBox3.Text;
             db.DemirbasModel = textBox4.Text;   
-            db.DemirbasUNIQKod =Convert.ToInt32( textBox5.Text );
+            db.DemirbasUNIQKod =textBox5.Text;
             db.DemirbasTuru = comboBox1.Text;
             db.SatinAlmaTarihi = dateTimePicker1.Value;
             db.KayitTarihi= dateTimePicker2.Value;
             db.KullaniciID = 10;    
             db.Durum = comboBox2.Text;
             db.Aciklama = richTextBox1.Text;
-            db.FirmaKodu = comboBox3.Text;
+            db.FirmaKodu = Convert.ToInt32( comboBox3.Text);
 
 
             UserRepository Repository = new UserRepository();
@@ -64,7 +64,7 @@ namespace Demirbas_denem1.Scanes
             db.KullaniciID = 10;
             db.Durum = comboBox2.Text;
             db.Aciklama = richTextBox1.Text;
-            db.FirmaKodu = comboBox3.Text;
+            db.FirmaKodu =Convert.ToInt32( comboBox3.Text);
 
             UserRepository Repository = new UserRepository();
             Repository.UpdateDemirbas(db);
