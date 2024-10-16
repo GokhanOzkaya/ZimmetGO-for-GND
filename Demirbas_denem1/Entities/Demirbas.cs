@@ -28,4 +28,5 @@ namespace Demirbas_denem1.Entities
         // Ekstra özellikler eklenebilir veya Demirbas'taki özellikler burada kullanılabilir
         // Şu an için yeni bir özellik eklenmiyor, Demirbas'ın tüm özelliklerini miras alır.
     }
+
 }

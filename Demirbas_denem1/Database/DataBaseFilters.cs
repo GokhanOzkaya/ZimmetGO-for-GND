@@ -273,22 +273,23 @@ namespace Demirbas_denem1
             }
         }
 
-        public static void DemirbasKimeAit(string demirbasUNIQKod, DataGridView dgv)
+        public static void DemirbasKimeAit(string demirbasUNIQKod, DataGridView? dgv = null, Label[] labels = null)
         {
+            Entities.OldUser ou = new Entities.OldUser();   
             string query = @"
-                     select Kullanicilar.KullaniciAdi, 
-                            Kullanicilar.KullaniciSoyadi, 
-                            Kullanicilar.Unvan, 
-                            Kullanicilar.Departman,
-                            Demirbaslar.DemirbasAdi, 
-                            Demirbaslar.DemirbasMarka, 
-                            Demirbaslar.DemirbasModel,
-                            Demirbaslar.Durum,
-                            Demirbaslar.DemirbasUNIQKod
-                     from Demirbaslar 
-                     JOIN Kullanicilar ON Kullanicilar.KullaniciId = Demirbaslar.KullaniciID ";
+        select Kullanicilar.KullaniciAdi, 
+               Kullanicilar.KullaniciSoyadi, 
+               Kullanicilar.Unvan, 
+               Kullanicilar.Departman,
+               Demirbaslar.DemirbasAdi, 
+               Demirbaslar.DemirbasMarka, 
+               Demirbaslar.DemirbasModel,
+               Demirbaslar.Durum,
+               Demirbaslar.DemirbasUNIQKod
+        from Demirbaslar 
+        JOIN Kullanicilar ON Kullanicilar.KullaniciId = Demirbaslar.KullaniciID ";
 
-            if (!string.IsNullOrEmpty(demirbasUNIQKod)) // TextBox boş değilse sorguya WHERE ekle
+            if (!string.IsNullOrEmpty(demirbasUNIQKod)) // Parametre varsa WHERE ekle
             {
                 query += " WHERE Demirbaslar.DemirbasUNIQKod = @DemirbasUNIQKod";
             }
@@ -297,20 +298,42 @@ namespace Demirbas_denem1
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    if (!string.IsNullOrEmpty(demirbasUNIQKod)) // Parametreyi yalnızca boş değilse ekle
+                    if (!string.IsNullOrEmpty(demirbasUNIQKod))
                     {
                         command.Parameters.AddWithValue("@DemirbasUNIQKod", demirbasUNIQKod);
                     }
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-                    dgv.DataSource = table;
+                    // SQL Reader ile kullanıcı bilgilerini oku ve label'lara yazdır
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows && labels != null) // Label'lar varsa doldur
+                        {
+                            while (reader.Read())
+                            {
+                                ou.userName = "Kullanıcı Adı: " + reader["KullaniciAdi"].ToString();
+                               
+                                ou.userTitle = "Unvan: " + reader["Unvan"].ToString();
+                                ou.userDepartment = "Departman: " + reader["Departman"].ToString();
+                               
+                            }
+                        }
+                    }
+
+                    // Eğer DataGridView sağlanmışsa tabloya verileri doldur
+                    if (dgv != null)
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        dgv.DataSource = table;
+                    }
                 }
             }
         }
+
 
 
         public static void DemirbasZimmetGecmisiniGör(string demirbasUNIQKod, DataGridView dgv)

@@ -31,6 +31,10 @@ namespace Demirbas_denem1.Entities
     public  class SelectedUser:User
     {
     }
+    public class OldUser : SelectedUser 
+    { 
+        
+    }
 
 
 }
