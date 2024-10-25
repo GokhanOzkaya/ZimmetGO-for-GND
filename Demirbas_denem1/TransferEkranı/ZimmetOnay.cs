@@ -15,12 +15,18 @@ namespace Demirbas_denem1.TransferEkranı
     {
         private Entities.SelectedDemirbas _selectedDemirbas;
         private Entities.SelectedUser _selectedUser;
+        private Entities.OldUser _oldUser;
 
-        public ZimmetOnay(Entities.SelectedDemirbas selectedDemirbas,Entities.SelectedUser selectedUser)
+
+        private int _xKullanicilarKullaniciId;
+
+        private int _xDemirbaslarKullaniciId;
+        public ZimmetOnay(Entities.SelectedDemirbas selectedDemirbas, Entities.SelectedUser selectedUser, OldUser oldUser)
         {
             InitializeComponent();
             _selectedDemirbas = selectedDemirbas;
             _selectedUser = selectedUser;
+            _oldUser = oldUser;
         }
 
         private void ZimmetOnay_Load(object sender, EventArgs e)
@@ -60,6 +66,11 @@ namespace Demirbas_denem1.TransferEkranı
 
 
 
+            //DataBaseFilters.DemirbasKimeAit(_selectedDemirbas.DemirbasUNIQKod, null);
+            _oldUser = DataBaseFilters.DemirbasKimeAit(_selectedDemirbas.DemirbasUNIQKod, null);
+
+            label26.Text = _oldUser.userName;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -70,6 +81,58 @@ namespace Demirbas_denem1.TransferEkranı
 
         private void label11_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _xDemirbaslarKullaniciId = Convert.ToInt32(label11.Text);
+            _xKullanicilarKullaniciId = Convert.ToInt32(label14.Text);
+            UserRepository ur = new UserRepository();
+            try
+            {
+
+                if (_xKullanicilarKullaniciId == _xDemirbaslarKullaniciId)
+                {
+                    MessageBox.Show($"Seçtiğiniz Malzeme Zaten Seçtiğiniz Kullanıcı Üzerine Zimmetli", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+              
+                else
+                {
+                    DialogResult dialogResult;
+
+                    if (label24.Text != label13.Text)
+                    {
+                        dialogResult = MessageBox.Show("Yapacağınız zimmet farklı iki firma arasındadır onaylıyor musunuz?", "Zimmet Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                    }
+                    else
+                    {
+                        dialogResult = MessageBox.Show("Bu demirbaşı zimmet etmek istediğinize emin misiniz?", "Zimmet Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        ur.UpdateDemirbasKullaniciID(
+                            demirbasId: Convert.ToInt32(label2.Text),
+                            kullaniciId: Convert.ToInt32(label14.Text),
+                            zimmetTarihi: DateTime.Now,
+                            iadeTarihi: DateTime.Now,
+                            zimmetAlınanKisiID: _xKullanicilarKullaniciId,
+                            firmaKodu:_selectedUser.FirmaKodu
+                        );
+                    }
+                    else
+                    {
+                        MessageBox.Show("Zimmet işlemi iptal edildi.", "İptal", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }

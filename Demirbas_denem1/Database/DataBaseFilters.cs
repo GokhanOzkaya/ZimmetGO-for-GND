@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
@@ -141,7 +142,7 @@ namespace Demirbas_denem1
         }
 
 
-        public static void ZimmetGemisLisetele(DataGridView dataGridView, DateTime? zimmetAlisTar = null,DateTime? iadeEdisTar = null,int? kullaniciID=null)
+        public static void ZimmetGemisLisetele(DataGridView dataGridView, DateTime? zimmetAlisTar = null, DateTime? iadeEdisTar = null, int? kullaniciID = null)
         {
             string connectionString = DataBaseSettings.ConnectionString;
             string query = "SELECT Kullanicilar.KullaniciAdi, " +
@@ -244,7 +245,7 @@ namespace Demirbas_denem1
                     {
                         query += "WHERE ZimmetGecmisi.IadeTarihi BETWEEN @BaslangicTarihi AND @BitisTarihi";
                     }
-                    else if (baslangicTarihi==bitisTarihi)
+                    else if (baslangicTarihi == bitisTarihi)
                     {
                         query += "WHERE ZimmetGecmisi.ZimmetTarihi = @BaslangicTarihi";
                     }
@@ -273,9 +274,9 @@ namespace Demirbas_denem1
             }
         }
 
-        public static void DemirbasKimeAit(string demirbasUNIQKod, DataGridView? dgv = null, Label[] labels = null)
+        public static OldUser DemirbasKimeAit(string demirbasUNIQKod, DataGridView? dgv = null)
         {
-            Entities.OldUser ou = new Entities.OldUser();   
+            Entities.OldUser ou = new Entities.OldUser();
             string query = @"
         select Kullanicilar.KullaniciAdi, 
                Kullanicilar.KullaniciSoyadi, 
@@ -303,23 +304,20 @@ namespace Demirbas_denem1
                 {
                     if (!string.IsNullOrEmpty(demirbasUNIQKod))
                     {
+
                         command.Parameters.AddWithValue("@DemirbasUNIQKod", demirbasUNIQKod);
                     }
 
                     // SQL Reader ile kullanıcı bilgilerini oku ve label'lara yazdır
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.HasRows && labels != null) // Label'lar varsa doldur
+
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                ou.userName = "Kullanıcı Adı: " + reader["KullaniciAdi"].ToString();
-                               
-                                ou.userTitle = "Unvan: " + reader["Unvan"].ToString();
-                                ou.userDepartment = "Departman: " + reader["Departman"].ToString();
-                               
-                            }
+                            ou.userName = reader["KullaniciAdi"].ToString();
+                            Debug.WriteLine($"Kullanıcı Adı: {ou.userName}");
                         }
+
                     }
 
                     // Eğer DataGridView sağlanmışsa tabloya verileri doldur
@@ -332,6 +330,7 @@ namespace Demirbas_denem1
                     }
                 }
             }
+            return ou;
         }
 
 

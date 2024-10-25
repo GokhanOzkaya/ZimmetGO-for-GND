@@ -142,9 +142,13 @@ namespace Demirbas_denem1.Entities
           
         }
 
-        public void UpdateDemirbasKullaniciID(int demirbasId, int kullaniciId, DateTime? zimmetTarihi = null, DateTime? iadeTarihi = null, int? zimmetAlınanKisiID= null)
+        public void UpdateDemirbasKullaniciID(int demirbasId, int kullaniciId, DateTime? zimmetTarihi = null, DateTime? iadeTarihi = null, int? zimmetAlınanKisiID= null, string firmaKodu = null)
         {
-            string updateQuery = @"UPDATE Demirbaslar SET KullaniciID = @KullaniciID WHERE DemirbasID = @DemirbasID";
+            string updateQuery = @"UPDATE Demirbaslar 
+                       SET KullaniciID = @KullaniciID, 
+                           FirmaKodu = @FirmaKodu 
+                       WHERE DemirbasID = @DemirbasID";
+
             string addQuery = "INSERT INTO [dbo].[ZimmetGecmisi] (KullaniciID, DemirbasID, ZimmetTarihi, IadeTarihi,ZimmetAlınanKisiID) " +
                               "VALUES (@KullaniciID, @DemirbasID, @ZimmetTarihi, @IadeTarihi,@ZimmetAlınanKisiID)";
             try
@@ -157,6 +161,8 @@ namespace Demirbas_denem1.Entities
                         // Parametreleri ekle
                         command.Parameters.AddWithValue("@KullaniciID", kullaniciId);
                         command.Parameters.AddWithValue("@DemirbasID", demirbasId);
+                        command.Parameters.AddWithValue("@FirmaKodu", firmaKodu);
+
 
                         // Bağlantıyı aç ve sorguyu çalıştır
                         connection.Open();
@@ -181,6 +187,7 @@ namespace Demirbas_denem1.Entities
                         command.Parameters.AddWithValue("@ZimmetTarihi", zimmetTarihi ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@IadeTarihi", iadeTarihi ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@ZimmetAlınanKisiID", zimmetAlınanKisiID ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@FirmaKodu", firmaKodu ?? (object)DBNull.Value);
 
                         int rowsAffected = command.ExecuteNonQuery();  // Tekrar çağrı yapma
 

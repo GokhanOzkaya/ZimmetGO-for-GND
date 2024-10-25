@@ -1,7 +1,6 @@
 ﻿using Demirbas_denem1.Database;
 using Demirbas_denem1.Entities;
 using System;
-using Demirbas_denem1.Entities;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

@@ -18,9 +18,6 @@ namespace Demirbas_denem1.Scanes
     public partial class Transfer : Form
     {
 
-        private int _xKullanicilarKullaniciId;
-
-        private int _xDemirbaslarKullaniciId;
 
         public Transfer()
         {
@@ -43,6 +40,8 @@ namespace Demirbas_denem1.Scanes
         {
             Entities.SelectedDemirbas selectedDemirbas = new Entities.SelectedDemirbas();
             Entities.SelectedUser selectedUser = new Entities.SelectedUser();
+            Entities.OldUser oldUser = new Entities.OldUser();  
+            
             if (dataGridView1.CurrentRow != null)
             {
                 var selectedRow = dataGridView1.CurrentRow;
@@ -163,33 +162,11 @@ namespace Demirbas_denem1.Scanes
             }
             else
             {
-                TransferEkranı. ZimmetOnay zimmetOnay = new TransferEkranı. ZimmetOnay(selectedDemirbas,selectedUser);
+                TransferEkranı. ZimmetOnay zimmetOnay = new TransferEkranı. ZimmetOnay(selectedDemirbas,selectedUser,oldUser);
                 zimmetOnay.Show();
             }
 
 
-            //UserRepository ur = new UserRepository();
-            //try
-            //{
-
-            //    if (_xKullanicilarKullaniciId == _xDemirbaslarKullaniciId)
-            //    {
-            //        MessageBox.Show($"Seçtiğiniz Malzeme Zaten Seçtiğiniz Kullanıcı Üzerine Zimmetli", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //    }
-            //    else
-            //    {
-            //        ur.UpdateDemirbasKullaniciID(demirbasId: Convert.ToInt32(textBox2.Text), kullaniciId: Convert.ToInt32(textBox1.Text), zimmetTarihi: DateTime.Now, iadeTarihi: DateTime.Now, zimmetAlınanKisiID: _xKullanicilarKullaniciId);
-            //        DataBaseSettings.GridDoldurDemirbas(dataGridView1);
-            //        DataBaseSettings.GridDoldurKullanici(dataGridView2);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
-            //}
 
 
         }
@@ -203,7 +180,6 @@ namespace Demirbas_denem1.Scanes
             textBox2.Text = selectedRow.Cells["KullaniciID"].Value.ToString();
 
 
-            _xKullanicilarKullaniciId = Convert.ToInt32(selectedRow.Cells["KullaniciID"].Value);
 
         }
 
@@ -213,7 +189,6 @@ namespace Demirbas_denem1.Scanes
             DataGridViewRow selectedRow = dataGridView2.Rows[rowIndex];
             // Verileri formdaki kontrollerle doldur
             textBox1.Text = selectedRow.Cells["KullaniciId"].Value.ToString();
-            _xDemirbaslarKullaniciId = Convert.ToInt32(selectedRow.Cells["KullaniciID"].Value);
 
 
         }
