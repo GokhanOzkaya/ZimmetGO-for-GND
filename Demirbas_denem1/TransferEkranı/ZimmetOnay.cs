@@ -70,6 +70,13 @@ namespace Demirbas_denem1.TransferEkranı
             _oldUser = DataBaseFilters.DemirbasKimeAit(_selectedDemirbas.DemirbasUNIQKod, null);
 
             label26.Text = _oldUser.userName;
+            label27.Text = _oldUser.sureName;
+            label28.Text = _oldUser.userStatus;
+            label29.Text = _oldUser.userRole;
+            label30.Text = _oldUser.userCode;
+            label31.Text = _oldUser.FirmaKodu;
+            label32.Text = _oldUser.userDepartment;
+
 
         }
 

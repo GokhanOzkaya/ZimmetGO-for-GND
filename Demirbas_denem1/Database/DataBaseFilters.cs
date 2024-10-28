@@ -282,11 +282,10 @@ namespace Demirbas_denem1
                Kullanicilar.KullaniciSoyadi, 
                Kullanicilar.Unvan, 
                Kullanicilar.Departman,
-               Demirbaslar.DemirbasAdi, 
-               Demirbaslar.DemirbasMarka, 
-               Demirbaslar.DemirbasModel,
-               Demirbaslar.Durum,
-               Demirbaslar.DemirbasUNIQKod
+               Kullanicilar.FirmaKodu,
+               Kullanicilar.Statu,
+               Kullanicilar.Rol,
+               Kullanicilar.KullaniciKodu
         from Demirbaslar 
         JOIN Kullanicilar ON Kullanicilar.KullaniciId = Demirbaslar.KullaniciID ";
 
@@ -315,7 +314,14 @@ namespace Demirbas_denem1
                         while (reader.Read())
                         {
                             ou.userName = reader["KullaniciAdi"].ToString();
-                            Debug.WriteLine($"Kullanıcı Adı: {ou.userName}");
+                            ou.sureName = reader["KullaniciSoyadi"].ToString();
+                            ou.userUnvan = reader["Unvan"].ToString();
+                            ou.userDepartment = reader["Departman"].ToString();
+                            ou.FirmaKodu = reader["FirmaKodu"].ToString();
+                            ou.userStatus = reader["Statu"].ToString();
+                            ou.userRole = reader["Rol"].ToString();
+                            ou.userCode = reader["KullaniciKodu"].ToString();
+
                         }
 
                     }

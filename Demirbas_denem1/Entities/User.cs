@@ -13,6 +13,7 @@ namespace Demirbas_denem1.Entities
         public string userName { get; set; }    
         public string sureName { get; set; }
         public string userTitle { get; set; }
+        public string userUnvan { get; set; }
         public string userDepartment { get; set; }
         public string userCode { get; set; }
         public string usereMail { get; set; }   
@@ -31,7 +32,7 @@ namespace Demirbas_denem1.Entities
     public  class SelectedUser:User
     {
     }
-    public class OldUser : SelectedUser 
+    public class OldUser : User
     { 
         
     }
