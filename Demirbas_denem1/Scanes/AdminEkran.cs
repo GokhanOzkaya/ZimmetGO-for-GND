@@ -23,7 +23,20 @@ namespace Demirbas_denem1.Scanes
         private void AdminEkran_Load(object sender, EventArgs e)
         {
             Count count = new Count();
-            label7.Text = count.LaptopSay("Elektronik").ToString();
+            label7.Text = count.UrunSay("BİLGİSAYAR").ToString();
+            label8.Text = count.UrunSay("TELEFON").ToString();
+            label9.Text = count.UrunSay("MONİTÖR").ToString();
+            label10.Text = count.UrunSay("LİSANS").ToString();
+            label11.Text = count.UrunSay("TELEFON HATTI").ToString();
+            label12.Text = count.UrunSay("ARAÇ").ToString();
+           
+            label40.Text = count.UrunSayIT("TELEFON",10).ToString();
+            label22.Text = (Convert.ToInt32(label8.Text) - Convert.ToInt32(label40.Text)).ToString();
+
+
+            chart1.Series["Kullanımda"].Points.AddXY("Bilgisayar",100); // İlk seriye 10 değeri ekleniyor
+            chart1.Series["Depoda"].Points.AddY(20); // İkinci seriye 20 değeri ekleniyor
+            chart1.Series["Toplam"].Points.AddY(30); // Üçüncü seriye 30 değeri ekleniyor
         }
 
    
@@ -67,6 +80,11 @@ namespace Demirbas_denem1.Scanes
         {
             Transfer tr = new Transfer();
             tr.Show();
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

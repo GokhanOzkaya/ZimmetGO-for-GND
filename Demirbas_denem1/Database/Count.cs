@@ -9,7 +9,7 @@ namespace Demirbas_denem1.Database
 {
     public class Count
     {
-        public int LaptopSay(string aranacakTur)
+        public int UrunSay(string aranacakTur)
         {
             int laptopSayisi = 0;
             string query = "SELECT COUNT(*) FROM Demirbaslar WHERE DemirbasTuru = @DemirbasTuru";
@@ -27,6 +27,27 @@ namespace Demirbas_denem1.Database
             }
             return laptopSayisi;
         }
+
+        public int UrunSayIT(string aranacakTur, int itKodu)
+        {
+            int urunSayisi = 0;
+            string query = "SELECT COUNT(*) FROM Demirbaslar WHERE DemirbasTuru = @DemirbasTuru AND KullaniciID = @KullaniciID";
+            string connectionString = DataBaseSettings.ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@DemirbasTuru", aranacakTur);
+                    command.Parameters.AddWithValue("@KullaniciID", itKodu);
+
+                    connection.Open();
+                    urunSayisi = (int)command.ExecuteScalar();
+                }
+            }
+            return urunSayisi;
+        }
+
 
     }
 }
