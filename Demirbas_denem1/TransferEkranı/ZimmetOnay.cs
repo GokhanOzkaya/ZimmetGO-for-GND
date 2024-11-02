@@ -50,7 +50,7 @@ namespace Demirbas_denem1.TransferEkranı
             label12.Text = _selectedDemirbas.Aciklama;                  // Açıklama
             label13.Text = _selectedDemirbas.FirmaKodu.ToString();      // Firma Kodu
 
-
+        
 
             label14.Text = _selectedUser.KullaniciId.ToString();             // Kullanıcı ID
             label15.Text = _selectedUser.userName;                           // Kullanıcı Adı
@@ -69,14 +69,26 @@ namespace Demirbas_denem1.TransferEkranı
             //DataBaseFilters.DemirbasKimeAit(_selectedDemirbas.DemirbasUNIQKod, null);
             _oldUser = DataBaseFilters.DemirbasKimeAit(_selectedDemirbas.DemirbasUNIQKod, null);
 
-            label26.Text = _oldUser.userName;
-            label27.Text = _oldUser.sureName;
-            label28.Text = _oldUser.userStatus;
-            label29.Text = _oldUser.userRole;
-            label30.Text = _oldUser.userCode;
-            label31.Text = _oldUser.FirmaKodu;
-            label32.Text = _oldUser.userDepartment;
-            label33.Text = _oldUser.KullaniciId.ToString();
+            label26.Text = _oldUser.KullaniciId.ToString();             // Kullanıcı ID
+            label27.Text = _oldUser.userName;                           // Kullanıcı Adı
+            label28.Text = _oldUser.sureName;                           // Kullanıcı Soyadı
+            label29.Text = _oldUser.userTitle;                          // Kullanıcı Unvanı
+            label30.Text = _oldUser.userDepartment;                     // Kullanıcı Departmanı
+            label31.Text = _oldUser.userCode;                           // Kullanıcı Kodu
+            label32.Text = _oldUser.usereMail;                          // Kullanıcı E-mail
+            label66.Text = _oldUser.userStartTime.ToString("yyyy-MM-dd");  // Kullanıcı Başlama Tarihi
+            label67.Text = _oldUser.userStatus;                         // Kullanıcı Durumu
+            label68.Text = _oldUser.userRole;                           // Kullanıcı Rolü
+            label69.Text = _oldUser.FirmaKodu;
+
+            //label26.Text = _oldUser.userName;
+            //label27.Text = _oldUser.sureName;
+            //label28.Text = _oldUser.userStatus;
+            //label29.Text = _oldUser.userRole;
+            //label30.Text = _oldUser.userCode;
+            //label31.Text = _oldUser.FirmaKodu;
+            //label32.Text = _oldUser.userDepartment;
+            //label33.Text = _oldUser.KullaniciId.ToString();
 
 
         }
@@ -122,10 +134,10 @@ namespace Demirbas_denem1.TransferEkranı
                     {
                         ur.UpdateDemirbasKullaniciID(
                             demirbasId: Convert.ToInt32(label2.Text),
-                            kullaniciId: Convert.ToInt32(label14.Text),
+                            suankiKullaniciId: Convert.ToInt32(label26.Text), 
                             zimmetTarihi: DateTime.Now,
                             iadeTarihi: null, //ZimmetAlınanKisiId nın zimmet gecmisindeki ilgili demirbasın iade tarihini bugün olarak at
-                            zimmetAlınanKisiID: _selectedUser.KullaniciId,
+                            yeniKullaniciId:Convert.ToInt32( label14.Text),
                             firmaKodu: _selectedUser.FirmaKodu
                         ); 
                     }
@@ -141,6 +153,61 @@ namespace Demirbas_denem1.TransferEkranı
             {
                 MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+
+        private void label36_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label37_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label38_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label39_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label40_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label41_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label42_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label43_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label44_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label45_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label34_Click(object sender, EventArgs e)
+        {
 
         }
     }

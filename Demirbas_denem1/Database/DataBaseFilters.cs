@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Drawing.Drawing2D;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
@@ -157,7 +158,7 @@ namespace Demirbas_denem1
                            "Demirbaslar.DemirbasModel, " +
                            "Demirbaslar.Durum, " +
                            "Demirbaslar.DemirbasUNIQKod, " +
-                           "ISNULL(Demirbaslar.FirmaKodu, 'Bilinmiyor') AS FirmaKodu " +
+                           "ISNULL(ZimmetGecmisi.FirmaKodu, 'Bilinmiyor') AS FirmaKodu " +
                            "FROM ZimmetGecmisi " +
                            "JOIN Kullanicilar ON Kullanicilar.KullaniciId = ZimmetGecmisi.KullaniciID " +
                            "JOIN Demirbaslar ON Demirbaslar.DemirbasID = ZimmetGecmisi.DemirbasID ";
@@ -289,6 +290,8 @@ namespace Demirbas_denem1
             Entities.OldUser ou = new Entities.OldUser();
             string query = @"
         select Kullanicilar.KullaniciAdi, 
+               Kullanicilar.KullaniciId,
+                Kullanicilar.Email,
                Kullanicilar.KullaniciSoyadi, 
                Kullanicilar.Unvan, 
                Kullanicilar.Departman,
@@ -323,9 +326,13 @@ namespace Demirbas_denem1
 
                         while (reader.Read())
                         {
+                            if (!reader.IsDBNull(reader.GetOrdinal("KullaniciId")))
+                                ou.KullaniciId = (int)reader["KullaniciId"];
+                            ou.usereMail = reader["Email"].ToString();
                             ou.userName = reader["KullaniciAdi"].ToString();
+                            ou.usereMail = reader["Email"].ToString();
                             ou.sureName = reader["KullaniciSoyadi"].ToString();
-                            ou.userUnvan = reader["Unvan"].ToString();
+                            ou.userTitle = reader["Unvan"].ToString();
                             ou.userDepartment = reader["Departman"].ToString();
                             ou.FirmaKodu = reader["FirmaKodu"].ToString();
                             ou.userStatus = reader["Statu"].ToString();

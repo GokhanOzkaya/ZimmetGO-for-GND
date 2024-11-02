@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Demirbas_denem1.Entities;
 using Demirbas_denem1.Database;
+using System.Windows.Markup.Localizer;
 
 
 namespace Demirbas_denem1.Entities
@@ -141,22 +142,23 @@ namespace Demirbas_denem1.Entities
             }
           
         }
-
-        public void UpdateDemirbasKullaniciID(int demirbasId, int kullaniciId, DateTime? zimmetTarihi = null, DateTime? iadeTarihi = null, int? zimmetAlınanKisiID= null, string firmaKodu = null)
+        public void UpdateDemirbasKullaniciID(int demirbasId, int? suankiKullaniciId=null, DateTime? zimmetTarihi = null, DateTime? iadeTarihi = null, int? yeniKullaniciId= null, string firmaKodu = null)
         {
             string updateQuery = @"UPDATE Demirbaslar 
-                       SET KullaniciID = @KullaniciID, 
+                       SET KullaniciID = @yeniKullaniciId, 
                            FirmaKodu = @FirmaKodu 
                        WHERE DemirbasID = @DemirbasID";
 
             string addQuery = "INSERT INTO [dbo].[ZimmetGecmisi] (KullaniciID, DemirbasID, ZimmetTarihi, IadeTarihi,ZimmetAlınanKisiID,FirmaKodu) " +
-                              "VALUES (@KullaniciID, @DemirbasID, @ZimmetTarihi, @IadeTarihi,@ZimmetAlınanKisiID,@FirmaKodu)";
-
+                              "VALUES (@yeniKullaniciId, @DemirbasID, @ZimmetTarihi, @IadeTarihi,@suankiKullaniciId,@FirmaKodu)";
             string updateIadeTarihiQuery = @"UPDATE ZimmetGecmisi
-                                     SET IadeTarihi = @Now
-                                     WHERE ZimmetAlınanKisiID = @ZimmetAlınanKisiID AND DemirbasID =@DemirbasID
+                                     SET IadeTarihi = @Now 
+                                     WHERE KullaniciID = @suankiKullaniciId AND DemirbasID =@DemirbasID
                                      AND IadeTarihi IS NULL";
-
+            
+         
+            Console.WriteLine($"demirbasId: {demirbasId}");
+            Console.WriteLine($"zimmetAlınanKisiID: {suankiKullaniciId}");
             try
             {
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
@@ -165,7 +167,7 @@ namespace Demirbas_denem1.Entities
                     using (SqlCommand command = new SqlCommand(updateQuery, connection))
                     {
                         // Parametreleri ekle
-                        command.Parameters.AddWithValue("@KullaniciID", kullaniciId);
+                        command.Parameters.AddWithValue("@yeniKullaniciId", yeniKullaniciId);
                         command.Parameters.AddWithValue("@DemirbasID", demirbasId);
                         command.Parameters.AddWithValue("@FirmaKodu", firmaKodu);
 
@@ -184,13 +186,14 @@ namespace Demirbas_denem1.Entities
                         }
                     }
 
-                    if (zimmetAlınanKisiID != null)
+                    if (suankiKullaniciId != null)
                     {
                         using (SqlCommand command = new SqlCommand(updateIadeTarihiQuery, connection))
                         {
                             command.Parameters.AddWithValue("@Now", DateTime.Now);
-                            command.Parameters.AddWithValue("@ZimmetAlınanKisiID", zimmetAlınanKisiID);
-                            command.Parameters.AddWithValue("@demirbasId", demirbasId);
+                            command.Parameters.AddWithValue("@suankiKullaniciId", suankiKullaniciId);
+                            command.Parameters.AddWithValue("@DemirbasID", demirbasId); 
+                            
                             command.ExecuteNonQuery();
                         }   
                     }
@@ -199,12 +202,14 @@ namespace Demirbas_denem1.Entities
                     using (SqlCommand command = new SqlCommand(addQuery, connection))
                     {
                         // Parametreleri ekle
-                        command.Parameters.AddWithValue("@KullaniciID", kullaniciId);
+                        command.Parameters.AddWithValue("@yeniKullaniciId", yeniKullaniciId);
                         command.Parameters.AddWithValue("@DemirbasID", demirbasId);
                         command.Parameters.AddWithValue("@ZimmetTarihi", zimmetTarihi ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@IadeTarihi", iadeTarihi ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@ZimmetAlınanKisiID", zimmetAlınanKisiID ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@suankiKullaniciId", suankiKullaniciId );
                         command.Parameters.AddWithValue("@FirmaKodu", firmaKodu ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@Now", DateTime.Now);
+
 
                         int rowsAffected = command.ExecuteNonQuery();  // Tekrar çağrı yapma
 
