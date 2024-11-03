@@ -172,6 +172,8 @@ namespace Demirbas_denem1.Entities
                         updateCommand.Parameters.AddWithValue("@DemirbasID", demirbasId);
                         updateCommand.Parameters.AddWithValue("@FirmaKodu", firmaKodu ?? (object)DBNull.Value);
                         updateCommand.ExecuteNonQuery();
+                        MessageBox.Show("Malzeme Yeni Kullanıcısına Zimmet Edildi.", "Onay", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     }
 
                     // 2. İade Tarihi güncelleme işlemi (varsa)
@@ -183,6 +185,8 @@ namespace Demirbas_denem1.Entities
                             iadeCommand.Parameters.AddWithValue("@suankiKullaniciId", suankiKullaniciId);
                             iadeCommand.Parameters.AddWithValue("@DemirbasID", demirbasId);
                             iadeCommand.ExecuteNonQuery();
+                            MessageBox.Show("Eski Kullanıcının İade Tarihi İşlendi", "Onay", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         }
                     }
 
@@ -195,6 +199,8 @@ namespace Demirbas_denem1.Entities
                         addCommand.Parameters.AddWithValue("@IadeTarihi", iadeTarihi ?? (object)DBNull.Value);
                         addCommand.Parameters.AddWithValue("@suankiKullaniciId", suankiKullaniciId ?? (object)DBNull.Value);
                         addCommand.Parameters.AddWithValue("@FirmaKodu", firmaKodu ?? (object)DBNull.Value);
+                        MessageBox.Show("Malzeme Kişi Geçmişine Eklendi", "Onay", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         addCommand.ExecuteNonQuery();
                     }
                 }

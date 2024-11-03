@@ -91,6 +91,7 @@ namespace Demirbas_denem1
                 comboBox1.Text = row.Cells["Statu"].Value.ToString();
                 comboBox3.Text = row.Cells["Rol"].Value.ToString();
                 textBox8.Text = row.Cells["KullaniciId"].Value.ToString();
+                comboBox4.Text = row.Cells["FirmaKodu"].Value.ToString();
            
 
             }
@@ -197,6 +198,7 @@ namespace Demirbas_denem1
                 newUser.userStartTime = dateTimePicker1.Value;
                 newUser.userStatus = comboBox1.Text;
                 newUser.userRole = comboBox3.Text;
+                newUser.FirmaKodu = comboBox4.Text;
 
 
                 UserRepository Repository = new UserRepository();

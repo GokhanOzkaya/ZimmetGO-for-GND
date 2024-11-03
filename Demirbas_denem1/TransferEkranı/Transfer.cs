@@ -42,8 +42,8 @@ namespace Demirbas_denem1.Scanes
         {
             Entities.SelectedDemirbas selectedDemirbas = new Entities.SelectedDemirbas();
             Entities.SelectedUser selectedUser = new Entities.SelectedUser();
-            Entities.OldUser oldUser = new Entities.OldUser();  
-            
+            Entities.OldUser oldUser = new Entities.OldUser();
+
             if (dataGridView1.CurrentRow != null)
             {
                 var selectedRow = dataGridView1.CurrentRow;
@@ -164,7 +164,7 @@ namespace Demirbas_denem1.Scanes
             }
             else
             {
-                TransferEkranı. ZimmetOnay zimmetOnay = new TransferEkranı. ZimmetOnay(selectedDemirbas,selectedUser,oldUser);
+                TransferEkranı.ZimmetOnay zimmetOnay = new TransferEkranı.ZimmetOnay(selectedDemirbas, selectedUser, oldUser);
                 zimmetOnay.Show();
             }
 
@@ -174,21 +174,26 @@ namespace Demirbas_denem1.Scanes
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
-            DataGridViewRow selectedRow = dataGridView1.Rows[rowIndex];
-            // Verileri formdaki kontrollerle doldur
-            textBox2.Text = selectedRow.Cells["KullaniciID"].Value.ToString();
+            if (e.RowIndex >= 0)
+            {
+                int rowIndex = e.RowIndex;
+                DataGridViewRow selectedRow = dataGridView1.Rows[rowIndex];
+                // Verileri formdaki kontrollerle doldur
+                textBox2.Text = selectedRow.Cells["KullaniciID"].Value.ToString();
 
-
+            }
 
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
-            DataGridViewRow selectedRow = dataGridView2.Rows[rowIndex];
-            // Verileri formdaki kontrollerle doldur
-            textBox1.Text = selectedRow.Cells["KullaniciId"].Value.ToString();
+            if (e.RowIndex >= 0)
+            {
+                int rowIndex = e.RowIndex;
+                DataGridViewRow selectedRow = dataGridView2.Rows[rowIndex];
+                // Verileri formdaki kontrollerle doldur
+                textBox1.Text = selectedRow.Cells["KullaniciId"].Value.ToString();
+            }
 
 
         }
@@ -197,7 +202,7 @@ namespace Demirbas_denem1.Scanes
         {
             UserRepository ur = new UserRepository();
 
-            ur.UpdateDemirbasKullaniciID(demirbasId: Convert.ToInt32(textBox2.Text),yeniKullaniciId: 26, zimmetTarihi: DateTime.Now, iadeTarihi: DateTime.Now);
+            ur.UpdateDemirbasKullaniciID(demirbasId: Convert.ToInt32(textBox2.Text), yeniKullaniciId: 26, zimmetTarihi: DateTime.Now, iadeTarihi: DateTime.Now);
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
             DataBaseSettings.GridDoldurKullanici(dataGridView2);
 

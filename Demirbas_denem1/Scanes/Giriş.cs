@@ -14,6 +14,7 @@ using Demirbas_denem1.Scanes;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
 
+
 namespace Demirbas_denem1
 {
     public partial class Giriş : MetroForm
@@ -21,6 +22,7 @@ namespace Demirbas_denem1
         public  Giriş()
         {
             InitializeComponent();
+            this.Text = "Hoş Geldiniz";
         }
 
 
@@ -88,6 +90,11 @@ namespace Demirbas_denem1
         }
 
         private void Giriş_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void metroLabel1_Click(object sender, EventArgs e)
         {
 
         }

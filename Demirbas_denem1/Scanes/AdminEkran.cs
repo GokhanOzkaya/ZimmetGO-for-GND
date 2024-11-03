@@ -18,6 +18,7 @@ namespace Demirbas_denem1.Scanes
         public AdminEkran()
         {
             InitializeComponent();
+            this.Text = "Ana Menü";
         }
 
 
@@ -25,26 +26,65 @@ namespace Demirbas_denem1.Scanes
         {
             Count count = new Count();
             label7.Text = count.UrunSay("BİLGİSAYAR").ToString();
+            label37.Text = count.UrunSayIT("BİLGİSAYAR",1).ToString();
+            label19.Text = (Convert.ToInt32(label7.Text) - Convert.ToInt32(label37.Text)).ToString();
+
+
             label8.Text = count.UrunSay("TELEFON").ToString();
-            label9.Text = count.UrunSay("MONİTÖR").ToString();
-            label10.Text = count.UrunSay("LİSANS").ToString();
-            label11.Text = count.UrunSay("TELEFON HATTI").ToString();
-            label12.Text = count.UrunSay("ARAÇ").ToString();
-           
-            label40.Text = count.UrunSayIT("TELEFON",10).ToString();
+            label40.Text = count.UrunSayIT("TELEFON", 1).ToString();
             label22.Text = (Convert.ToInt32(label8.Text) - Convert.ToInt32(label40.Text)).ToString();
+
+            label9.Text = count.UrunSay("MONİTÖR").ToString();
+            label43.Text = count.UrunSayIT("MONİTÖR", 1).ToString();
+            label25.Text = (Convert.ToInt32(label9.Text) - Convert.ToInt32(label43.Text)).ToString();
+
+            label10.Text = count.UrunSay("LİSANS").ToString();
+            label46.Text = count.UrunSayIT("LİSANS", 1).ToString();
+            label28.Text = (Convert.ToInt32(label10.Text) - Convert.ToInt32(label46.Text)).ToString();
+
+            label11.Text = count.UrunSay("TELEFON HATTI").ToString();
+            label49.Text = count.UrunSayIT("TELEFON HATTI", 1).ToString();
+            label31.Text = (Convert.ToInt32(label11.Text) - Convert.ToInt32(label49.Text)).ToString();
+
+            label12.Text = count.UrunSay("ARAÇ").ToString();
+            label52.Text = count.UrunSayIT("ARAÇ",1).ToString();
+            label34.Text = (Convert.ToInt32(label12.Text) - Convert.ToInt32(label52.Text)).ToString();
 
             chart1.Series["Kullanımda"].IsValueShownAsLabel = true;
             chart1.Series["Depoda"].IsValueShownAsLabel = true;
             chart1.Series["Toplam"].IsValueShownAsLabel = true;
 
-            chart1.Series["Kullanımda"].Points.AddXY("Bilgisayar", 100); // İlk seriye 10 değeri ekleniyor
-            chart1.Series["Depoda"].Points.AddXY("Bilgisayar", 20); // İkinci seriye 20 değeri ekleniyor
-            chart1.Series["Toplam"].Points.AddXY("Bilgisayar", 30); // Üçüncü seriye 30 değeri ekleniyor
 
+            // Telefon
             chart1.Series["Kullanımda"].Points.AddXY("Telefon", Convert.ToInt32(label22.Text));
             chart1.Series["Depoda"].Points.AddXY("Telefon", Convert.ToInt32(label40.Text));
             chart1.Series["Toplam"].Points.AddXY("Telefon", Convert.ToInt32(label8.Text));
+
+            // Bilgisayar
+            chart1.Series["Kullanımda"].Points.AddXY("Bilgisayar", Convert.ToInt32(label19.Text));
+            chart1.Series["Depoda"].Points.AddXY("Bilgisayar", Convert.ToInt32(label37.Text));
+            chart1.Series["Toplam"].Points.AddXY("Bilgisayar", Convert.ToInt32(label7.Text));
+
+            // Monitör
+            chart1.Series["Kullanımda"].Points.AddXY("Monitör", Convert.ToInt32(label25.Text));
+            chart1.Series["Depoda"].Points.AddXY("Monitör", Convert.ToInt32(label43.Text));
+            chart1.Series["Toplam"].Points.AddXY("Monitör", Convert.ToInt32(label9.Text));
+
+            // Lisans
+            chart1.Series["Kullanımda"].Points.AddXY("Lisans", Convert.ToInt32(label28.Text));
+            chart1.Series["Depoda"].Points.AddXY("Lisans", Convert.ToInt32(label46.Text));
+            chart1.Series["Toplam"].Points.AddXY("Lisans", Convert.ToInt32(label10.Text));
+
+            // Telefon Hattı
+            chart1.Series["Kullanımda"].Points.AddXY("Telefon Hattı", Convert.ToInt32(label31.Text));
+            chart1.Series["Depoda"].Points.AddXY("Telefon Hattı", Convert.ToInt32(label49.Text));
+            chart1.Series["Toplam"].Points.AddXY("Telefon Hattı", Convert.ToInt32(label11.Text));
+
+            // Araç
+            chart1.Series["Kullanımda"].Points.AddXY("Araç", Convert.ToInt32(label34.Text));
+            chart1.Series["Depoda"].Points.AddXY("Araç", Convert.ToInt32(label52.Text));
+            chart1.Series["Toplam"].Points.AddXY("Araç", Convert.ToInt32(label12.Text));
+
 
 
             // Seri türlerini ayarla
@@ -59,10 +99,7 @@ namespace Demirbas_denem1.Scanes
             chart1.BackColor = Color.WhiteSmoke;
             chart1.ChartAreas[0].BackColor = Color.White;
 
-            // Çubuk grafik renk ayarları
-            chart1.Series["Kullanımda"].Color = Color.SteelBlue;
-            chart1.Series["Depoda"].Color = Color.Coral;
-            chart1.Series["Toplam"].Color = Color.SeaGreen;
+
 
             // Değerlerin çubukların üstünde görünmesi için
             chart1.Series["Kullanımda"].IsValueShownAsLabel = true;
