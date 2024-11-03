@@ -9,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 namespace Demirbas_denem1
 {
-    public partial class YeniKullanıcıEkle : Form
+    public partial class YeniKullanıcıEkle : MetroForm
     {
         public YeniKullanıcıEkle()
         {

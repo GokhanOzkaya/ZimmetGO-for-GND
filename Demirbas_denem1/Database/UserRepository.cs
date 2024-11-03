@@ -142,99 +142,66 @@ namespace Demirbas_denem1.Entities
             }
           
         }
-        public void UpdateDemirbasKullaniciID(int demirbasId, int? suankiKullaniciId=null, DateTime? zimmetTarihi = null, DateTime? iadeTarihi = null, int? yeniKullaniciId= null, string firmaKodu = null)
+        public void UpdateDemirbasKullaniciID(int demirbasId, int? suankiKullaniciId = null, DateTime? zimmetTarihi = null, DateTime? iadeTarihi = null, int? yeniKullaniciId = null, string firmaKodu = null)
         {
             string updateQuery = @"UPDATE Demirbaslar 
-                       SET KullaniciID = @yeniKullaniciId, 
-                           FirmaKodu = @FirmaKodu 
-                       WHERE DemirbasID = @DemirbasID";
+                           SET KullaniciID = @yeniKullaniciId, 
+                               FirmaKodu = @FirmaKodu 
+                           WHERE DemirbasID = @DemirbasID";
 
-            string addQuery = "INSERT INTO [dbo].[ZimmetGecmisi] (KullaniciID, DemirbasID, ZimmetTarihi, IadeTarihi,ZimmetAlınanKisiID,FirmaKodu) " +
-                              "VALUES (@yeniKullaniciId, @DemirbasID, @ZimmetTarihi, @IadeTarihi,@suankiKullaniciId,@FirmaKodu)";
+            string addQuery = "INSERT INTO [dbo].[ZimmetGecmisi] (KullaniciID, DemirbasID, ZimmetTarihi, IadeTarihi, ZimmetAlınanKisiID, FirmaKodu) " +
+                              "VALUES (@yeniKullaniciId, @DemirbasID, @ZimmetTarihi, @IadeTarihi, @suankiKullaniciId, @FirmaKodu)";
+
             string updateIadeTarihiQuery = @"UPDATE ZimmetGecmisi
                                      SET IadeTarihi = @Now 
-                                     WHERE KullaniciID = @suankiKullaniciId AND DemirbasID =@DemirbasID
+                                     WHERE KullaniciID = @suankiKullaniciId AND DemirbasID = @DemirbasID
                                      AND IadeTarihi IS NULL";
-            
-         
-            Console.WriteLine($"demirbasId: {demirbasId}");
-            Console.WriteLine($"zimmetAlınanKisiID: {suankiKullaniciId}");
+
+            Console.WriteLine($"Demirbas ID: {demirbasId}, Kullanıcı ID: {yeniKullaniciId}, Firma Kodu: {firmaKodu}");
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
                 {
-                    // Update command run
-                    using (SqlCommand command = new SqlCommand(updateQuery, connection))
+                    connection.Open();
+
+                    // 1. Güncelleme işlemi
+                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                     {
-                        // Parametreleri ekle
-                        command.Parameters.AddWithValue("@yeniKullaniciId", yeniKullaniciId);
-                        command.Parameters.AddWithValue("@DemirbasID", demirbasId);
-                        command.Parameters.AddWithValue("@FirmaKodu", firmaKodu);
-
-
-                        // Bağlantıyı aç ve sorguyu çalıştır
-                        connection.Open();
-                        int rowsAffected = command.ExecuteNonQuery();  // Tekrar çağrı yapma
-
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Kullanıcı ID başarıyla güncellendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Güncelleme yapılacak kayıt bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        updateCommand.Parameters.AddWithValue("@yeniKullaniciId", yeniKullaniciId ?? (object)DBNull.Value);
+                        updateCommand.Parameters.AddWithValue("@DemirbasID", demirbasId);
+                        updateCommand.Parameters.AddWithValue("@FirmaKodu", firmaKodu ?? (object)DBNull.Value);
+                        updateCommand.ExecuteNonQuery();
                     }
 
+                    // 2. İade Tarihi güncelleme işlemi (varsa)
                     if (suankiKullaniciId != null)
                     {
-                        using (SqlCommand command = new SqlCommand(updateIadeTarihiQuery, connection))
+                        using (SqlCommand iadeCommand = new SqlCommand(updateIadeTarihiQuery, connection))
                         {
-                            command.Parameters.AddWithValue("@Now", DateTime.Now);
-                            command.Parameters.AddWithValue("@suankiKullaniciId", suankiKullaniciId);
-                            command.Parameters.AddWithValue("@DemirbasID", demirbasId); 
-                            
-                            command.ExecuteNonQuery();
-                        }   
+                            iadeCommand.Parameters.AddWithValue("@Now", DateTime.Now);
+                            iadeCommand.Parameters.AddWithValue("@suankiKullaniciId", suankiKullaniciId);
+                            iadeCommand.Parameters.AddWithValue("@DemirbasID", demirbasId);
+                            iadeCommand.ExecuteNonQuery();
+                        }
                     }
 
-                    // Zimmet Gecmis Ekle Run
-                    using (SqlCommand command = new SqlCommand(addQuery, connection))
+                    // 3. Zimmet Geçmişi ekleme işlemi
+                    using (SqlCommand addCommand = new SqlCommand(addQuery, connection))
                     {
-                        // Parametreleri ekle
-                        command.Parameters.AddWithValue("@yeniKullaniciId", yeniKullaniciId);
-                        command.Parameters.AddWithValue("@DemirbasID", demirbasId);
-                        command.Parameters.AddWithValue("@ZimmetTarihi", zimmetTarihi ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@IadeTarihi", iadeTarihi ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@suankiKullaniciId", suankiKullaniciId );
-                        command.Parameters.AddWithValue("@FirmaKodu", firmaKodu ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@Now", DateTime.Now);
-
-
-                        int rowsAffected = command.ExecuteNonQuery();  // Tekrar çağrı yapma
-
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Zimmet geçmişi başarıyla eklendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Zimmet geçmişi eklenirken sorun oluştu.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        addCommand.Parameters.AddWithValue("@yeniKullaniciId", yeniKullaniciId ?? (object)DBNull.Value);
+                        addCommand.Parameters.AddWithValue("@DemirbasID", demirbasId);
+                        addCommand.Parameters.AddWithValue("@ZimmetTarihi", zimmetTarihi ?? (object)DBNull.Value);
+                        addCommand.Parameters.AddWithValue("@IadeTarihi", iadeTarihi ?? (object)DBNull.Value);
+                        addCommand.Parameters.AddWithValue("@suankiKullaniciId", suankiKullaniciId ?? (object)DBNull.Value);
+                        addCommand.Parameters.AddWithValue("@FirmaKodu", firmaKodu ?? (object)DBNull.Value);
+                        addCommand.ExecuteNonQuery();
                     }
-
-
                 }
-            }
-            catch (SqlException sqlEx)
-            {
-                // SQL hatalarını yakala ve kullanıcıya bildir
-                MessageBox.Show($"Veritabanı hatası: {sqlEx.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                // Diğer genel hataları yakala ve kullanıcıya bildir
-                MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

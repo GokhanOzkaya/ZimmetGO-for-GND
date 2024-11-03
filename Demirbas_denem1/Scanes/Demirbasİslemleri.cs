@@ -10,10 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 namespace Demirbas_denem1.Scanes
 {
-    public partial class Demirbasİslemleri : Form
+    public partial class Demirbasİslemleri : MetroForm
     {
         public Demirbasİslemleri()
         {

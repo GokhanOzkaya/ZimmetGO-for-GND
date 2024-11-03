@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 namespace Demirbas_denem1.Scanes
 {
-    public partial class AdminEkran : Form
+    public partial class AdminEkran : MetroForm
     {
         public AdminEkran()
         {

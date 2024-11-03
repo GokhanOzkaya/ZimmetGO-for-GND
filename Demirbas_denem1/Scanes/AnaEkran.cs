@@ -12,10 +12,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 namespace Demirbas_denem1
 {
-    public partial class AnaEkran : Form
+    public partial class AnaEkran : MetroForm
     {
         public AnaEkran(string role)
         {
@@ -65,6 +66,11 @@ namespace Demirbas_denem1
         }
 
         private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AnaEkran_Load(object sender, EventArgs e)
         {
 
         }

@@ -62,7 +62,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(1117, 738);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(197, 53);
             this.button1.TabIndex = 0;
@@ -103,7 +103,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(228, 725);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(265, 66);
             this.button2.TabIndex = 4;
@@ -114,7 +114,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(524, 725);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(265, 66);
             this.button3.TabIndex = 5;
@@ -125,7 +125,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(817, 725);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(265, 66);
             this.button4.TabIndex = 6;
@@ -136,7 +136,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Location = new System.Drawing.Point(37, 15);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -158,7 +158,7 @@
             // button9
             // 
             this.button9.Location = new System.Drawing.Point(20, 331);
-            this.button9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(225, 64);
             this.button9.TabIndex = 4;
@@ -169,7 +169,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(20, 505);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(225, 64);
             this.button7.TabIndex = 2;
@@ -179,7 +179,7 @@
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(20, 418);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(225, 64);
             this.button6.TabIndex = 1;
@@ -189,7 +189,7 @@
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(20, 158);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(225, 64);
             this.button8.TabIndex = 3;
@@ -199,7 +199,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(20, 245);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(225, 64);
             this.button5.TabIndex = 0;
@@ -220,9 +220,9 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(4, 4);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1007, 678);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -232,7 +232,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(237, 313);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(251, 22);
             this.dateTimePicker1.TabIndex = 12;
@@ -340,9 +340,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AnaEkran";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.AnaEkran_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

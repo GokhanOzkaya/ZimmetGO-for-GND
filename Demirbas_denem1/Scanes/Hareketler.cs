@@ -1,10 +1,13 @@
 ﻿using Demirbas_denem1.Database;
 using System;
 using System.Windows.Forms;
+using MetroFramework.Forms;
+using MetroFramework.Controls;
+
 
 namespace Demirbas_denem1.Scanes
 {
-    public partial class Hareketler : Form
+    public partial class Hareketler : MetroForm
     {
         public Hareketler()
         {
@@ -19,17 +22,12 @@ namespace Demirbas_denem1.Scanes
 
         private void Hareketler_Load(object sender, EventArgs e)
         {
-            DataBaseFilters.ZimmetGemisLisetele(dataGridView: dataGridView1);
-
-            // CustomDGV sınıfının bir örneğini oluşturun
             CustomDGV customDGV = new CustomDGV();
-
-          
-                    customDGV.CustomizeDataGridView(dataGridView1);
-       
-
-
-
+            customDGV.CustomizeDataGridView(dataGridView1);
+            DataBaseFilters.ZimmetGemisLisetele(dataGridView: dataGridView1);
+            
+            // CustomDGV sınıfının bir örneğini oluşturun
+    
         }
 
         private void button1_Click(object sender, EventArgs e)

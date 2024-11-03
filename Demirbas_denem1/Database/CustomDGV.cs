@@ -38,9 +38,6 @@ namespace Demirbas_denem1.Database
             dataGridView.ColumnHeadersHeight = 35;
 
             dataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-   
-
-   
 
             dataGridView.BorderStyle = BorderStyle.None;
             dataGridView.AllowUserToResizeRows = false;
@@ -51,6 +48,32 @@ namespace Demirbas_denem1.Database
             {
                 column.DefaultCellStyle.WrapMode = DataGridViewTriState.True; // Yazıları sar
             }
+        }
+
+        // Loading Paneli oluşturma
+        public Panel CreateLoadingPanel(Form parentForm)
+        {
+            Panel loadingPanel = new Panel
+            {
+                Size = parentForm.ClientSize,
+                BackColor = Color.FromArgb(128, 255, 255, 255), // Şeffaf beyaz
+                Dock = DockStyle.Fill,
+                Visible = false
+            };
+
+            // Label ekle
+            Label loadingLabel = new Label
+            {
+                Text = "Veriler Yükleniyor...",
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                ForeColor = Color.Black,
+                AutoSize = true,
+                Location = new Point(loadingPanel.Width / 2 - 50, loadingPanel.Height / 2 - 10)
+            };
+            loadingPanel.Controls.Add(loadingLabel);
+
+            parentForm.Controls.Add(loadingPanel);
+            return loadingPanel;
         }
 
 

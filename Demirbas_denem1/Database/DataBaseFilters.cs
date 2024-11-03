@@ -144,7 +144,7 @@ namespace Demirbas_denem1
 
         public static void ZimmetGemisLisetele(DataGridView dataGridView, DateTime? zimmetAlisTar = null, DateTime? iadeEdisTar = null, int? kullaniciID = null)
         {
-            dataGridView.AutoGenerateColumns = true; // Veya false ise, sütunları manuel olarak ayarlayın
+      
 
             string connectionString = DataBaseSettings.ConnectionString;
             string query = "SELECT Kullanicilar.KullaniciAdi, " +
@@ -161,14 +161,12 @@ namespace Demirbas_denem1
                            "ISNULL(ZimmetGecmisi.FirmaKodu, 'Bilinmiyor') AS FirmaKodu " +
                            "FROM ZimmetGecmisi " +
                            "JOIN Kullanicilar ON Kullanicilar.KullaniciId = ZimmetGecmisi.KullaniciID " +
-                           "JOIN Demirbaslar ON Demirbaslar.DemirbasID = ZimmetGecmisi.DemirbasID ";
+                           "JOIN Demirbaslar ON Demirbaslar.DemirbasID = ZimmetGecmisi.DemirbasID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand())
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Connection = connection;
-
                     // Koşulları birleştirmek için bir liste kullan
                     List<string> conditions = new List<string>();
 
@@ -195,11 +193,12 @@ namespace Demirbas_denem1
                     {
                         query += " WHERE " + string.Join(" AND ", conditions);
                     }
-
                     command.CommandText = query;
 
                     try
                     {
+                        connection.Open(); // Bağlantıyı aç
+
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -212,6 +211,10 @@ namespace Demirbas_denem1
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        connection.Close(); // Bağlantıyı kapat
                     }
                 }
             }

@@ -11,11 +11,12 @@ using System.Data.SqlClient;
 using Demirbas_denem1.Entities;
 using Demirbas_denem1.Database;
 using Demirbas_denem1.Scanes;
-
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 
 namespace Demirbas_denem1
 {
-    public partial class Giriş : Form
+    public partial class Giriş : MetroForm
     {
         public  Giriş()
         {

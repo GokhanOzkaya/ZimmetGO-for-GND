@@ -9,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 namespace Demirbas_denem1.Scanes
 {
-    public partial class KullaniciZimmetleri : Form
+    public partial class KullaniciZimmetleri : MetroForm
     {
         public KullaniciZimmetleri()
         {

@@ -8,10 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 
 namespace Demirbas_denem1.TransferEkranı
 {
-    public partial class ZimmetOnay : Form
+    public partial class ZimmetOnay : MetroForm
     {
         private Entities.SelectedDemirbas _selectedDemirbas;
         private Entities.SelectedUser _selectedUser;
