@@ -379,7 +379,7 @@ namespace Demirbas_denem1
                             ISNULL(ZimmetGecmisi.FirmaKodu, 'Bilinmiyor') AS FirmaKodu 
                      FROM ZimmetGecmisi
                      JOIN Demirbaslar ON Demirbaslar.DemirbasID = ZimmetGecmisi.DemirbasID
-                     JOIN Kullanicilar ON Kullanicilar.KullaniciId = ZimmetGecmisi.KullaniciID ";
+                     JOIN Kullanicilar ON Kullanicilar.KullaniciId = ZimmetGecmisi.KullaniciID";
 
             if (!string.IsNullOrEmpty(demirbasUNIQKod)) // TextBox boş değilse sorguya WHERE ekle
             {
