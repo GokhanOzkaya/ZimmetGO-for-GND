@@ -53,6 +53,9 @@ namespace Demirbas_denem1.Scanes
 
         private void DemirbasZimmetleri_Load(object sender, EventArgs e)
         {
+            CustomDGV customDGV = new CustomDGV();
+            customDGV.CustomizeDataGridView(dataGridView1);
+            customDGV.CustomizeDataGridView(dataGridView2);
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
         }
 

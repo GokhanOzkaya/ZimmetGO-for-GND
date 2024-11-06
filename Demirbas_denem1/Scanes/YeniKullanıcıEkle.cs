@@ -116,6 +116,8 @@ namespace Demirbas_denem1
 
         private void YeniKullanıcıEkle_Load(object sender, EventArgs e)
         {
+            CustomDGV customDGV = new CustomDGV();
+            customDGV.CustomizeDataGridView(dataGridView1);
             dateTimePicker1.Value = DateTime.Now;
             DataBaseSettings.GridDoldurKullanici(dataGridView1);
             List<Role> roles = DataBaseSettings.LoadYetkiData();
@@ -212,6 +214,11 @@ namespace Demirbas_denem1
         private void button6_Click(object sender, EventArgs e)
         {
             DataBaseSettings.SearchInKullanicilar(textBox5.Text,dataGridView1);
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            DataBaseSettings.SearchInKullanicilar(textBox5.Text, dataGridView1);
         }
     }
 }

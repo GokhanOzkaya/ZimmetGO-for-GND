@@ -13,6 +13,8 @@ using Demirbas_denem1.Database;
 using Demirbas_denem1.Scanes;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Documents;
 
 
 namespace Demirbas_denem1
@@ -52,18 +54,33 @@ namespace Demirbas_denem1
         private void button1_Click_2(object sender, EventArgs e)
         {
 
-            bool isUser = DataBaseSettings.ısThereUser(userName: textBox1.Text, userSifre: textBox2.Text);
+            bool isUser = DataBaseSettings.ısThereUser(kullaniciKodu: textBox1.Text, userSifre: textBox2.Text,Rol:"User");
+            bool isAdmin = DataBaseSettings.ısThereAdmin(kullaniciKodu: textBox1.Text, userSifre: textBox2.Text,Rol:"Admin");
+            bool isManager = DataBaseSettings.ısThereManager(kullaniciKodu: textBox1.Text, userSifre: textBox2.Text, Rol: "Manager");
 
             if (isUser)
             {
                 DataBaseSettings.LoadUserData(textBox1.Text, textBox2.Text);
-
-                String role = CurrentUser.User.userRole;   
+ 
                 AnaEkran form2 = new AnaEkran(role:"User");
                 griddoldur();
                 form2.ShowDialog();
             }
+           else if (isAdmin)
+            {
+                DataBaseSettings.LoadUserData(textBox1.Text, textBox2.Text);
+                AdminEkran adminEkran = new AdminEkran(rol:"Admin");
+                adminEkran.ShowDialog();
+                return;
 
+            }
+            else if (isManager)
+            {
+                DataBaseSettings.LoadUserData(textBox1.Text, textBox2.Text);
+                AdminEkran adminEkran = new AdminEkran(rol: "Manager");
+                adminEkran.ShowDialog();
+            }
+       
 
             else
             {
@@ -75,7 +92,7 @@ namespace Demirbas_denem1
         private void label1_Click_1(object sender, EventArgs e)
         {
      
-            AdminEkran adminEkran = new AdminEkran();
+            AdminEkran adminEkran = new AdminEkran(rol:"Admin");
             adminEkran.ShowDialog();    
         }
 

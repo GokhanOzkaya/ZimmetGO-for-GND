@@ -34,6 +34,9 @@ namespace Demirbas_denem1.Scanes
 
         private void KullaniciZimmetleri_Load(object sender, EventArgs e)
         {
+            CustomDGV customDGV = new CustomDGV();
+            customDGV.CustomizeDataGridView(dataGridView1);
+            customDGV.CustomizeDataGridView(dataGridView2);
             DataBaseSettings.GridDoldurKullanici(dataGridView1);
         }
 
@@ -68,6 +71,11 @@ namespace Demirbas_denem1.Scanes
         private void button4_Click(object sender, EventArgs e)
         {
             DataBaseFilters.ZimmetGemisLisetele(kullaniciID: Convert.ToInt32(label4.Text),dataGridView: dataGridView2);
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

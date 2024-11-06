@@ -34,6 +34,10 @@ namespace Demirbas_denem1.Scanes
 
         private void Transfer_Load(object sender, EventArgs e)
         {
+            
+            CustomDGV customDGV = new CustomDGV();
+            customDGV.CustomizeDataGridView(dataGridView1);
+            customDGV.CustomizeDataGridView(dataGridView2);
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
             DataBaseSettings.GridDoldurKullanici(dataGridView2);
         }
@@ -202,7 +206,7 @@ namespace Demirbas_denem1.Scanes
         {
             UserRepository ur = new UserRepository();
 
-            ur.UpdateDemirbasKullaniciID(demirbasId: Convert.ToInt32(textBox2.Text), yeniKullaniciId: 26, zimmetTarihi: DateTime.Now, iadeTarihi: DateTime.Now);
+            ur.UpdateDemirbasKullaniciID(demirbasId: Convert.ToInt32(textBox2.Text), yeniKullaniciId: 1, zimmetTarihi: DateTime.Now, iadeTarihi: DateTime.Now);
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
             DataBaseSettings.GridDoldurKullanici(dataGridView2);
 

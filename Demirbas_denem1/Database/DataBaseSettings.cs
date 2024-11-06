@@ -37,10 +37,10 @@ namespace Demirbas_denem1.Database
 
 
 
-        public static bool LoadUserData(string userName, string sifre)
+        public static bool LoadUserData(string kullaniciKodu, string sifre)
         {
            
-            string query = "SELECT * FROM Kullanicilar WHERE KullaniciAdi = @KullaniciAdi AND Sifre= @Sifre";
+            string query = "SELECT * FROM Kullanicilar WHERE KullaniciKodu = @KullaniciKodu AND Sifre= @Sifre";
 
 
             using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -49,7 +49,7 @@ namespace Demirbas_denem1.Database
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@KullaniciAdi", userName);
+                    cmd.Parameters.AddWithValue("@KullaniciKodu", kullaniciKodu);
                     cmd.Parameters.AddWithValue("@Sifre", sifre);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -66,6 +66,7 @@ namespace Demirbas_denem1.Database
                             CurrentUser.User.userStartTime = reader.GetDateTime(reader.GetOrdinal("BaslamaTarihi"));
                             CurrentUser.User.userStatus = reader.GetString(reader.GetOrdinal("Statu"));
                             CurrentUser.User.userRole = reader.GetString(reader.GetOrdinal("Rol"));
+                   
 
                             // Diğer alanları da okuyabilirsiniz.
                             return true;
@@ -78,17 +79,18 @@ namespace Demirbas_denem1.Database
         }
 
         //user kontrol
-        public static bool ısThereUser(string userName, string userSifre)
+        public static bool ısThereUser(string kullaniciKodu, string userSifre,string Rol)
         {
             bool isThere = false;
-            string query = "SELECT COUNT(*) FROM Kullanicilar WHERE KullaniciAdi = @KullaniciAdi AND Sifre= @Sifre";
+            string query = "SELECT COUNT(*) FROM Kullanicilar WHERE KullaniciKodu = @KullaniciKodu AND Sifre= @Sifre AND Rol=@Rol";
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
                 con.Open();
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@KullaniciAdi", userName);
+                    cmd.Parameters.AddWithValue("@KullaniciKodu", kullaniciKodu);
+                    cmd.Parameters.AddWithValue("@Rol", Rol);
                     cmd.Parameters.AddWithValue("@Sifre", userSifre); // 'password' değişkeni, kullanıcıdan alınan şifreyi içermelidir
 
                     int kullanicisayisi = (int)cmd.ExecuteScalar();
@@ -102,8 +104,58 @@ namespace Demirbas_denem1.Database
             return isThere;
 
         }
+        public static bool ısThereAdmin(string kullaniciKodu, string userSifre,string Rol)
+        {
+            bool isThere = false;
+            string query = "SELECT COUNT(*) FROM Kullanicilar WHERE KullaniciKodu = @KullaniciKodu AND Sifre= @Sifre AND Rol=@Rol";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                con.Open();
 
-      
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@KullaniciKodu", kullaniciKodu);
+                    cmd.Parameters.AddWithValue("@Sifre", userSifre); // 'password' değişkeni, kullanıcıdan alınan şifreyi içermelidir
+                    cmd.Parameters.AddWithValue("@Rol", Rol); // 'password' değişkeni, kullanıcıdan alınan şifreyi içermelidir
+
+                    int kullanicisayisi = (int)cmd.ExecuteScalar();
+
+                    if (kullanicisayisi > 0)
+                    {
+                        isThere = true;
+                    }
+                }
+            }
+            return isThere;
+
+        }
+
+        public static bool ısThereManager(string kullaniciKodu, string userSifre, string Rol)
+        {
+            bool isThere = false;
+            string query = "SELECT COUNT(*) FROM Kullanicilar WHERE KullaniciKodu = @KullaniciKodu AND Sifre= @Sifre AND Rol=@Rol";
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@KullaniciKodu", kullaniciKodu);
+                    cmd.Parameters.AddWithValue("@Sifre", userSifre); // 'password' değişkeni, kullanıcıdan alınan şifreyi içermelidir
+                    cmd.Parameters.AddWithValue("@Rol", Rol); // 'password' değişkeni, kullanıcıdan alınan şifreyi içermelidir
+
+                    int kullanicisayisi = (int)cmd.ExecuteScalar();
+
+                    if (kullanicisayisi > 0)
+                    {
+                        isThere = true;
+                    }
+                }
+            }
+            return isThere;
+
+        }
+
         public static void GridDoldurKullanici(DataGridView dataGridView)
         {
             string query = "SELECT * FROM Kullanicilar";

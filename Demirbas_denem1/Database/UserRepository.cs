@@ -20,7 +20,7 @@ namespace Demirbas_denem1.Entities
     {
         public void UpdateUser(User updatedUser)
         {
-            string updateQuery = "UPDATE Kullanicilar SET KullaniciAdi = @KullaniciAdi, KullaniciSoyadi = @KullaniciSoyadi, Unvan = @Unvan, Departman = @Departman, Email = @Email, Sifre = @Sifre, BaslamaTarihi = @BaslamaTarihi, Statu = @Statu, Rol = @Rol WHERE KullaniciId = @KullaniciId";
+            string updateQuery = "UPDATE Kullanicilar SET KullaniciAdi = @KullaniciAdi, KullaniciSoyadi = @KullaniciSoyadi, Unvan = @Unvan, Departman = @Departman, Email = @Email, Sifre = @Sifre, BaslamaTarihi = @BaslamaTarihi, Statu = @Statu, Rol = @Rol,KullaniciKodu = @KullaniciKodu WHERE KullaniciId = @KullaniciId";
 
             try
             {

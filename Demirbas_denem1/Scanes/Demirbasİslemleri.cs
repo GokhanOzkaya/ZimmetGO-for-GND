@@ -38,7 +38,7 @@ namespace Demirbas_denem1.Scanes
             db.DemirbasTuru = comboBox1.Text;
             db.SatinAlmaTarihi = dateTimePicker1.Value;
             db.KayitTarihi= dateTimePicker2.Value;
-            db.KullaniciID = 10;    
+            db.KullaniciID = 1;    
             db.Durum = comboBox2.Text;
             db.Aciklama = richTextBox1.Text;
             db.FirmaKodu = comboBox3.Text.ToString();
@@ -76,6 +76,8 @@ namespace Demirbas_denem1.Scanes
 
         private void Demirbasİslemleri_Load(object sender, EventArgs e)
         {
+            CustomDGV customDGV = new CustomDGV();
+            customDGV.CustomizeDataGridView(dataGridView1);
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
             dateTimePicker1.Value = DateTime.Now; 
             dateTimePicker2.Value = DateTime.Now; 

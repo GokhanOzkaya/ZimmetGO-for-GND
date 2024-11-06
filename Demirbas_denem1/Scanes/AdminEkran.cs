@@ -11,22 +11,38 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
+using Demirbas_denem1.Entities;
 namespace Demirbas_denem1.Scanes
 {
     public partial class AdminEkran : MetroForm
     {
-        public AdminEkran()
+        public AdminEkran(string rol)
         {
             InitializeComponent();
             this.Text = "Ana Menü";
+            if (rol == "Manager")
+            {
+                button5.Enabled = false;
+                button4.Enabled = false;
+                button3.Enabled = false;
+                button2.Enabled = false;
+            }
         }
 
 
         private void AdminEkran_Load(object sender, EventArgs e)
         {
+            // Ad ve soyadı birleştirip metroLabel1'e yazdır
+            metroLabel1.Text = $"{CurrentUser.User.userName} {CurrentUser.User.sureName}";
+
+            // Kullanıcı kodunu metroLabel2'ye yazdır
+            metroLabel2.Text = CurrentUser.User.userCode;
+            metroLabel3.Text = CurrentUser.User.userRole;
+
+
             Count count = new Count();
             label7.Text = count.UrunSay("BİLGİSAYAR").ToString();
-            label37.Text = count.UrunSayIT("BİLGİSAYAR",1).ToString();
+            label37.Text = count.UrunSayIT("BİLGİSAYAR", 1).ToString();
             label19.Text = (Convert.ToInt32(label7.Text) - Convert.ToInt32(label37.Text)).ToString();
 
 
@@ -47,7 +63,7 @@ namespace Demirbas_denem1.Scanes
             label31.Text = (Convert.ToInt32(label11.Text) - Convert.ToInt32(label49.Text)).ToString();
 
             label12.Text = count.UrunSay("ARAÇ").ToString();
-            label52.Text = count.UrunSayIT("ARAÇ",1).ToString();
+            label52.Text = count.UrunSayIT("ARAÇ", 1).ToString();
             label34.Text = (Convert.ToInt32(label12.Text) - Convert.ToInt32(label52.Text)).ToString();
 
             chart1.Series["Kullanımda"].IsValueShownAsLabel = true;
@@ -123,10 +139,10 @@ namespace Demirbas_denem1.Scanes
             chart1.Titles[0].ForeColor = Color.DarkSlateGray;
 
 
-          
-           
-           
-           
+
+
+
+
 
 
 

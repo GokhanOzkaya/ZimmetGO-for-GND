@@ -17,7 +17,7 @@ namespace Demirbas_denem1.Database
             dataGridView.DefaultCellStyle.Font = font;
 
             dataGridView.EnableHeadersVisualStyles = false;
-            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.LightSlateGray;
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(204, 0, 0);
             dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Verdana", 10, FontStyle.Bold);
             dataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

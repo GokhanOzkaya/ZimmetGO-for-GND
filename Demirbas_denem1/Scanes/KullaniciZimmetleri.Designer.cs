@@ -40,8 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -54,9 +52,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1115, 788);
+            this.button1.Location = new System.Drawing.Point(33, 750);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(170, 41);
+            this.button1.Size = new System.Drawing.Size(207, 54);
             this.button1.TabIndex = 0;
             this.button1.Text = "Çıkış";
             this.button1.UseVisualStyleBackColor = true;
@@ -64,36 +62,37 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1174, 3);
+            this.button2.Location = new System.Drawing.Point(1365, 63);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 38);
+            this.button2.Size = new System.Drawing.Size(157, 38);
             this.button2.TabIndex = 14;
-            this.button2.Text = "Ara";
+            this.button2.Text = "ARA";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(33, 3);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBox1.Location = new System.Drawing.Point(33, 63);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1122, 38);
+            this.textBox1.Size = new System.Drawing.Size(1326, 38);
             this.textBox1.TabIndex = 13;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(33, 47);
+            this.dataGridView1.Location = new System.Drawing.Point(33, 117);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1253, 460);
+            this.dataGridView1.Size = new System.Drawing.Size(1489, 390);
             this.dataGridView1.TabIndex = 15;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(33, 525);
+            this.button3.Location = new System.Drawing.Point(36, 523);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(207, 77);
+            this.button3.Size = new System.Drawing.Size(207, 110);
             this.button3.TabIndex = 16;
             this.button3.Text = "Kişinin Üzerindeki Zimmetleri Gör";
             this.button3.UseVisualStyleBackColor = true;
@@ -111,8 +110,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView2);
-            this.splitContainer1.Size = new System.Drawing.Size(1039, 245);
-            this.splitContainer1.SplitterDistance = 211;
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
+            this.splitContainer1.Size = new System.Drawing.Size(1276, 279);
+            this.splitContainer1.SplitterDistance = 327;
             this.splitContainer1.TabIndex = 17;
             // 
             // groupBox1
@@ -121,9 +121,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Location = new System.Drawing.Point(3, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(205, 239);
+            this.groupBox1.Size = new System.Drawing.Size(321, 273);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kullanıcı Bilgileri";
@@ -171,34 +171,16 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 12);
+            this.dataGridView2.Location = new System.Drawing.Point(8, 7);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(818, 218);
+            this.dataGridView2.Size = new System.Drawing.Size(911, 257);
             this.dataGridView2.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(705, 788);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(140, 13);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Üzerine Zimmetli Ürün Sayısı";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(883, 788);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "label6";
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(33, 608);
+            this.button4.Location = new System.Drawing.Point(33, 639);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(207, 77);
+            this.button4.Size = new System.Drawing.Size(207, 105);
             this.button4.TabIndex = 19;
             this.button4.Text = "Kişinin Zimmet Geçmişini Gör";
             this.button4.UseVisualStyleBackColor = true;
@@ -208,10 +190,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1314, 841);
+            this.ClientSize = new System.Drawing.Size(1556, 814);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dataGridView1);
@@ -219,7 +199,9 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Name = "KullaniciZimmetleri";
-            this.Text = "KullaniciZimmetleri";
+            this.Style = MetroFramework.MetroColorStyle.Red;
+            this.Text = "Kullanıcı Zimmetleri";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.KullaniciZimmetleri_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -247,8 +229,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button4;
     }
