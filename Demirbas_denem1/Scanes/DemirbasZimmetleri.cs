@@ -85,6 +85,8 @@ namespace Demirbas_denem1.Scanes
 
         private void button3_Click(object sender, EventArgs e)
         {
+           // Veya false ise, sütunları manuel olarak ayarlayın
+
             DataBaseFilters.DemirbasZimmetGecmisiniGör(Convert.ToString(textBox1.Text), dataGridView2);
         }
     }

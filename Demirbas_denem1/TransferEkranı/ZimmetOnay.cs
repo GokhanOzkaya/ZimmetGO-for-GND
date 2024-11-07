@@ -76,6 +76,7 @@ namespace Demirbas_denem1.TransferEkranı
             label30.Text = _oldUser.userCode;
             label31.Text = _oldUser.FirmaKodu;
             label32.Text = _oldUser.userDepartment;
+            label33.Text = _oldUser.KullaniciId.ToString();
 
 
         }
@@ -123,10 +124,10 @@ namespace Demirbas_denem1.TransferEkranı
                             demirbasId: Convert.ToInt32(label2.Text),
                             kullaniciId: Convert.ToInt32(label14.Text),
                             zimmetTarihi: DateTime.Now,
-                            iadeTarihi: DateTime.Now,
-                            zimmetAlınanKisiID: _xKullanicilarKullaniciId,
-                            firmaKodu:_selectedUser.FirmaKodu
-                        );
+                            iadeTarihi: null, //ZimmetAlınanKisiId nın zimmet gecmisindeki ilgili demirbasın iade tarihini bugün olarak at
+                            zimmetAlınanKisiID: _selectedUser.KullaniciId,
+                            firmaKodu: _selectedUser.FirmaKodu
+                        ); 
                     }
                     else
                     {

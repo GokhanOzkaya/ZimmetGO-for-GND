@@ -149,8 +149,14 @@ namespace Demirbas_denem1.Entities
                            FirmaKodu = @FirmaKodu 
                        WHERE DemirbasID = @DemirbasID";
 
-            string addQuery = "INSERT INTO [dbo].[ZimmetGecmisi] (KullaniciID, DemirbasID, ZimmetTarihi, IadeTarihi,ZimmetAlınanKisiID) " +
-                              "VALUES (@KullaniciID, @DemirbasID, @ZimmetTarihi, @IadeTarihi,@ZimmetAlınanKisiID)";
+            string addQuery = "INSERT INTO [dbo].[ZimmetGecmisi] (KullaniciID, DemirbasID, ZimmetTarihi, IadeTarihi,ZimmetAlınanKisiID,FirmaKodu) " +
+                              "VALUES (@KullaniciID, @DemirbasID, @ZimmetTarihi, @IadeTarihi,@ZimmetAlınanKisiID,@FirmaKodu)";
+
+            string updateIadeTarihiQuery = @"UPDATE ZimmetGecmisi
+                                     SET IadeTarihi = @Now
+                                     WHERE ZimmetAlınanKisiID = @ZimmetAlınanKisiID AND DemirbasID =@DemirbasID
+                                     AND IadeTarihi IS NULL";
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
@@ -178,6 +184,17 @@ namespace Demirbas_denem1.Entities
                         }
                     }
 
+                    if (zimmetAlınanKisiID != null)
+                    {
+                        using (SqlCommand command = new SqlCommand(updateIadeTarihiQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@Now", DateTime.Now);
+                            command.Parameters.AddWithValue("@ZimmetAlınanKisiID", zimmetAlınanKisiID);
+                            command.Parameters.AddWithValue("@demirbasId", demirbasId);
+                            command.ExecuteNonQuery();
+                        }   
+                    }
+
                     // Zimmet Gecmis Ekle Run
                     using (SqlCommand command = new SqlCommand(addQuery, connection))
                     {
@@ -200,6 +217,8 @@ namespace Demirbas_denem1.Entities
                             MessageBox.Show("Zimmet geçmişi eklenirken sorun oluştu.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
+
+
                 }
             }
             catch (SqlException sqlEx)

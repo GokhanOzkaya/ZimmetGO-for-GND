@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Count.cs" />
+    <Compile Include="Database\CustomDGV.cs" />
     <Compile Include="Database\DataBaseFilters.cs" />
     <Compile Include="Database\DataBaseSettings.cs" />
     <Compile Include="Entities\Demirbas.cs" />

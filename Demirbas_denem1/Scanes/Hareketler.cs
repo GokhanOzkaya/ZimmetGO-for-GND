@@ -19,7 +19,16 @@ namespace Demirbas_denem1.Scanes
 
         private void Hareketler_Load(object sender, EventArgs e)
         {
-            DataBaseFilters.ZimmetGemisLisetele(dataGridView:dataGridView1);
+            DataBaseFilters.ZimmetGemisLisetele(dataGridView: dataGridView1);
+
+            // CustomDGV sınıfının bir örneğini oluşturun
+            CustomDGV customDGV = new CustomDGV();
+
+          
+                    customDGV.CustomizeDataGridView(dataGridView1);
+       
+
+
 
         }
 

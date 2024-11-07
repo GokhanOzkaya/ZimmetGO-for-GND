@@ -80,5 +80,15 @@ namespace Demirbas_denem1
         {
     
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Giriş_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

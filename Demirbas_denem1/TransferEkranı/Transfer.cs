@@ -93,7 +93,7 @@ namespace Demirbas_denem1.Scanes
                                : string.Empty,
 
                     FirmaKodu = selectedRow.Cells["FirmaKodu"].Value != DBNull.Value
-                                ? Convert.ToInt32(selectedRow.Cells["FirmaKodu"].Value)
+                                ? selectedRow.Cells["FirmaKodu"].Value.ToString()
                                 : null, // Varsayılan değer
                 };
 
@@ -165,8 +165,6 @@ namespace Demirbas_denem1.Scanes
                 TransferEkranı. ZimmetOnay zimmetOnay = new TransferEkranı. ZimmetOnay(selectedDemirbas,selectedUser,oldUser);
                 zimmetOnay.Show();
             }
-
-
 
 
         }

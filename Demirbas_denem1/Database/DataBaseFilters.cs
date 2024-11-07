@@ -141,26 +141,26 @@ namespace Demirbas_denem1
 
         }
 
-
         public static void ZimmetGemisLisetele(DataGridView dataGridView, DateTime? zimmetAlisTar = null, DateTime? iadeEdisTar = null, int? kullaniciID = null)
         {
+            dataGridView.AutoGenerateColumns = true; // Veya false ise, sütunları manuel olarak ayarlayın
+
             string connectionString = DataBaseSettings.ConnectionString;
             string query = "SELECT Kullanicilar.KullaniciAdi, " +
-                 "Kullanicilar.KullaniciSoyadi, " +
-                 "Kullanicilar.Unvan, " +
-                 "Kullanicilar.Departman, " +
-                 "ZimmetGecmisi.ZimmetTarihi, " +
-                 "ZimmetGecmisi.IadeTarihi, " +
-                 "ZimmetGecmisi.DemirbasID, " +
-                 "Demirbaslar.DemirbasMarka, " +
-                 "Demirbaslar.DemirbasModel, " +
-                 "Demirbaslar.Durum, " +
-                 "Demirbaslar.DemirbasUNIQKod " +
-                 "FROM ZimmetGecmisi " +  // Boşluk eklendi
-                 "JOIN Kullanicilar ON Kullanicilar.KullaniciId = ZimmetGecmisi.KullaniciID " +  // Boşluk eklendi
-                 "JOIN Demirbaslar ON Demirbaslar.DemirbasID = ZimmetGecmisi.DemirbasID ";  // Boşluk eklendi
-
-
+                           "Kullanicilar.KullaniciSoyadi, " +
+                           "Kullanicilar.Unvan, " +
+                           "Kullanicilar.Departman, " +
+                           "ZimmetGecmisi.ZimmetTarihi, " +
+                           "ZimmetGecmisi.IadeTarihi, " +
+                           "ZimmetGecmisi.DemirbasID, " +
+                           "Demirbaslar.DemirbasMarka, " +
+                           "Demirbaslar.DemirbasModel, " +
+                           "Demirbaslar.Durum, " +
+                           "Demirbaslar.DemirbasUNIQKod, " +
+                           "ISNULL(Demirbaslar.FirmaKodu, 'Bilinmiyor') AS FirmaKodu " +
+                           "FROM ZimmetGecmisi " +
+                           "JOIN Kullanicilar ON Kullanicilar.KullaniciId = ZimmetGecmisi.KullaniciID " +
+                           "JOIN Demirbaslar ON Demirbaslar.DemirbasID = ZimmetGecmisi.DemirbasID ";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -168,23 +168,31 @@ namespace Demirbas_denem1
                 {
                     command.Connection = connection;
 
+                    // Koşulları birleştirmek için bir liste kullan
+                    List<string> conditions = new List<string>();
+
                     if (kullaniciID != null)
                     {
-                        // Eğer demirbasId bir string ise ve boş değilse
-                        query += " WHERE ZimmetGecmisi.KullaniciID = @KullaniciID ";
+                        conditions.Add("ZimmetGecmisi.KullaniciID = @KullaniciID");
                         command.Parameters.AddWithValue("@KullaniciID", kullaniciID);
                     }
+
                     if (zimmetAlisTar != null)
                     {
-                        // Eğer demirbasId bir string ise ve boş değilse
-                        query += " WHERE ZimmetGecmisi.KullaniciID = @KullaniciID ";
-                        command.Parameters.AddWithValue("@KullaniciID", kullaniciID);
+                        conditions.Add("ZimmetGecmisi.ZimmetTarihi = @ZimmetAlisTar");
+                        command.Parameters.AddWithValue("@ZimmetAlisTar", zimmetAlisTar);
                     }
+
                     if (iadeEdisTar != null)
                     {
-                        // Eğer demirbasId bir string ise ve boş değilse
-                        query += " WHERE ZimmetGecmisi.KullaniciID = @KullaniciID ";
-                        command.Parameters.AddWithValue("@KullaniciID", kullaniciID);
+                        conditions.Add("ZimmetGecmisi.IadeTarihi = @IadeEdisTar");
+                        command.Parameters.AddWithValue("@IadeEdisTar", iadeEdisTar);
+                    }
+
+                    // Eğer koşul varsa WHERE ekle
+                    if (conditions.Count > 0)
+                    {
+                        query += " WHERE " + string.Join(" AND ", conditions);
                     }
 
                     command.CommandText = query;
@@ -205,9 +213,11 @@ namespace Demirbas_denem1
                         MessageBox.Show($"Bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
             }
         }
+
+
+
 
         public static void SearchInZimmetGecmisi(DataGridView dataGridView, DateTime baslangicTarihi, DateTime bitisTarihi, string filtreTuru)
         {
@@ -343,6 +353,8 @@ namespace Demirbas_denem1
 
         public static void DemirbasZimmetGecmisiniGör(string demirbasUNIQKod, DataGridView dgv)
         {
+            dgv.AutoGenerateColumns = true;
+
             string query = @"--Malzemenin kişi geçmişini gör--
                      SELECT Kullanicilar.KullaniciAdi, 
                             Kullanicilar.KullaniciSoyadi, 
@@ -353,7 +365,8 @@ namespace Demirbas_denem1
                             Demirbaslar.DemirbasMarka, 
                             Demirbaslar.DemirbasModel, 
                             Demirbaslar.Durum, 
-                            Demirbaslar.DemirbasUNIQKod
+                            Demirbaslar.DemirbasUNIQKod,
+                            ISNULL(ZimmetGecmisi.FirmaKodu, 'Bilinmiyor') AS FirmaKodu 
                      FROM ZimmetGecmisi
                      JOIN Demirbaslar ON Demirbaslar.DemirbasID = ZimmetGecmisi.DemirbasID
                      JOIN Kullanicilar ON Kullanicilar.KullaniciId = ZimmetGecmisi.KullaniciID ";

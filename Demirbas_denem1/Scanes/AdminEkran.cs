@@ -33,13 +33,68 @@ namespace Demirbas_denem1.Scanes
             label40.Text = count.UrunSayIT("TELEFON",10).ToString();
             label22.Text = (Convert.ToInt32(label8.Text) - Convert.ToInt32(label40.Text)).ToString();
 
+            chart1.Series["Kullanımda"].IsValueShownAsLabel = true;
+            chart1.Series["Depoda"].IsValueShownAsLabel = true;
+            chart1.Series["Toplam"].IsValueShownAsLabel = true;
 
-            chart1.Series["Kullanımda"].Points.AddXY("Bilgisayar",100); // İlk seriye 10 değeri ekleniyor
-            chart1.Series["Depoda"].Points.AddY(20); // İkinci seriye 20 değeri ekleniyor
-            chart1.Series["Toplam"].Points.AddY(30); // Üçüncü seriye 30 değeri ekleniyor
+            chart1.Series["Kullanımda"].Points.AddXY("Bilgisayar", 100); // İlk seriye 10 değeri ekleniyor
+            chart1.Series["Depoda"].Points.AddXY("Bilgisayar", 20); // İkinci seriye 20 değeri ekleniyor
+            chart1.Series["Toplam"].Points.AddXY("Bilgisayar", 30); // Üçüncü seriye 30 değeri ekleniyor
+
+            chart1.Series["Kullanımda"].Points.AddXY("Telefon", Convert.ToInt32(label22.Text));
+            chart1.Series["Depoda"].Points.AddXY("Telefon", Convert.ToInt32(label40.Text));
+            chart1.Series["Toplam"].Points.AddXY("Telefon", Convert.ToInt32(label8.Text));
+
+
+            // Seri türlerini ayarla
+            chart1.Series["Kullanımda"].ChartType = SeriesChartType.Column;
+            chart1.Series["Depoda"].ChartType = SeriesChartType.Column;
+            chart1.Series["Toplam"].ChartType = SeriesChartType.Column;
+
+            // X ekseninin yana yana görünmesi için ayar
+            chart1.ChartAreas[0].AxisX.IsMarginVisible = true;
+
+            // Grafik arka plan ve alan renkleri
+            chart1.BackColor = Color.WhiteSmoke;
+            chart1.ChartAreas[0].BackColor = Color.White;
+
+            // Çubuk grafik renk ayarları
+            chart1.Series["Kullanımda"].Color = Color.SteelBlue;
+            chart1.Series["Depoda"].Color = Color.Coral;
+            chart1.Series["Toplam"].Color = Color.SeaGreen;
+
+            // Değerlerin çubukların üstünde görünmesi için
+            chart1.Series["Kullanımda"].IsValueShownAsLabel = true;
+            chart1.Series["Depoda"].IsValueShownAsLabel = true;
+            chart1.Series["Toplam"].IsValueShownAsLabel = true;
+
+            // Etiketlerin yazı tipi ve rengi
+            chart1.Series["Kullanımda"].LabelForeColor = Color.DimGray;
+            chart1.Series["Depoda"].LabelForeColor = Color.DimGray;
+            chart1.Series["Toplam"].LabelForeColor = Color.DimGray;
+
+            // Eksen çizgi ve etiket ayarları
+            chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.LightGray;
+            chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
+            chart1.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Verdana", 9, FontStyle.Regular);
+            chart1.ChartAreas[0].AxisY.LabelStyle.Font = new Font("Verdana", 9, FontStyle.Regular);
+
+            // Başlık ekleyin ve stilini ayarlayın
+            chart1.Titles.Add("Demirbaş Durumları");
+            chart1.Titles[0].Font = new Font("Arial", 12, FontStyle.Bold);
+            chart1.Titles[0].ForeColor = Color.DarkSlateGray;
+
+
+          
+           
+           
+           
+
+
+
         }
 
-   
+
 
         private void button2_Click_1(object sender, EventArgs e)
         {

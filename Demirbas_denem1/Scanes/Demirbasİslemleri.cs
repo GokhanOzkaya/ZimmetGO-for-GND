@@ -40,7 +40,7 @@ namespace Demirbas_denem1.Scanes
             db.KullaniciID = 10;    
             db.Durum = comboBox2.Text;
             db.Aciklama = richTextBox1.Text;
-            db.FirmaKodu = Convert.ToInt32( comboBox3.Text);
+            db.FirmaKodu = comboBox3.Text.ToString();
 
 
             UserRepository Repository = new UserRepository();
@@ -64,7 +64,7 @@ namespace Demirbas_denem1.Scanes
             db.KullaniciID = 10;
             db.Durum = comboBox2.Text;
             db.Aciklama = richTextBox1.Text;
-            db.FirmaKodu =Convert.ToInt32( comboBox3.Text);
+            db.FirmaKodu =comboBox3.Text.ToString();
 
             UserRepository Repository = new UserRepository();
             Repository.UpdateDemirbas(db);
