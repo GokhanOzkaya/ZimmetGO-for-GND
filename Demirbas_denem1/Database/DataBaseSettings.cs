@@ -13,7 +13,8 @@ namespace Demirbas_denem1.Database
     public static class DataBaseSettings
     {
         //VERİ TABANI KULLANIM İÇİN KISYOLLAR
-        public static string ConnectionString = "server=DESKTOP-7HOCOM2\\SQLEXPRESS; Initial Catalog=deneme;Integrated Security=True";
+        public static string ConnectionString = "Server=GUNDOGDU-SQL\\SQLSERVER1; Initial Catalog=ZIMMET_GO; User ID=sa; Password=4kenar3Gen!;";
+
 
         public static SqlConnection con;
         public static SqlDataAdapter da;

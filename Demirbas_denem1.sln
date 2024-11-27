@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demirbas_denem1", "Demirbas_denem1\Demirbas_denem1.csproj", "{3E733C22-7528-4A1C-B488-A6256E9DE3C0}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupZimmetGo", "Demirbas_denem1\SetupZimmetGo\SetupZimmetGo.vdproj", "{FE39589A-48D5-4CD0-BBEE-BD9FD1016F81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{3E733C22-7528-4A1C-B488-A6256E9DE3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E733C22-7528-4A1C-B488-A6256E9DE3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E733C22-7528-4A1C-B488-A6256E9DE3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE39589A-48D5-4CD0-BBEE-BD9FD1016F81}.Debug|Any CPU.ActiveCfg = Debug
+		{FE39589A-48D5-4CD0-BBEE-BD9FD1016F81}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

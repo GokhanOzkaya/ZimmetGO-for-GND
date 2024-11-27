@@ -62,15 +62,14 @@ namespace Demirbas_denem1.Scanes
             db.DemirbasTuru = comboBox2.Text;
             db.SatinAlmaTarihi = dateTimePicker1.Value;
             db.KayitTarihi = dateTimePicker2.Value;
-            db.KullaniciID = 10;
+      
             db.Durum = comboBox2.Text;
             db.Aciklama = richTextBox1.Text;
             db.FirmaKodu =comboBox3.Text.ToString();
 
             UserRepository Repository = new UserRepository();
             Repository.UpdateDemirbas(db);
-         
-            MessageBox.Show("Kayıt başarıyla güncellendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
             DataBaseSettings.GridDoldurDemirbas(dataGridView1);
         }
 
@@ -105,7 +104,6 @@ namespace Demirbas_denem1.Scanes
                 dateTimePicker1.Value = Convert.ToDateTime(selectedRow.Cells["SatinAlmaTarihi"].Value);
                 dateTimePicker2.Value = Convert.ToDateTime(selectedRow.Cells["KayitTarihi"].Value);
                 richTextBox1.Text = selectedRow.Cells["Aciklama"].Value.ToString();
-
             }
         }
 

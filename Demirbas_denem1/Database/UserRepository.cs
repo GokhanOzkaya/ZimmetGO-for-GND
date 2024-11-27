@@ -20,7 +20,7 @@ namespace Demirbas_denem1.Entities
     {
         public void UpdateUser(User updatedUser)
         {
-            string updateQuery = "UPDATE Kullanicilar SET KullaniciAdi = @KullaniciAdi, KullaniciSoyadi = @KullaniciSoyadi, Unvan = @Unvan, Departman = @Departman, Email = @Email, Sifre = @Sifre, BaslamaTarihi = @BaslamaTarihi, Statu = @Statu, Rol = @Rol,KullaniciKodu = @KullaniciKodu WHERE KullaniciId = @KullaniciId";
+            string updateQuery = "UPDATE Kullanicilar SET KullaniciAdi = @KullaniciAdi, KullaniciSoyadi = @KullaniciSoyadi, Unvan = @Unvan, Departman = @Departman, Email = @Email, Sifre = @Sifre, BaslamaTarihi = @BaslamaTarihi, Statu = @Statu, Rol = @Rol, FirmaKodu = @FirmaKodu, KullaniciKodu = @KullaniciKodu WHERE KullaniciId = @KullaniciId";
 
             try
             {
@@ -40,6 +40,7 @@ namespace Demirbas_denem1.Entities
                         command.Parameters.AddWithValue("@Statu", updatedUser.userStatus);
                         command.Parameters.AddWithValue("@Rol", updatedUser.userRole);
                         command.Parameters.AddWithValue("@KullaniciKodu", updatedUser.userCode);
+                        command.Parameters.AddWithValue("@FirmaKodu", updatedUser.FirmaKodu);
 
                         // Bağlantıyı aç
                         connection.Open();
@@ -104,7 +105,7 @@ namespace Demirbas_denem1.Entities
         }
         public void UpdateDemirbas(Demirbas updatedDemirbas)
         {
-            string updateQuery = @"UPDATE Demirbaslar SET DemirbasAdi = @DemirbasAdi,DemirbasMarka = @DemirbasMarka,DemirbasModel = @DemirbasModel,  DemirbasTuru = @DemirbasTuru,SatinAlmaTarihi = @SatinAlmaTarihi,KayitTarihi = @KayitTarihi, Durum = @Durum,KullaniciID = @KullaniciID, Aciklama = @Aciklama,FirmaKodu = @FirmaKodu WHERE DemirbasID = @DemirbasID";
+            string updateQuery = @"UPDATE Demirbaslar SET DemirbasAdi = @DemirbasAdi,DemirbasMarka = @DemirbasMarka,DemirbasModel = @DemirbasModel,  DemirbasTuru = @DemirbasTuru,SatinAlmaTarihi = @SatinAlmaTarihi,KayitTarihi = @KayitTarihi, Durum = @Durum, Aciklama = @Aciklama,FirmaKodu = @FirmaKodu WHERE DemirbasID = @DemirbasID";
             try
             {
                 using (SqlConnection connection = new SqlConnection(DataBaseSettings.ConnectionString))
@@ -119,7 +120,6 @@ namespace Demirbas_denem1.Entities
                         command.Parameters.AddWithValue("@SatinAlmaTarihi", updatedDemirbas.SatinAlmaTarihi ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@KayitTarihi", updatedDemirbas.KayitTarihi ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@Durum", updatedDemirbas.Durum ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@KullaniciID", updatedDemirbas.KullaniciID ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@Aciklama", updatedDemirbas.Aciklama ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@FirmaKodu", updatedDemirbas.FirmaKodu ?? (object)DBNull.Value);
                         command.Parameters.AddWithValue("@DemirbasID", updatedDemirbas.DemirbasID );
@@ -127,6 +127,7 @@ namespace Demirbas_denem1.Entities
 
                         connection.Open();
                         command.ExecuteNonQuery();
+                        MessageBox.Show("Kayıt başarıyla güncellendi!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }

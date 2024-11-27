@@ -54,11 +54,10 @@
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.textBox2);
             this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1435, 513);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(1074, 414);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Giriş";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -68,39 +67,35 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(721, 42);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(541, 34);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(614, 429);
+            this.pictureBox1.Size = new System.Drawing.Size(460, 349);
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(121, 224);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(91, 182);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 16);
+            this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 20;
             this.label3.Text = "Şifre";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(121, 161);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(91, 131);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 16);
+            this.label2.Size = new System.Drawing.Size(64, 13);
             this.label2.TabIndex = 19;
             this.label2.Text = "Kullanıcı Adı";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(115, 292);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(86, 237);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(423, 58);
+            this.button1.Size = new System.Drawing.Size(317, 47);
             this.button1.TabIndex = 16;
             this.button1.Text = "GİRİŞ\r\n";
             this.button1.UseVisualStyleBackColor = true;
@@ -109,47 +104,44 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(480, 372);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(360, 302);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 15;
             this.label1.Text = "Kayıt Ol";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(115, 244);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Location = new System.Drawing.Point(86, 198);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(421, 22);
+            this.textBox2.Size = new System.Drawing.Size(317, 20);
             this.textBox2.TabIndex = 14;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(115, 181);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Location = new System.Drawing.Point(86, 147);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(421, 22);
+            this.textBox1.Size = new System.Drawing.Size(317, 20);
             this.textBox1.TabIndex = 13;
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(24, 64);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Location = new System.Drawing.Point(18, 52);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1443, 542);
+            this.tabControl1.Size = new System.Drawing.Size(1082, 440);
             this.tabControl1.TabIndex = 12;
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel1.Location = new System.Drawing.Point(531, 639);
+            this.metroLabel1.Location = new System.Drawing.Point(398, 519);
+            this.metroLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(354, 20);
+            this.metroLabel1.Size = new System.Drawing.Size(338, 19);
             this.metroLabel1.TabIndex = 22;
             this.metroLabel1.Text = "Written by Gökhan ÖZKAYA for Samruk Software";
             this.metroLabel1.Click += new System.EventHandler(this.metroLabel1_Click);
@@ -157,25 +149,25 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(605, 659);
+            this.metroLabel2.Location = new System.Drawing.Point(454, 535);
+            this.metroLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(210, 20);
+            this.metroLabel2.Size = new System.Drawing.Size(202, 19);
             this.metroLabel2.TabIndex = 23;
             this.metroLabel2.Text = "Copyright © Tüm Hakları Saklıdır.";
             // 
             // Giriş
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1496, 713);
+            this.ClientSize = new System.Drawing.Size(1122, 579);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.metroLabel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Giriş";
-            this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.Style = MetroFramework.MetroColorStyle.Red;
-            this.Text = "Form1";
+            this.Text = "HOŞ GELDİNİZ";
             this.Load += new System.EventHandler(this.Giriş_Load);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
